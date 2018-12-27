@@ -1,0 +1,30 @@
+ninja_required_version = 1.5
+
+cc = vasmm68k_mot
+cflags = -Fhunkexe -nosym
+builddir = build
+srcdir = src
+
+rule cc
+  command = $cc $cflags $in -o $out
+  description = Building executable $out
+
+build $builddir/Program_01: cc $srcdir/Program_01.s
+build $builddir/Program_02: cc $srcdir/Program_02.s
+build $builddir/Program_03: cc $srcdir/Program_03.s
+build $builddir/Program_04: cc $srcdir/Program_04.s
+build $builddir/Program_05: cc $srcdir/Program_05.s
+build $builddir/Program_06: cc $srcdir/Program_06.s
+build $builddir/Program_07: cc $srcdir/Program_07.s
+build $builddir/Program_08: cc $srcdir/Program_08.s
+build $builddir/Program_09: cc $srcdir/Program_09.s
+
+build Program_01: phony $builddir/Program_01
+build Program_02: phony $builddir/Program_02
+build Program_03: phony $builddir/Program_03
+build Program_04: phony $builddir/Program_04
+build Program_05: phony $builddir/Program_05
+build Program_06: phony $builddir/Program_06
+build Program_07: phony $builddir/Program_07
+build Program_08: phony $builddir/Program_08
+build Program_09: phony $builddir/Program_09
