@@ -326,7 +326,7 @@ vblank_code
 	lea	my_view,a1
 	jsr	_LVOLoadView(a6)
 	jsr	_LVOWaitTOF(a6)				; wait for vblank
-	ELSEIF
+	ELSE
 	lea	my_viewport,a0
 	jsr	_LVOWaitBOVP(a6)			; use this if you don't want to break WaitTOF()
 	ENDC

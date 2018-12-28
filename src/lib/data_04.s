@@ -10,4 +10,3 @@ vwpointz	dc.w	-100
 illkey		dc.w	2
 intr_col	dc.w	0,1,0,0,1,1
 
-OTHER_PALETTE	EQU	1					; to use with illumination

@@ -33,7 +33,7 @@ color_table
 	dc.w	$00bb
 	dc.w	$00db
 	dc.w	$01fb					; color 15
-	ELSEIF
+	ELSE
 * blues
 	dc.w	0,$011f,$011d,$011b,$0119,$0117,$0115,$0113
 * reds
@@ -58,7 +58,7 @@ color_table
 	dc.w	$0999
 	dc.w	$0fff
 	dc.w	$0000
-	ELSEIF
+	ELSE
 * greens
 	dc.w	$01f1,$01d1,$01b1,$0191,$0171,$0151,$0131,$0121
 * greys

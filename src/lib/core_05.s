@@ -333,7 +333,7 @@ f6	move.w	#0,speed				; stop
 	rts
 f7	move.w	#QUIT,quitflag
 	rts
-	ELSEIF
+	ELSE
 f1	move.w	#-1,speed				; reverse
 	rts
 f2	move.w	#1,speed				; forward

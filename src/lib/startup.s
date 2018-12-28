@@ -17,6 +17,9 @@ Start
 	movea.l	d0,a4					; pointer to the task/process control block.
 	tst.l	pr_CLI(a4)				; See if we came from the CLI
 	bne.s	CLI_Launch				; Yes; so carry on.
+	movea.l	pr_MsgPort+MP_MSGLIST+LH_HEAD(a4),a0	; No CLI: is a WBench message queued?
+	tst.l	LN_SUCC(a0)				; Empty list => no message, so we were
+	beq.s	CLI_Launch				; started from ASM-One (j); carry on.
 	lea	pr_MsgPort(a4),a0			; Else WBench launched; Handle the startup
 	movea.l	4.w,a6					; message WB sends...
 	jsr	_LVOWaitPort(a6)			; Wait for the message to arrive...

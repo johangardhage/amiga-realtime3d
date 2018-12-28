@@ -11,7 +11,7 @@ QUIT		equ	$FFFF
 sizex		equ	320
 		IFD	MY_NTSC
 sizey		equ	200
-		ELSEIF
+		ELSE
 sizey		equ	256
 		ENDC
 

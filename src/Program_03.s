@@ -12,6 +12,8 @@ DOUBLE_BUFFERING	EQU	1
 SIXTEENCOLOURS		EQU	1
 ;KILLTASKS		EQU	1
 ****************************************************************************************
+	incdir	src/lib
+	incdir	sources:src/lib/
 	include	startup.s
 	include	core_02.s
 	include	data_01.s
@@ -91,7 +93,7 @@ displayloop
 
 	IFD	DOUBLE_BUFFERING
 	move.l	workplanes,a0				; Clear the workplanes
-	ELSEIF
+	ELSE
 	move.l	showplanes,a0				; Clear the workplanes
 	ENDC
 	move.l	#HEIGHT,d0				; Clear all planes

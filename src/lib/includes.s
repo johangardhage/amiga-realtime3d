@@ -3,9 +3,11 @@
 *              Put assembler directives and Commodore Includes in here
 *
 ***************************************************************************************
-	opt	warnbit
+;	opt	warnbit
 
-	incdir	include:
+	incdir	include
+	incdir	sources:include/
+
 	include	graphics/gfx.i
 	include	graphics/gfxbase.i
 	include	graphics/view.i
@@ -19,3 +21,6 @@
 	include	exec/memory.i
 	include	dos/dosextens.i
 	include	hardware/custom.i
+
+	incdir	src/lib
+	incdir	sources:src/lib/
