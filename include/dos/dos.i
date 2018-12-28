@@ -1,12 +1,15 @@
 	IFND	DOS_DOS_I
 DOS_DOS_I SET	1
-**	$VER: dos.i 36.27 (5.4.92)
-**	Includes Release 40.15
+**	$VER: dos.i 36.27 (15.12.96)
+**	Includes Release 40.13+1
 **
 **	Standard asm header for AmigaDOS
 **
-**	(C) Copyright 1985-1999 Amiga, Inc.
+**	(C) Copyright 1985-1993 Commodore-Amiga, Inc.
 **	    All Rights Reserved
+**
+**	New version by Harry Sintonen. Public Domain.
+**      Added FIBB_HIDDEN and FIBF_HIDDEN.
 **
 
 	IFND	EXEC_TYPES_I
@@ -95,6 +98,7 @@ TICKS_PER_SECOND EQU 50		; Number of ticks in one second
    BITDEF   FIB,GRP_EXECUTE,9	; Group: file is executable
    BITDEF   FIB,GRP_DELETE,8	; Group: prevent file from being deleted
 
+   BITDEF   FIB,HIDDEN,7	; this file should be hidden
    BITDEF   FIB,SCRIPT,6	; program is an execute script
    BITDEF   FIB,PURE,5		; program is reentrant and reexecutable
    BITDEF   FIB,ARCHIVE,4	; cleared whenever file is changed

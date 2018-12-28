@@ -1,13 +1,16 @@
 	IFND	EXEC_EXECBASE_I
 EXEC_EXECBASE_I SET	1
 **
-**	$VER: execbase.i 39.4 (18.1.93)
-**	Includes Release 40.15
+**	$VER: execbase.i 39.4 (24.7.96)
+**	Includes Release 40.13+1
 **
 **	Definition of the exec.library base structure.
 **
-**	(C) Copyright 1985-1999 Amiga, Inc.
+**	(C) Copyright 1985-1993 Commodore-Amiga, Inc.
 **	    All Rights Reserved
+**
+**	New version by Harry Sintonen. Public Domain.
+**	Added AFB_68060 and AFF_68060.
 **
 
     IFND EXEC_TYPES_I
@@ -178,12 +181,13 @@ EXEC_EXECBASE_I SET	1
 	BITDEF	AF,68040,3
 	BITDEF	AF,68881,4	; also set for 68882
 	BITDEF	AF,68882,5
-	BITDEF	AF,FPU40,6	; Set if 68040 FPU
+	BITDEF	AF,FPU40,6	; Set if 68040/68060 FPU
+	BITDEF	AF,68060,7	; (Info from 68060 Upgrade Software Guide)
 ;
-; The AFB_FPU40 bit is set when a working 68040 FPU
+; The AFB_FPU40 bit is set when a working 68040 (or 68060) FPU
 ; is in the system.  If this bit is set and both the
-; AFB_68881 and AFB_68882 bits are not set, then the 68040
-; math emulation code has not been loaded and only 68040
+; AFB_68881 and AFB_68882 bits are not set, then the 68040 [060]
+; math emulation code has not been loaded and only 68040 [060]
 ; FPU instructions are available.  This bit is valid *ONLY*
 ; if the AFB_68040 bit is set.
 ;

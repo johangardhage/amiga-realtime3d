@@ -1,15 +1,19 @@
-	IFND	EXEC_LIB_I
-EXEC_LIB_I	SET	1
+	IFND	EXEC_EXEC_LIB_I
+EXEC_EXEC_LIB_I	SET	1
 **
-**	$VER: exec_lib.i 39.8 (12.8.93)
-**	Includes Release 40.15
+**	$VER: exec_lib.i 40.1 (14.12.96)
+**	Includes Release 40.13+1
 **
-**	Library vector table
+**	Library interface offsets for Exec library
 **
-**	(C) Copyright 1985-1999 Amiga, Inc.
-**	    All Rights Reserved
+**	Created by Harry Sintonen. Public Domain.
 **
 
+    IFND    EXEC_FUNCDEF_I
+    include 'exec/funcdef.i'
+    ENDC
+
+	FDEFINIT
 	FUNCDEF	Supervisor
 	FUNCDEF	ExitIntr
 	FUNCDEF	Schedule
@@ -98,6 +102,7 @@ EXEC_LIB_I	SET	1
 	FUNCDEF	Procure
 	FUNCDEF	Vacate
 	FUNCDEF	OpenLibrary
+;--- functions in V33 or higher (Release 1.2) ---
 	FUNCDEF	InitSemaphore
 	FUNCDEF	ObtainSemaphore
 	FUNCDEF	ReleaseSemaphore
@@ -111,6 +116,7 @@ EXEC_LIB_I	SET	1
 	FUNCDEF	AddMemList
 	FUNCDEF	CopyMem
 	FUNCDEF	CopyMemQuick
+;--- functions in V36 or higher (Release 2.0) ---
 	FUNCDEF	CacheClearU
 	FUNCDEF	CacheClearE
 	FUNCDEF	CacheControl
@@ -121,6 +127,7 @@ EXEC_LIB_I	SET	1
 	FUNCDEF	ObtainSemaphoreShared
 	FUNCDEF	AllocVec
 	FUNCDEF	FreeVec
+;------ V39 Pool LVOs...
 	FUNCDEF	CreatePool
 	FUNCDEF	DeletePool
 	FUNCDEF	AllocPooled
@@ -134,6 +141,7 @@ EXEC_LIB_I	SET	1
 	FUNCDEF	ChildWait
 	FUNCDEF	CachePreDMA
 	FUNCDEF	CachePostDMA
+;--- functions in V39 or higher (Release 3) ---
 	FUNCDEF	AddMemHandler
 	FUNCDEF	RemMemHandler
 	FUNCDEF	ObtainQuickVector
@@ -144,4 +152,4 @@ EXEC_LIB_I	SET	1
 	FUNCDEF	ReadGayle
 	FUNCDEF	ExecReserved08
 
-	ENDC	; EXEC_LIB_I
+	ENDC	; EXEC_EXEC_LIB_I
