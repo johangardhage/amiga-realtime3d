@@ -268,7 +268,7 @@ pln_cpy
 	move.w	d0,bltbmod(a5)
 	IFD	DOUBLE_BUFFERING
 	move.l	workplanes,a2				; get address of planepointers list
-	ELSEIF
+	ELSE
 	move.l	showplanes,a2				; get address of planepointers list
 	ENDC
 ;	sub.l	#WIDTH*HEIGHT,a0			; (ready to increment in next part)

@@ -7,7 +7,7 @@
 ;USE_TOF		EQU	1			; when set will use WaitTOF() else WaitBOVP() (WaitTOF breaks Forbid()).
 ;USE_FILES		EQU	1
 DOUBLE_BUFFERING	EQU	1
-MY_NTSC			EQU	1			; If set HEIGHT = 200 else = 256.
+;MY_NTSC		EQU	1			; If set HEIGHT = 200 else = 256.
 ;USE_VBLANK		EQU	1
 ;TESTING_VBLANK		EQU	1			; switch to turn only writing loaded gfx to one bitmap
 THIRTYTWOCOLOURS	EQU	1
@@ -15,6 +15,8 @@ THIRTYTWOCOLOURS	EQU	1
 KILLTASKS		EQU	1
 JOY3			EQU	1			; select required jstick routines
 ****************************************************************************************
+	incdir	src/lib
+	incdir	sources:src/lib/
 	include	startup.s
 	include	system_01.s
 	include	core_07.s
@@ -43,7 +45,7 @@ wait_vblank
 *
 	IFD	DOUBLE_BUFFERING
 	move.l	workplanes,a0				; pointer to bitplane lists
-	ELSEIF
+	ELSE
 	move.l	showplanes,a0				; pointer to alternative lists
 	ENDC
 	move.l	#HEIGHT,d0

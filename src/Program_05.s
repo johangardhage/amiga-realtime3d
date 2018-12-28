@@ -12,6 +12,8 @@ DOUBLE_BUFFERING	EQU	1
 SIXTEENCOLOURS		EQU	1
 ;KILLTASKS		EQU	1
 ****************************************************************************************
+	incdir	src/lib
+	incdir	sources:src/lib/
 	include	startup.s
 	include	core_03.s
 	include	data_03.s
@@ -126,7 +128,7 @@ wait_vblank
 
 	IFD	DOUBLE_BUFFERING
 	move.l	workplanes,a0				; pointer to bitplane lists
-	ELSEIF
+	ELSE
 	move.l	showplanes,a0				; pointer to alternative lists
 	ENDC
 	move.l	#HEIGHT,d0
