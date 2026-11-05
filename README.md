@@ -6,158 +6,164 @@ The 3D engine from the book "Amiga Real-Time 3D Graphics".
 
 ## Prerequisites
 
-To build and run the Amiga demos, you must first install the following tools:
+To run the demos and build them with ASM-One on the emulated Amiga, you need:
 
-- [FS-UAE Amiga Emulator](https://fs-uae.net/)
-- [Amiga Kickstart ROM file](http://www.amigakickstart.com/) - support [Amiga Forever](https://www.amigaforever.com/)
-- [AsmOne](http://www.theflamearrows.info/documents/ftp.html)
-- [Wine](https://www.winehq.org/) (for installing Amiga Forever)
+- [Amiberry](https://github.com/BlitterStudio/amiberry) Amiga emulator
+- Amiga Kickstart ROM (support [Amiga Forever](https://www.amigaforever.com/))
 
-For cross-compiling the Amiga demos, you can install the following tools:
+To cross-compile the demos, you also need:
 
-- [vasm](http://sun.hasenbraten.de/vasm/index.php?view=main)
-- [Ninja 1.5](https://ninja-build.org/) (or later)
+- [vasm](http://sun.hasenbraten.de/vasm/index.php?view=main) assembler
+- [Meson](https://mesonbuild.com/) and [Ninja](https://ninja-build.org/) build tools
 
-### Install FS-UAE
-
-#### openSUSE
-
-Follow the instructions [here](https://fs-uae.net/download#opensuse), alternatively download a generic package [here](https://fs-uae.net/download-devel#linux)
+### Install Amiberry
 
 #### Ubuntu
 
-Follow the instructions [here](https://fs-uae.net/download#ubuntu), alternatively download a generic package [here](https://fs-uae.net/download-devel#linux)
+```
+$ sudo add-apt-repository ppa:midwan-a/amiberry
+$ sudo apt install amiberry
+```
 
-#### Configuration
+#### macOS
 
-1. Create FS-UAE run-configuration directory
-   ```
-   $ mkdir -p ~/FS-UAE/Configurations
-   ```
+```
+$ brew install --cask amiberry
+```
 
-1. Create default Amiga run-configuration files
+To run `amiberry` from the command line, add an alias to your shell configuration (for example `~/.zshrc`):
 
-   Create a file called `~/FS-UAE/Configurations/A1200.fs-uae` with the following contents:
-   ```
-   [fs-uae]
-   amiga_model = A1200/020
-   floppy_drive_volume_empty = 0
-   hard_drive_0 = $HOME/FS-UAE/AmigaForever/Amiga Files/Shared/hdf/workbench-311.hdf
-   hard_drive_1 = $HOME/FS-UAE/AmigaForever/Amiga Files/Shared/dir/Work
-   hard_drive_2 = $HOME/git/github/amiga-realtime3d
-   hard_drive_2_label = Sources
-   joystick_port_1_mode = nothing
-   ```
+```sh
+alias amiberry='/Applications/Amiberry.app/Contents/MacOS/Amiberry'
+```
 
-   Create a file called `~/FS-UAE/Configurations/A500+.fs-uae` with the following contents:
-   ```
-   [fs-uae]
-   amiga_model = A500+
-   chip_memory = 1024
-   floppy_drive_volume_empty = 0
-   hard_drive_0 = $HOME/FS-UAE/AmigaForever/Amiga Files/Shared/hdf/workbench-211.hdf
-   hard_drive_1 = $HOME/FS-UAE/AmigaForever/Amiga Files/Shared/dir/Work
-   hard_drive_2 = $HOME/git/github/amiga-realtime3d
-   hard_drive_2_label = Sources
-   joystick_port_1_mode = nothing
-   ```
+### Install Kickstart ROM
 
-   Create a file called `~/FS-UAE/Configurations/A500.fs-uae` with the following contents:
-   ```
-   [fs-uae]
-   chip_memory = 1024
-   floppy_drive_volume_empty = 0
-   hard_drive_0 = $HOME/FS-UAE/AmigaForever/Amiga Files/Shared/hdf/workbench-135.hdf
-   hard_drive_1 = $HOME/FS-UAE/AmigaForever/Amiga Files/Shared/dir/Work
-   hard_drive_2 = $HOME/git/github/amiga-realtime3d
-   hard_drive_2_label = Sources
-   joystick_port_1_mode = nothing
-   ```
+The Kickstart ROM is copyrighted and not included in this repository. You need the Kickstart 3.1 (40.68) ROM for the
+A1200.
 
-### Install Wine
+Copy the ROM file `Kickstart v3.1 rev 40.68 (1993)(Commodore)(A1200)[!].rom` to the Amiberry ROM directory:
+```
+$ mkdir -p ~/Documents/Amiberry/ROMs
+$ cp "Kickstart v3.1 rev 40.68 (1993)(Commodore)(A1200)[!].rom" ~/Documents/Amiberry/ROMs/
+```
 
-#### openSUSE
+### Amiga folders
 
-`$ sudo zypper install wine`
+The repository contains everything the emulated Amiga needs, apart from the Kickstart ROM:
 
-#### Ubuntu
+| Folder         | Amiga volume | Contents |
+|----------------|--------------|----------|
+| `Amiga/System` | `System:`    | Workbench 3.1 |
+| `Amiga/Work`   | `Work:`      | Applications |
+| `Amiga/CLI`    | `CLI:`       | Only mounted to boot into a Shell instead of Workbench (see below) |
+| `.`            | `Sources:`   | This repository: the demo sources, includes and build output |
 
-`$ sudo apt install wine`
+### Configure Amiberry
 
-### Install Amiga Forever
+Add the following aliases to your shell configuration. Run them from the root of this repository, since they mount the folders relative to `$PWD`.
 
-1. Execute the Amiga Forever installation program
-   ```
-   $ env WINEPREFIX="$HOME/.wine-amigaforever" wine start AmigaForever7Plus.msi
-   ```
+```sh
+alias a1200='amiberry --model A1200 \
+    -s use_gui=no \
+    -s fastmem_size=8 \
+    -s amiberry.gfx_auto_crop=true \
+    -s kickstart_rom_file="$HOME/Documents/Amiberry/ROMs/Kickstart v3.1 rev 40.68 (1993)(Commodore)(A1200)[!].rom" \
+    -s filesystem2=rw,DH0:System:$PWD/Amiga/System,0 \
+    -s filesystem2=rw,DH1:Work:$PWD/Amiga/Work,-128 \
+    -s filesystem2=rw,DH2:Sources:$PWD,-128'
 
-1. Copy the installed Amiga Forever files to the FS-UAE working directory
-   ```
-   $ mkdir -p ~/FS-UAE/AmigaForever
-   $ cp -a ~/.wine-amigaforever/drive_c/users/Public/Documents/"Amiga Files" ~/FS-UAE/AmigaForever/
-   ```
+alias a1200-cli='amiberry --model A1200 \
+    -s use_gui=no \
+    -s fastmem_size=8 \
+    -s amiberry.gfx_auto_crop=true \
+    -s kickstart_rom_file="$HOME/Documents/Amiberry/ROMs/Kickstart v3.1 rev 40.68 (1993)(Commodore)(A1200)[!].rom" \
+    -s filesystem2=rw,DH0:System:$PWD/Amiga/System,0 \
+    -s filesystem2=rw,DH1:Work:$PWD/Amiga/Work,-128 \
+    -s filesystem2=rw,DH2:Sources:$PWD,-128 \
+    -s filesystem2=ro,DH3:CLI:$PWD/Amiga/CLI,-128'
+```
+
+- `a1200` boots into Workbench.
+- `a1200-cli` boots into a Shell.
 
 ## Native compilation
 
-### Install AsmOne
+### Build demos with ASM-One
 
-1. Download [AsmOne](http://www.theflamearrows.info/documents/ftp.html)
+1. Start Amiberry
    ```
-   $ curl -O http://www.theflamearrows.info/ftp/asmonev149-RC2.lha
-   ```
-
-1. Unpack the AsmOne archive into the FS-UAE working directory
-   ```
-   $ lha xw=~/FS-UAE/AmigaForever/"Amiga Files"/Shared/dir/Work/AsmOne/ asmonev149-RC2.lha
+   $ a1200
    ```
 
-### Build demos with AsmOne
+1. Start ASM-One
 
-1. Start FS-UAE with the A1200 run-configuration
-   ```
-   $ fs-uae ~/FS-UAE/Configurations/A1200.fs-uae
-   ```
+   Open the `Work` disk and execute `ASM-One_V1.48`
 
-1. Start AsmOne
-
-   Open the `Work` disk and execute `AsmOne`
-
-   Enter `Chip` and `200` to allocate 200 KB of chip memory
+   Enter `c` and `200` to allocate 200 KB of chip memory
 
 1. Open demo source file
 
-   Enter `r` to open file
-
-   Enter `sources:src/Program_01.s` to open demo source file
+   Enter `r sources:src/Program_01.s` to open demo source file
 
 1. Build demo source file
 
    Enter `a` to assemble demo
 
-   Enter `wo sources:build/Program_01` to write demo to disk
+1. Run demo
+
+   Enter `j` to run demo
 
 ## Cross-compilation
 
 ### Install vasm
 
-1. Download [vasm](http://sun.hasenbraten.de/vasm/index.php?view=relsrc)
+1. Clone vasm
    ```
-   $ curl -O http://sun.hasenbraten.de/vasm/release/vasm.tar.gz
+   $ git clone https://github.com/StarWolf3000/vasm-mirror.git
+   $ cd vasm-mirror
    ```
 
-1. Build [vasm](http://sun.hasenbraten.de/vasm/index.php?view=compile)
+1. Build vasm
    ```
    $ make CPU=m68k SYNTAX=mot
    ```
    The build will generate a binary `vasmm68k_mot`. Put this binary in a user-reachable location (for example `~/bin/`).
 
+### Install Meson and Ninja
+
+#### Ubuntu
+
+```
+$ sudo apt install meson ninja-build
+```
+
+#### macOS
+
+```
+$ brew install meson ninja
+```
+
 ### Build demos with vasm
 
 To build the Amiga demo programs, run:
 ```
-$ ninja
+$ meson setup build
+$ meson compile -C build
 ```
-A `build` directory will be created, containing the demo programs.
+The demo programs are written to the `build` directory.
+
+### Run demos
+
+1. Start Amiberry in a Shell
+   ```
+   $ a1200-cli
+   ```
+
+1. Run demo
+   ```
+   1> Sources:build/Program_01
+   ```
 
 ## License
 
