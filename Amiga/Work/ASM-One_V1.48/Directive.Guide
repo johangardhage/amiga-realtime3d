@@ -1,0 +1,2755 @@
+@DATABASE Directive.Guide
+
+@NODE "MAIN" "Directive"
+@TOC  "ASM-One_V1.4x.Guide/MAIN"
+
+
+                                Directive
+                                ---------
+
+A Directive is an instruction for the assembler which can be used in the source.
+
+When assembling, the directive influence the way ASM-One assembles the source.
+
+Many directives are used so much, that people think they are actual 68k opcodes,
+like the 'DC' directive.
+
+It's very usefull to examine all directives, it will not only make assembling
+easier, but it will also give you more power when assembling.
+
+Here's the complete list of ALL directives ASM-One knows:
+
+
+@{" >EXTERN  " LINK "dir_EXTERN"}
+@{" =        " LINK "dir_="}
+@{" *        " LINK "dir_*"}
+
+ -- A --
+
+@{" ADDWATCH " LINK "dir_ADDWATCH"}
+@{" ALIGN    " LINK "dir_ALIGN"}
+@{" AUTO     " LINK "dir_AUTO"}
+
+ -- B --
+
+@{" BASEREG  " LINK "dir_BASEREG"}
+@{" BLK      " LINK "dir_BLK"}
+
+ -- C --
+
+@{" CMEXIT   " LINK "dir_CMEXIT"}
+@{" CNOP     " LINK "dir_CNOP"}
+
+ -- D --
+
+@{" DC       " LINK "dir_DC"}
+@{" DCB      " LINK "dir_DCB"}
+@{" DR       " LINK "dir_DR"}
+@{" DS       " LINK "dir_DS"}
+
+ -- E --
+
+@{" ELSE     " LINK "dir_ELSE"}
+@{" END      " LINK "dir_END"}
+@{" ENDB     " LINK "dir_ENDB"}
+@{" ENDC     " LINK "dir_ENDC"}
+@{" ENDIF    " LINK "dir_ENDIF"}
+@{" ENDM     " LINK "dir_ENDM"}
+@{" ENDOFF   " LINK "dir_ENDOFF"}
+@{" ENDR     " LINK "dir_ENDR"}
+@{" ENTRY    " LINK "dir_ENTRY"}
+@{" EQU      " LINK "dir_EQU"}
+@{" EQUC     " LINK "dir_EQUC"}
+@{" EQUD     " LINK "dir_EQUD"}
+@{" EQUP     " LINK "dir_EQUP"}
+@{" EQUR     " LINK "dir_EQUR"}
+@{" EQUS     " LINK "dir_EQUS"}
+@{" EQUX     " LINK "dir_EQUX"}
+@{" EREM     " LINK "dir_EREM"}
+@{" ETEXT    " LINK "dir_ETEXT"}
+@{" EVEN     " LINK "dir_EVEN"}
+@{" EXTRN    " LINK "dir_EXTRN"}
+
+ -- F --
+
+@{" FAIL     " LINK "dir_FAIL"}
+@{" FILESIZE " LINK "dir_FILESIZE"}
+
+ -- G --
+
+@{" GLOBAL   " LINK "dir_GLOBAL"}
+
+ -- I --
+
+@{" IDNT     " LINK "dir_IDNT"}
+@{" IF       " LINK "dir_IF"}
+@{" IF1      " LINK "dir_IF1"}
+@{" IF2      " LINK "dir_IF2"}
+@{" IFB      " LINK "dir_IFB"}
+@{" IFC      " LINK "dir_IFC"}
+@{" IFD      " LINK "dir_IFD"}
+@{" IFNB     " LINK "dir_IFNB"}
+@{" IFNC     " LINK "dir_IFNC"}
+@{" IFND     " LINK "dir_IFND"}
+@{" IMAGE    " LINK "dir_IMAGE"}
+@{" INCBIN   " LINK "dir_INCBIN"}
+@{" INCDIR   " LINK "dir_INCDIR"}
+@{" INCIFF   " LINK "dir_INCIFF"}
+@{" INCIFFP  " LINK "dir_INCIFFP"}
+@{" INCLUDE  " LINK "dir_INCLUDE"}
+@{" INCSRC   " LINK "dir_INCSRC"}
+
+ -- J --
+
+@{" JUMPERR  " LINK "dir_JUMPERR"}
+@{" JUMPPTR  " LINK "dir_JUMPPTR"}
+
+ -- L --
+
+@{" LINE_A   " LINK "dir_LINE_A"}
+@{" LINEA    " LINK "dir_LINEA"}
+@{" LINE_F   " LINK "dir_LINE_F"}
+@{" LINEF    " LINK "dir_LINEF"}
+@{" LIST     " LINK "dir_LIST"}
+@{" LLEN     " LINK "dir_LEN"}
+@{" LOAD     " LINK "dir_LOAD"}
+
+ -- M --
+
+@{" MACRO    " LINK "dir_MACRO"}
+@{" MASK2    " LINK "dir_MASK2"}
+@{" MEXIT    " LINK "dir_MEXIT"}
+
+ -- N --
+
+@{" NOLIST   " LINK "dir_NOLIST"}
+@{" NOPAGE   " LINK "dir_NOPAGE"}
+
+ -- O --
+
+@{" ODD      " LINK "dir_ODD"}
+@{" OFFSET   " LINK "dir_OFFSET"}
+@{" ORG      " LINK "dir_ORG"}
+
+ -- P --
+
+@{" PAGE     " LINK "dir_PAGE"}
+@{" PLEN     " LINK "dir_PLEN"}
+@{" PRINTT   " LINK "dir_PRINTT"}
+@{" PRINTV   " LINK "dir_PRINTV"}
+
+ -- R --
+
+@{" REM      " LINK "dir_REM"}
+@{" REG      " LINK "dir_REG"}
+@{" REGF     " LINK "dir_REGF"}
+@{" REPT     " LINK "dir_REPT"}
+@{" RORG     " LINK "dir_RORG"}
+@{" RS       " LINK "dir_RS"}
+@{" RSRESET  " LINK "dir_RSRESET"}
+@{" RSSET    " LINK "dir_RSSET"}
+
+ -- S --
+
+@{" SECTION  " LINK "dir_SECTION"}
+@{" SET      " LINK "dir_SET"}
+@{" SETCPU   " LINK "dir_SETCPU"}
+@{" SETFPU   " LINK "dir_SETFPU"}
+@{" SETMMU   " LINK "dir_SETMMU"}
+@{" SPC      " LINK "dir_SPC"}
+
+ -- T --
+
+@{" TEXT     " LINK "dir_TEXT"}
+@{" TTL      " LINK "dir_TTL"}
+
+ -- X --
+
+@{" XDEF     " LINK "dir_XDEF"}
+@{" XREF     " LINK "dir_XREF"}
+
+@ENDNODE
+
+@NODE "dir_EXTERN" "'>EXTERN' Directive"
+@NEXT "dir_="
+@PREV "dir_XREF"
+@TOC  "MAIN"
+
+NAME
+   >EXTERN - Load External Binaries
+
+SYNTAX
+   [label] >EXTERN [number,]<file>,<address>[,length]
+
+FUNCTION
+   This directive is mainly implemented for backwards compatibilty
+   with (Master)Seka.
+
+   With >EXTERN you can load files to a certain address. This is
+   handy when you work with absolute addresses.
+
+   When a [number] is specified, you can load that specific file
+   with the @{" E " LINK "E_DLC"} DLC.
+
+   When no <length> is specified, the whole file will be loaded.
+
+   The External binaries will be loaded after using the @{" E " LINK "E_DLC"} DLC.
+
+FROM VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "dir_=" "'=' Directive"
+@NEXT "dir_*"
+@PREV "dir_>EXTERN"
+@TOC  "MAIN"
+
+NAME
+   = - Assign a Value
+
+SYNTAX
+   <label> = <value>
+
+FUNCTION
+   This directive assigns the <value> to the <label>.
+
+   Comes in handy when you have difficult to remember values.
+   By giving them a name, they are better to remember.
+
+VERSION
+   V1.08
+
+SEE ALSO
+   @{" EQU " LINK "dir_EQU"}
+
+@ENDNODE
+
+@NODE "dir_*" "'*' Directive"
+@NEXT "dir_ADDWATCH"
+@PREV "dir_="
+@TOC  "MAIN"
+
+NAME
+   * - Current Address
+
+SYNTAX
+   <label> *<logical operator>
+
+FUNCTION
+   * is the Current Address of the PC, when used in this manner
+   (it can also define comments (just like ;) and it can be used
+   to multiply values when used in an expresion).
+
+   The <logical operator> will influence the Current Address, so
+   it will point to another address.
+
+   This directive is mainly used to point to addresses that can't
+   be pointed to by a label directly.
+
+EXAMPLE
+
+   text:  dc.b 'hello there'
+   there: *-5
+
+   the label 'there' will point to the start of 'there' in the
+   text string defined by label 'text'.
+
+REMARK
+   If you use this directive to assign values to an Instruction
+   after the program was assembled, it will be regarded as
+   'Self Modifing Code'.
+
+   It's mainly used this way in old programs, to save the original
+   address of an Interrupt, like this:
+
+   code:      MOVE.L $7c,interrupt
+
+   <more code>
+
+   OwnInterrupt:
+   <own interrupt code>
+              JMP    $0		; Original Interrupt Code
+   interrupt: *-4
+
+   It's STRONGLY suggested to remove this kind of coding. The 68020
+   and higher CPU's have cache memory. There is the possibility that
+   the instruction is already loaded into the cache memory, BEFORE
+   it could be altered, resulting in completely wrong values
+
+VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "dir_ADDWATCH" "'ADDWATCH' Directive"
+@NEXT "dir_ALIGN"
+@PREV "dir_*"
+@TOC  "MAIN"
+
+NAME
+   ADDWATCH - Add label to Debugger Watch Points
+
+SYNTAX
+   ADDWATCH <label>
+
+FUNCTION
+   Will add the <label> to the Watch Points in the debugger.
+
+VERSION
+   V1.16
+
+@ENDNODE
+
+@NODE "dir_ALIGN" "'ALIGN' Directive"
+@NEXT "dir_AUTO"
+@PREV "dir_ADDWATCH"
+@TOC  "MAIN"
+
+NAME
+   ALIGN - Align the next address
+
+SYNTAX
+   [label] ALIGN <value1>,<value2>
+
+FUNCTION
+   This directive is implemented for compatibility reasons.
+   It has the same function as the @{" CNOP " LINK "dir_CNOP"} directive.
+
+   ALIGN is used to align the next address to a certain boundry.
+
+   ALIGN looks for the first following address that can be divided by
+   <value2>, and then adds <value1> to that address.
+
+EXAMPLE
+
+   ALIGN 0,4	; The address will be dividable by 4 (is Longword aligned)
+   ALIGN 2,4	; The address will be dividable by 4, and then 2 is added
+		; (is Word aligned)
+
+REMARK
+   ALIGN doesn't initilize anything. Bytes that are skipped becose
+   ALIGN was used, will have NO particular value. And it is STRONGLY
+   suggested you never use them:
+
+   label: ALIGN 0,4
+   here:  *-2
+
+   Becose it will produce unpredictable results.
+
+VERSION
+   V1.08
+
+SEE ALSO
+   @{" CNOP " LINK "dir_CNOP"}
+
+@ENDNODE
+
+@NODE "dir_AUTO" "'AUTO' Directive"
+@NEXT "dir_BASEREG"
+@PREV "dir_ALIGN"
+@TOC  "MAIN"
+
+NAME
+   AUTO - Automaticaly execute command(s)
+
+SYNTAX
+   AUTO <command>[\command..]
+
+FUNCTION
+   Usefull to automaticaly execute commands you would have to
+   type otherwise.
+
+   Commands are ALLWAYS DLC's.
+
+   The Backslash (\) is used to seperate the commands
+
+REMARK
+   The maximum number of characters for AUTO is 256.
+
+VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "dir_BASEREG" "'BASEREG' Directive"
+@NEXT "dir_BLK"
+@PREV "dir_AUTO"
+@TOC  "MAIN"
+
+NAME
+   BASEREG - Set Base for Register
+
+SYNTAX
+   BASEREG <label>,<register>
+
+FUNCTION
+   Assigns a BASE to an ADDRESS register.
+
+   BASEREG works for all Address registers, EXCEPT A7 (SP) !!
+
+EXAMPLE
+   Example without the use of BASEREG:
+
+             LEA     DataArea,A4
+             MOVE.W  D0,DataWord-DataArea(A4)
+             ---
+
+   DataArea: DCB.B   100,0
+   DataWord: DC.W    0
+
+   Same example, but now with the use of BASEREG:
+
+             BASEREG DataArea,A4
+             LEA     DataArea,A4
+             MOVE.W  D0,DataWord(A4)
+             ---
+
+   DataArea: DCB.B   100,0
+   DataWord: DC.W    0
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" ENDB " LINK "dir_ENDB"}
+
+@ENDNODE
+
+@NODE "dir_BLK" "'BLK' Directive"
+@NEXT "dir_CMEXIT"
+@PREV "dir_BASEREG"
+@TOC  "MAIN"
+
+NAME
+   BLK - Define a Block of Constants
+
+SYNTAX
+   [label] BLK.[size] <value1>,<value2>
+
+FUNCTION
+   Mainly here becose of backwards compatibility with older
+   Assemblers.
+
+   BLK will define a block of constants, the constants will
+   have the size of [size], and will be initialized to
+   <value2>.
+
+   <value1> specifies the number of constants to generate.
+
+   Legal sizes are: B (byte), W (word), L (longword), D (double),
+   P (packed), S (single) and X (extended)
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" DCB " LINK "dir_DCB"}
+
+@ENDNODE
+
+@NODE "dir_CMEXIT" "'CMEXIT' Directive"
+@NEXT "dir_CNOP"
+@PREV "dir_BLK"
+@TOC  "MAIN"
+
+NAME
+   CMEXIT - Leave MACRO when Nesting Depth Reached
+
+SYNTAX
+   CMEXIT <value>
+
+FUNCTION
+   Will leave the MACRO if the nesting depth specified by
+   <value> has been reached. Regardless of the fact that
+   the MACRO was not fully executed.
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" Building and Using MACRO's " LINK "adv_MACROs"} 
+
+@ENDNODE
+
+@NODE "dir_CNOP" "'CNOP' Directive"
+@NEXT "dir_DC"
+@PREV "dir_CMEXIT"
+@TOC  "MAIN"
+
+NAME
+   CNOP - Align the next address
+
+SYNTAX
+   [label] CNOP <value1>,<value2>
+
+FUNCTION
+   CNOP is used to align the next address to a certain boundry.
+
+   CNOP looks for the first following address that can be divided by
+   <value2>, and then adds <value1> to that address.
+
+EXAMPLE
+
+   CNOP  0,4	; The address will be dividable by 4 (is Longword aligned)
+   CNOP  2,4	; The address will be dividable by 4, and then 2 is added
+		; (is Word aligned)
+
+REMARK
+   CNOP doesn't initilize anything. Bytes that are skipped becose
+   CNOP  was used, will have NO particular value. And it is STRONGLY
+   suggested you never use them:
+
+   label: CNOP 0,4
+   here:  *-2
+
+   Becose it will produce unpredictable results.
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" ALIGN " LINK "dir_ALIGN"}
+
+@ENDNODE
+
+@NODE "dir_DC" "'DC' Directive"
+@NEXT "dir_DCB"
+@PREV "dir_CNOP"
+@TOC  "MAIN"
+
+NAME
+   DC - Define Constant
+
+SYNTAX
+   [label] DC.[size] <expresion>[,expresion...]
+
+FUNCTION
+   DC defines a constant. The result of <expresion> specifies
+   the value of the constant.
+
+   Legal sizes are: B (byte), W (word), L (longword), D (double),
+   P (packed), S (single) and X (extended)
+
+   When the size is bytes, you can also use strings:
+
+   text: DC.B 'Hello, here I am'
+
+VERSION
+   V 1.01
+
+SEE ALSO
+   For textstrings: @{" TEXT " LINK "dir_TEXT"}
+
+@ENDNODE
+
+@NODE "dir_DCB" "'DCB' Directive"
+@NEXT "dir_DR"
+@PREV "dir_DC"
+@TOC  "MAIN"
+
+NAME
+   DCB - Define a Block of Constants
+
+SYNTAX
+   [label] DCB.[size] <value1>,<value2>
+
+FUNCTION
+   DCB will define a block of constants, the constants will
+   have the size of [size], and will be initialized to
+   <value2>.
+
+   <value1> specifies the number of constants to generate.
+
+   Legal sizes are: B (byte), W (word), L (longword), D (double),
+   P (packed), S (single) and X (extended)
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" BLK " LINK "dir_BLK"}
+
+@ENDNODE
+
+@NODE "dir_DR" "'DR' Directive"
+@NEXT "dir_DS"
+@PREV "dir_DCB"
+@TOC  "MAIN"
+
+NAME
+   DR - Define Relative Value
+
+SYNTAX
+   [label] DR.[size] <value>
+
+FUNCTION
+   DR gives you the posibility to make a table with relative
+   values.
+
+   Each DR hase the following value:
+
+   DR.[size] <value>-*	; Where * is the Current Address
+
+   Legal sizes are: B (byte), W (word) and L (longword)
+
+EXAMPLE
+   Example without the use of DR:
+
+   JUMP:   LEA    DATA(PC),A0
+           ADD.W  D0,D0
+           MOVE.W (A0,D0.W),A0
+           JMP    (A0)
+
+   DATA:   DC.W   ROUTINE_ONE-DATA
+           DC.W   ROUTINE_TWO-DATA
+           DC.W   ROUTINE_THREE-DATA
+
+   Example WITH DR:
+
+   JUMP:   LEA    DATA(PC),A0
+           ADD.W  D0,D0
+           ADD.W  D0,A0
+           ADD.W  (A0),A0
+           JMP    (A0)
+
+   DATA:   DR.W   ROUTINE_ONE
+           DR.W   ROUTINE_TWO
+           DR.W   ROUTINE_THREE
+
+VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "dir_DS" "'DS' Directive"
+@NEXT "dir_ELSE"
+@PREV "dir_DR"
+@TOC  "MAIN"
+
+NAME
+   DS - Defines space for variables
+
+SYNTAX
+   [label] DS.[size] <value>
+
+FUNCTION
+   Defines space for variables. <value> specifies
+   the number of spaces to define. All spaces will
+   have the size of [size]
+
+   Legal sizes are: B (byte), W (word), L (longword), D (double),
+   P (packed), S (single) and X (extended)
+
+   The space defined will NOT be initialized !!!!
+
+REMARK
+   DS can ONLY be used in an BSS setion !!!
+
+VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "dir_ELSE" "'ELSE' Directive"
+@NEXT "dir_END"
+@PREV "dir_DS"
+@TOC  "MAIN"
+
+NAME
+   ELSE - Jumps to alternative code when the IF-statement is FALSE
+
+SYNTAX
+   ELSE
+
+FUNCTION
+   Gives you the posibility to define code to execute when the
+   IF-statemant is FALSE.
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" Conditional Branches with IF " LINK "adv_conbranch"}
+
+@ENDNODE
+
+@NODE "dir_END" "'END' Directive"
+@NEXT "dir_ENDB"
+@PREV "dir_ELSE"
+@TOC  "MAIN"
+
+NAME
+   END - Define the end of the source
+
+SYNTAX
+   END
+
+FUNCTION
+   Sourcecode after this directive will be skipped by
+   ASM-One.
+
+   Normaly ASM-One will put END at the end of the Source.
+   But you can define it yourself if you wish.
+
+VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "dir_ENDB" "'ENDB' Directive"
+@NEXT "dir_ENDC"
+@PREV "dir_END"
+@TOC  "MAIN"
+
+NAME
+   ENDB - End BASEREG Section
+
+SYNTAX
+   ENDB <address register>
+
+FUNCTION
+   Will deactivate the function of BASEREG for the given
+   <address register>.
+
+VERSION
+   Untill version V1.09: BASEREG could only be used ONE time
+   V1.09 and up: After ENDB, you can use BASEREG again for the SAME register
+
+@ENDNODE
+
+@NODE "dir_ENDC" "'ENDC' Directive"
+@NEXT "dir_ENDIF"
+@PREV "dir_ENDB"
+@TOC  "MAIN"
+
+NAME
+   ENDC - End IF-block
+
+SYNTAX
+   ENDC
+
+FUNCTION
+   Ends an IF-block.
+
+   Implemented for compatibility reasons.
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" ENDIF " LINK "dir_ENDIF"}, @{" Conditional Branches with IF " LINK "adv_conbranch"}
+
+@ENDNODE
+
+@NODE "dir_ENDIF" "'ENDIF' Directive"
+@NEXT "dir_ENDM"
+@PREV "dir_ENDC"
+@TOC  "MAIN"
+
+NAME
+   ENDIF - End IF-block
+
+SYNTAX
+   ENDIF
+
+FUNCTION
+   Ends an IF-block.
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" ENDC " LINK "dir_ENDC"}, @{" Conditional Branches with IF " LINK "adv_conbranch"}
+
+@ENDNODE
+
+@NODE "dir_ENDM" "'ENDM' Directive"
+@NEXT "dir_ENDOFF"
+@PREV "dir_ENDIF"
+@TOC  "MAIN"
+
+NAME
+   ENDM - End MACRO definition
+
+SYNTAX
+   ENDM
+
+FUNCTION
+   Specifies the end of a MACRO definition.
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" MACRO " LINK "dir_MACRO"}, @{" Building and Using MACRO's " LINK "adv_MACROs"} 
+
+@ENDNODE
+
+@NODE "dir_ENDOFF" "'ENDOFF' Directive"
+@NEXT "dir_ENDR"
+@PREV "dir_ENDM"
+@TOC  "MAIN"
+
+NAME
+   ENDOFF - End OFFSET definition
+
+SYNTAX
+   ENDOFF
+
+FUNCTION
+   Specifies the end of an OFFSET definition.
+
+VERSION
+   V1.15
+
+SEE ALSO
+   @{" OFFSET " LINK "dir_OFFSET"}
+
+@ENDNODE
+
+@NODE "dir_ENDR" "'ENDR' Directive"
+@NEXT "dir_ENTRY"
+@PREV "dir_ENDOFF"
+@TOC  "MAIN"
+
+NAME
+   ENDR - End REPT block
+
+SYNTAX
+   ENDR
+
+FUNCTION
+   Specifies the end a REPT block.
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" REPT " LINK "dir_REPT"}
+
+@ENDNODE
+
+@NODE "dir_ENTRY" "'ENTRY' Directive"
+@NEXT "dir_EQU"
+@PREV "dir_ENDR"
+@TOC  "MAIN"
+
+NAME
+   ENTRY - External Definition
+
+SYNTAX
+   ENTRY <label>[,label...]
+
+FUNCTION
+   Will define <label> as an external value, so it can be
+   used by other modules.
+
+   This is mainly interesting for linking assembeler routines
+   into code made by higher programming languages.
+
+    You will need a linker (like BLink) to link the code.
+
+EXAMPLE
+   See @{" XREF " LINK "dir_XREF"}
+
+REMARK
+   Sources that contain ENTRY, are not executables. And therefore
+   can NOT be executed !!
+
+   You will need the @{" WO " LINK "WO_DLC"} to write the
+   assembled object file.
+
+   ENTRY has the same function as XDEF, EXTRN and GLOBAL.
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" XDEF " LINK "dir_XDEF"}, @{" XREF " LINK "dir_XREF"}, @{" GLOBAL " LINK "dir_GLOBAL"}, @{" EXTRN " LINK "dir_EXTRN"}, @{" WO " LINK "WO_DLC"}
+
+@ENDNODE
+
+@NODE "dir_EQU" "'EQU' Directive"
+@NEXT "dir_EQUC"
+@PREV "dir_ENTRY"
+@TOC  "MAIN"
+
+NAME
+   EQU - Assign a Value
+
+SYNTAX
+   <label> EQU <value>
+
+FUNCTION
+   This directive assigns the <value> to the <label>.
+
+   Comes in handy when you have difficult to remember values.
+   By giving them a name, they are better to remember.
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" = " LINK "dir_="}, @{" SET " LINK "dir_SET"}
+
+@ENDNODE
+
+@NODE "dir_EQUC" "'EQUC' Directive"
+@NEXT "dir_EQUD"
+@PREV "dir_EQU"
+@TOC  "MAIN"
+
+NAME
+   EQUC = Give PPC Register a Name
+
+SYNTAX
+   <label> EQUC <PPC register>
+
+FUNCTION
+   Assigns a <label> to the specified <PPC register>, so
+   it's easier to remember.
+
+REMARK
+   <label> can't be defined again, but registers can have
+   more than one name.
+
+   The defenition can be made in a 68k part so that you can
+   use this directive at the top of your source.
+
+VERSION
+   V1.47
+
+@ENDNODE
+
+@NODE "dir_EQUD" "'EQUD' Directive"
+@NEXT "dir_EQUP"
+@PREV "dir_EQUC"
+@TOC  "MAIN"
+
+NAME
+   EQUD - Assign a FPU Double Value
+
+SYNTAX
+   <label> EQUD <FPU value>
+
+FUNCTION
+   This directive assigns a <label> to the Double
+   <FPU value>
+
+   Comes in handy when you have difficult to remember values.
+   By giving them a name, they are better to remember.
+
+VERSION
+   V1.48
+
+SEE ALSO
+   @{" EQUP " LINK "dir_EQUP"}, @{" EQUS " LINK "dir_EQUS"} and @{" EQUX " LINK "dir_EQUX"}
+
+@ENDNODE
+
+@NODE "dir_EQUP" "'EQUP' Directive"
+@NEXT "dir_EQUR"
+@PREV "dir_EQUD"
+@TOC  "MAIN"
+
+NAME
+   EQUP - Assign a FPU Packed Value
+
+SYNTAX
+   <label> EQUP <FPU value>
+
+FUNCTION
+   This directive assigns a <label> to the Packed
+   <FPU value>
+
+   Comes in handy when you have difficult to remember values.
+   By giving them a name, they are better to remember.
+
+VERSION
+   V1.48
+
+SEE ALSO
+   @{" EQUD " LINK "dir_EQUD"}, @{" EQUS " LINK "dir_EQUS"} and @{" EQUX " LINK "dir_EQUX"}
+
+@ENDNODE
+
+@NODE "dir_EQUR" "'EQUR' Directive"
+@NEXT "dir_EQUS"
+@PREV "dir_EQUP"
+@TOC  "MAIN"
+
+NAME
+   EQUR = Give Register a Name
+
+SYNTAX
+   <label> EQUR <register>
+
+FUNCTION
+   Assigns a <label> to the specified <register>, so
+   it's easier to remember.
+
+EXAMPLE
+   Bitplane1 EQUR    A3
+             MOVE.L  D0,(Bitplane1)+
+
+REMARK
+   <label> can't be defined again, but registers can have
+   more than one name.
+
+VERSION
+   V1.01 / V1.47 allows ALL registers to be specified.
+
+@ENDNODE
+
+@NODE "dir_EQUS" "'EQUS' Directive"
+@NEXT "dir_EQUX"
+@PREV "dir_EQUR"
+@TOC  "MAIN"
+
+NAME
+   EQUS - Assign a FPU Single Value
+
+SYNTAX
+   <label> EQUS <FPU value>
+
+FUNCTION
+   This directive assigns a <label> to the Single
+   <FPU value>
+
+   Comes in handy when you have difficult to remember values.
+   By giving them a name, they are better to remember.
+
+VERSION
+   V1.48
+
+SEE ALSO
+   @{" EQUD " LINK "dir_EQUD"}, @{" EQUP " LINK "dir_EQUP"} and @{" EQUX " LINK "dir_EQUX"}
+
+@ENDNODE
+
+@NODE "dir_EQUX" "'EQUX' Directive"
+@NEXT "dir_EREM"
+@PREV "dir_EQUS"
+@TOC  "MAIN"
+
+NAME
+   EQUX - Assign a FPU Extended Value
+
+SYNTAX
+   <label> EQUX <FPU value>
+
+FUNCTION
+   This directive assigns a <label> to the Extended
+   <FPU value>
+
+   Comes in handy when you have difficult to remember values.
+   By giving them a name, they are better to remember.
+
+VERSION
+   V1.48
+
+SEE ALSO
+   @{" EQUD " LINK "dir_EQUD"}, @{" EQUP " LINK "dir_EQUP"} and @{" EQUS " LINK "dir_EQUS"}
+
+@ENDNODE
+
+@NODE "dir_EREM" "'EREM' Directive"
+@NEXT "dir_ETEXT"
+@PREV "dir_EQUR"
+@TOC  "MAIN"
+
+NAME
+   EREM - End REM block
+
+SYNTAX
+   EREM
+
+FUNCTION
+   Specifies the end of a REM block
+
+VERSION
+   V1.15
+
+SEE ALSO
+   @{" REM " LINK "dir_REM"}
+
+@ENDNODE
+
+@NODE "dir_ETEXT" "'ETEXT' Directive"
+@NEXT "dir_EVEN"
+@PREV "dir_EREM"
+@TOC  "MAIN"
+
+NAME
+   ETEXT - End TEXT block
+
+SYNTAX
+   ETEXT
+
+FUNCTION
+   Specifies the end of a TEXT block.
+
+VERSION
+   V1.15
+
+SEE ALSO
+   @{" TEXT " LINK "dir_TEXT"}
+
+@ENDNODE
+
+@NODE "dir_EVEN" "'EVEN' Directive"
+@NEXT "dir_EXTRN"
+@PREV "dir_ETEXT"
+@TOC  "MAIN"
+
+NAME
+   EVEN - Make next address even
+
+SYNTAX
+   [label] EVEN
+
+FUNCTION
+   Will make the next address an EVEN address.
+
+   EVEN has the same function as:
+
+   CNOP   0,2
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" CNOP " LINK "dir_CNOP"}, @{" ODD " LINK "dir_ODD"}, @{" ALIGN " LINK "dir_ALIGN"}
+
+@ENDNODE
+
+@NODE "dir_EXTRN" "'EXTRN' Directive"
+@NEXT "dir_FAIL"
+@PREV "dir_EVEN"
+@TOC  "MAIN"
+
+NAME
+   EXTRN - External Definition
+
+SYNTAX
+   EXTRN <label>[,label...]
+
+FUNCTION
+   Will define <label> as an external value, so it can be
+   used by other modules.
+
+   This is mainly interesting for linking assembeler routines
+   into code made by higher programming languages.
+
+    You will need a linker (like BLink) to link the code.
+
+EXAMPLE
+   See @{" XREF " LINK "dir_XREF"}
+
+REMARK
+   Sources that contain EXTRN, are not executables. And therefore
+   can NOT be executed !!
+
+   You will need the @{" WO " LINK "WO_DLC"} to write the
+   assembled object file.
+
+   EXTRN has the same function as XDEF, ENTRY and GLOBAL.
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" XDEF " LINK "dir_XDEF"}, @{" XREF " LINK "dir_XREF"}, @{" GLOBAL " LINK "dir_GLOBAL"}, @{" ENTRY " LINK "dir_ENTRY"}, @{" WO " LINK "WO_DLC"}
+
+@ENDNODE
+
+@NODE "dir_FAIL" "'FAIL' Directive"
+@NEXT "dir_FILESIZE"
+@PREV "dir_EXTRN"
+@TOC  "MAIN"
+
+NAME
+   FAIL - Generate Error
+
+SYNTAX
+   FAIL
+
+FUNCTION
+   FAIL will generate the 'User made FAIL' error.
+
+   You can use FAIL in IF Statements, just using them in
+   your source, will have an irretating effect.
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" Conditional Branches with IF " LINK "adv_conbranch"}
+
+@ENDNODE
+
+@NODE "dir_FILESIZE" "'FILESIZE' Directive"
+@NEXT "dir_GLOBAL"
+@PREV "dir_FAIL"
+@TOC  "MAIN"
+
+NAME
+   FILESIZE - Get the size of a file
+
+SYNTAX
+   FILESIZE(<file>)
+
+FUNCTION
+   Enables you to get the size of a file without including
+   or opening it.
+
+   Great for allocating memory for files.
+
+REMARK
+   Can also be used as expresion !!
+
+VERSION
+   V1.29
+
+@ENDNODE
+
+@NODE "dir_GLOBAL" "'GLOBAL' Directive"
+@NEXT "dir_IDNT"
+@PREV "dir_FILESIZE"
+@TOC  "MAIN"
+
+NAME
+   GLOBAL - External Definition
+
+SYNTAX
+   GLOBAL <label>[,label...]
+
+FUNCTION
+   Will define <label> as an external value, so it can be
+   used by other modules.
+
+   This is mainly interesting for linking assembeler routines
+   into code made by higher programming languages.
+
+    You will need a linker (like BLink) to link the code.
+
+EXAMPLE
+   See @{" XREF " LINK "dir_XREF"}
+
+REMARK
+   Sources that contain GLOBAL, are not executables. And therefore
+   can NOT be executed !!
+
+   You will need the @{" WO " LINK "WO_DLC"} to write the
+   assembled object file.
+
+   GLOBAL has the same function as XDEF, ENTRY and EXTRN.
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" XDEF " LINK "dir_XDEF"}, @{" XREF " LINK "dir_XREF"}, @{" EXTRN " LINK "dir_EXTRN"}, @{" ENTRY " LINK "dir_ENTRY"}, @{" WO " LINK "WO_DLC"}
+
+@ENDNODE
+
+@NODE "dir_IDNT" "'IDNT' Directive"
+@NEXT "dir_IF"
+@PREV "dir_GLOBAL"
+@TOC  "MAIN"
+
+NAME
+   IDNT - Identify Program
+
+SYNTAX
+   IDNT <string>
+
+FUNCTION
+   Normaly, a program with more than 2 sections should have a name.
+   When no name is given, ASM-One will assign an empty string
+   as name.
+
+VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "dir_IF" "'IF' Directive"
+@NEXT "dir_IF1"
+@PREV "dir_IDNT"
+@TOC  "MAIN"
+
+NAME
+   IF - Conditional Branch Option
+
+SYNTAX
+   IF(cc) <bolean>
+
+FUNCTION
+   IF allows you to include/exclude parts of the source when
+   assembling, based on the test of the <bolean>. With (cc)
+   you can specify on which condition something happens.
+
+   EQ = Equal
+   NE = Not Equal
+   GT = Greater Than
+   GE = Greater or Equal
+   LT = Lower Than
+   LE = Lower or Equal
+
+   Generaly, the <bolean> is tested. And the result is compared
+   to 0.
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" Conditional Branches with IF " LINK "adv_conbranch"}
+
+@ENDNODE
+
+@NODE "dir_IF1" "'IF1' Directive"
+@NEXT "dir_IF2"
+@PREV "dir_IF"
+@TOC  "MAIN"
+
+NAME
+   IF1 - Assemble Pass 1
+
+SYNTAX
+   IF1
+
+FUNCTION
+   What follows between IF1 and ENDIF, will only be assembled
+   in Pass 1.
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" Conditional Branches with IF " LINK "adv_conbranch"}
+
+@ENDNODE
+
+@NODE "dir_IF2" "'IF2' Directive"
+@NEXT "dir_IFB"
+@PREV "dir_IF1"
+@TOC  "MAIN"
+
+NAME
+   IF2 - Assemble Pass 2
+
+SYNTAX
+   IF2
+
+FUNCTION
+   What follows between IF1 and ENDIF, will only be assembled
+   in Pass 2.
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" Conditional Branches with IF " LINK "adv_conbranch"}
+
+@ENDNODE
+
+@NODE "dir_IFB" "'IFB' Directive"
+@NEXT "dir_IFC"
+@PREV "dir_IF2"
+@TOC  "MAIN"
+
+NAME
+   IFB - Assembles when empty
+
+SYNTAX
+   IFB <symbol>
+
+FUNCTION
+   I've tested this, but the only thing I come up with is that
+   what ever <symbol> is, the result is always FALSE !!!
+
+   Except when NO <symbol> is given, then the result is TRUE !!
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" IFNB " LINK "dir_IFNB"}, @{" Conditional Branches with IF " LINK "adv_conbranch"}
+
+@ENDNODE
+
+@NODE "dir_IFC" "'IFC' Directive"
+@NEXT "dir_IFD"
+@PREV "dir_IFB"
+@TOC  "MAIN"
+
+NAME
+   IFC - Assembles when strings are equal
+
+SYNTAX
+   IFC <string1>,<string2>
+
+FUNCTION
+   Compares both strings, when equal, the result is TRUE.
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" IFNC " LINK "dir_IFNC"}, @{" Conditional Branches with IF " LINK "adv_conbranch"}
+
+@ENDNODE
+
+@NODE "dir_IFD" "'IFD' Directive"
+@NEXT "dir_IFNB"
+@PREV "dir_IFC"
+@TOC  "MAIN"
+
+NAME
+   IFD - Assembles when symbol is defined
+
+SYNTAX
+   IFD <symbol>
+
+FUNCTION
+   The test is set to TRUE when de <symbol>
+   is defined.
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" IFND " LINK "dir_IFND"}, @{" Conditional Branches with IF " LINK "adv_conbranch"}
+
+@ENDNODE
+
+@NODE "dir_IFNB" "'IFNB' Directive"
+@NEXT "dir_IFNC"
+@PREV "dir_IFD"
+@TOC  "MAIN"
+
+NAME
+   IFNB - Assembles when empty
+
+SYNTAX
+   IFNB <symbol>
+
+FUNCTION
+
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" IFB " LINK "dir_IFB"}, @{" Conditional Branches with IF " LINK "adv_conbranch"}
+
+@ENDNODE
+
+@NODE "dir_IFNC" "'IFNC' Directive"
+@NEXT "dir_IFND"
+@PREV "dir_IFNB"
+@TOC  "MAIN"
+
+NAME
+   IFNC - Assembles when strings are not equal
+
+SYNTAX
+   IFNC <symbol1>,<symbol2>
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" IFC " LINK "dir_IFC"}, @{" Conditional Branches with IF " LINK "adv_conbranch"}
+
+@ENDNODE
+
+@NODE "dir_IFND" "'IFND' Directive"
+@NEXT "dir_IMAGE"
+@PREV "dir_IFNC"
+@TOC  "MAIN"
+
+NAME
+   IFND - Assmbles when symbol is not defined
+
+SYNTAX
+   IFND <symbol>
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" IFD " LINK "dir_IFD"}, @{" Conditional Branches with IF " LINK "adv_conbranch"}
+
+@ENDNODE
+
+@NODE "dir_IMAGE" "'IMAGE' Directive"
+@NEXT "dir_INCBIN"
+@PREV "dir_IFND"
+@TOC  "MAIN"
+
+NAME
+   IMAGE - Include Binary File
+
+SYNTAX
+   IMAGE <file>[,<address>]
+
+FUNCTION
+   Will load the file specified by <file> in to memory.
+
+   When an <address> is specified, the file will be loaded at this
+   address.
+
+   IMAGE has the same functions as INCBIN.
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" INCBIN " LINK "dir_INCBIN"}, @{" INCDIR " LINK "dir_INCDIR"}
+
+@ENDNODE
+
+@NODE "dir_INCBIN" "'INCBIN' Directive"
+@NEXT "dir_INCDIR"
+@PREV "dir_IMAGE"
+@TOC  "MAIN"
+
+NAME
+   INCBIN - Include Binary File
+
+SYNTAX
+   INCBIN <file>[,<address>]
+
+FUNCTION
+   Will load the file specified by <file> in to memory.
+
+   When an <address> is specified, the file will be loaded at this
+   address.
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" IMAGE " LINK "dir_IMAGE"}, @{" INCDIR " LINK "dir_INCDIR"}
+
+@ENDNODE
+
+@NODE "dir_INCDIR" "'INCDIR' Directive"
+@NEXT "dir_INCIFF"
+@PREV "dir_INCBIN"
+@TOC  "MAIN"
+
+NAME
+   INCDIR - Specify Include Directory
+
+SYNTAX
+   INCDIR <path>
+
+FUNCTION
+   Normaly, ASM-One will only look in the current directory for
+   INCLUDEs/INCBINs when no path was specified.
+
+   With this directive you can set a directory where ASM-One
+   should look first for INCLUDEs/INCBINs.
+
+   INCDIR works for:
+
+   @{" IMAGE   " LINK "dir_IMAGE"}
+   @{" INCBIN  " LINK "dir_INCBIN"}
+   @{" INCIFF  " LINK "dir_INCIFF"}
+   @{" INCIFFP " LINK "dir_INCIFFP"}
+   @{" INCLUDE " LINK "dir_INCLUDE"}
+
+REMARK
+   You will have to include the whole path as <path>:
+
+   INCDIR "Work:sources"
+
+   will not work, but"
+
+   INCDIR "Work:sources/"
+
+   will.....
+
+VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "dir_INCIFF" "'INCIFF' Directive"
+@NEXT "dir_INCIFFP"
+@PREV "dir_INCDIR"
+@TOC  "MAIN"
+
+NAME
+   INCIFF - Include IFF file
+
+SYNTAX
+   INCIFF
+
+FUNCTION
+
+
+VERSION
+   V1.25
+
+SEE ALSO
+   @{" INCIFFP " LINK "dir_INCIFFP"}, @{" INCDIR " LINK "dir_INCDIR"}
+
+@ENDNODE
+
+@NODE "dir_INCIFFP" "'INCIFFP' Directive"
+@NEXT "dir_INCLUDE"
+@PREV "dir_INCIFF"
+@TOC  "MAIN"
+
+NAME
+   INCIFFP - Include IFF palette
+
+SYNTAX
+   INCIFFP
+
+FUNCTION
+
+
+VERSION
+   V1.25
+
+SEE ALSO
+   @{" INCIFF " LINK "dir_INCIFF"}, @{" INCDIR " LINK "dir_INCIFF"}
+
+@ENDNODE
+
+@NODE "dir_INCLUDE" "'INCLUDE' Directive"
+@NEXT "dir_INCSRC"
+@PREV "dir_INCIFFP"
+@TOC  "MAIN"
+
+NAME
+   INCLUDE - Include Source
+
+SYNTAX
+   INCLUDE <file>
+
+FUNCTION
+   Will include the file specified by <file> as source
+   into the current source.
+
+REMARK
+   To make assembling faster, INCLUDEs are only loaded once.
+   When includes changes, you can use the @{" ZI " LINK "ZI_DLC"} DLC to flush
+   all includes.
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" ZI " LINK "ZI_DLC"}, @{" INCDIR " LINK "dir_INCDIR"}, @{" INCSRC " LINK "dir_INCSRC"}
+
+@ENDNODE
+
+@NODE "dir_INCSRC" "'INCSRC' Directive"
+@NEXT "dir_JUMPERR"
+@PREV "dir_INCLUDE"
+@TOC  "MAIN"
+
+NAME
+   INCSRC - Include Source from ASM-One
+
+SYNTAX
+   INCSRC <sourcenumber>
+
+FUNCTION
+   With this directive you can include one of the 10 source
+   of ASM-One into your current source.
+
+   <sourcenumber> can be a number from 0 till 9.
+
+EXAMPLE
+   You are in Source 0, and you want to include Source 1:
+
+   INCSRC 1
+
+REMARK
+   Sources included with INCSRC are assembled every time you
+   assemble the source which has the INCSRC directive.
+
+   This means you will not have to use the @{" ZI " LINK "ZI_DLC"} DLC to flush
+   certain includes you are working on.
+
+VERSION
+   V1.25
+
+@ENDNODE
+
+@NODE "dir_JUMPERR" "'JUMPERR' Directive"
+@NEXT "dir_JUMPPTR"
+@PREV "dir_INCSRC"
+@TOC  "MAIN"
+
+NAME
+   JUMPERR - Jump to your own error routine
+
+SYNTAX
+   JUMPERR <label>
+
+FUNCTION
+   Gives you to possibility to specify your own error routine
+   when something happens when you ran your program with the
+   @{" J " LINK "J_DLC"} DLC.
+
+   ASM-One will first jump to <label> before returning to
+   the DLC.
+
+REMARK
+   This will not work hen a fatal error occures.
+
+VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "dir_JUMPPTR" "'JUMPPTR' Directive"
+@NEXT
+@{REV "dir_JUMPERR"
+@TOC  "MAIN"
+
+NAME
+   JUMPPTR
+
+SYNTAX
+   JUMPPTR <label>
+
+FUNCTION
+   Specifies the label where ASM-One should start with debugging, or
+   the starting label when you use the @{" J " LINK "J_DLC"} or @{" G " LINK "G_DLC"}
+   without an address or label.
+
+VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "dir_LINE_A" "'LINE_A' Directive"
+@NEXT "dir_LINEA"
+@PREV "dir_JUMPPTR"
+@TOC  "MAIN"
+
+NAME
+   LINE_A - Generate a LINE A Exception
+
+SYNTAX
+   LINE_A <word>
+
+FUNCTION
+   Will generate a LINE A exception. The <word> is the
+   a value that is usefull for the routine that handles
+   the LINE A exception.
+
+REMARK
+   A LINE A is normaly used to specify your on routine
+   for instructions that are not implemented in the CPU, FPU
+   or MMU.
+
+   Make sure you have read abook about the M68000 Family of
+   processors, because most LINE A and LINE F possibilities are
+   already used.
+
+VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "dir_LINEA" "'LINEA' Directive"
+@NEXT "dir_LINE_F"
+@PREV "dir_LINE_A"
+@TOC  "MAIN"
+
+NAME
+   LINEA - Generate a LINE A Exception
+
+SYNTAX
+   LINEA <word>
+
+FUNCTION
+   Will generate a LINE A exception. The <word> is the
+   a value that is usefull for the routine that handles
+   the LINE A exception.
+
+REMARK
+   A LINE A is normaly used to specify your on routine
+   for instructions that are not implemented in the CPU, FPU
+   or MMU.
+
+   Make sure you have read abook about the M68000 Family of
+   processors, because most LINE A and LINE F possibilities are
+   already used.
+
+VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "dir_LINE_F" "'LINE_F' Directive"
+@NEXT "dir_LINEF"
+@PREV "dir_LINEA"
+@TOC  "MAIN"
+
+NAME
+   LINE_F - Generate a LINE F Exception
+
+SYNTAX
+   LINE_F <word>
+
+FUNCTION
+   Will generate a LINE F exception. The <word> is the
+   a value that is usefull for the routine that handles
+   the LINE F exception.
+
+REMARK
+   A LINE F is normaly used to specify your on routine
+   for instructions that are not implemented in the CPU, FPU
+   or MMU.
+
+   Make sure you have read abook about the M68000 Family of
+   processors, because most LINE A and LINE F possibilities are
+   already used.
+
+VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "dir_LINEF" "'LINEF' Directive"
+@NEXT "dir_LIST"
+@PREV "dir_LINE_F"
+@TOC  "MAIN"
+
+NAME
+   LINEF - Generate a LINE F Exception
+
+SYNTAX
+   LINEF <word>
+
+FUNCTION
+   Will generate a LINE F exception. The <word> is the
+   a value that is usefull for the routine that handles
+   the LINE F exception.
+
+REMARK
+   A LINE F is normaly used to specify your on routine
+   for instructions that are not implemented in the CPU, FPU
+   or MMU.
+
+   Make sure you have read abook about the M68000 Family of
+   processors, because most LINE A and LINE F possibilities are
+   already used.
+
+VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "dir_LIST" "'LIST' Directive"
+@NEXT "dir_LLEN"
+@PREV "dir_LINEF"
+@TOC  "MAIN"
+
+NAME
+   LIST - Activate Listing
+
+SYNTAX
+   LIST
+
+FUNCTION
+   Will override the 'List File' Preference.
+
+   The list will start where LIST was in the source.
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" NOLIST " LINK "dir_NOLIST"}, ASM-One's Preferences, @{" ASM-One Pref file " LINK "asm_preffile"}
+   @{" PAGE " LINK "dir_PAGE"}, @{" SPC " LINK "dir_SPC"}, @{" TTL " LINK "dir_TTL"}
+
+@ENDNODE
+
+@NODE "dir_LLEN" "'LLEN' Directive"
+@NEXT "dir_LOAD"
+@PREV "dir_LIST"
+@TOC  "MAIN"
+
+NAME
+   LLEN - Specify line length
+
+SYNTAX
+   LLEN <length>
+
+FUNCTION
+   Specifies the length of each line when you print something.
+
+   <length> must be a number between 60 and 132.
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" PLEN " LINK "dir_PLEN"}
+
+@ENDNODE
+
+@NODE "dir_LOAD" "'LOAD' Directive"
+@NEXT "dir_MACRO"
+@PREV "dir_LLEN"
+@TOC  "MAIN"
+
+NAME
+   LOAD - Specify load address
+
+SYNTAX
+   [label] LOAD <address>
+
+FUNCTION
+   If specified, the code will be assembled starting at
+   <address>.
+
+   In combination with @{" ORG " LINK "dir_ORG"} you can assemble code
+   at an absolute address.
+
+VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "dir_MACRO" "'MACRO' Directive"
+@NEXT "dir_MASK2"
+@PREV "dir_LOAD"
+@TOC  "MAIN"
+
+NAME
+   MACRO - Start MACRO definition
+
+SYNTAX
+   [label] MACRO
+
+FUNCTION
+   Allowes you to specify MACRO's.
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" Building and Using MACRO's " LINK "adv_MACROs"}, @{" CMEXIT " LINK "dir_CMEXIT"}, @{" MEXIT " LINK "dir_MEXIT"}, @{" ENDM " LINK "dir_ENDM"}
+
+@ENDNODE
+
+@NODE "dir_MASK2" "'MASK2' Directive"
+@NEXT "dir_MEXIT"
+@PREV "dir_MACRO"
+@TOC  "MAIN"
+
+NAME
+   MASK2 - Unknown
+
+SYNTAX
+   MASK2
+
+FUNCTION
+   Unknown
+
+   MASK2 is implemented for compatibility reasons with some
+   old Assemblers !!!
+
+VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "dir_MEXIT" "'MEXIT' Directive"
+@NEXT "dir_NOLIST"
+@PREV "dir_MASK2"
+@TOC  "MAIN"
+
+NAME
+   MEXIT - Leave MACRO
+
+SYNTAX
+   MEXIT
+
+FUNCTION
+   ASM-One will leave a MACRO when it encounters this directive.
+   No matter if the macro was completed.
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" Building and Using MACRO's " LINK "adv_MACROs"}, @{" MACRO " LINK "dir_MACRO"}, @{" CMEXIT " LINK "dir_CMEXIT"}, @{" ENDM " LINK "dir_ENDM"}
+
+@ENDNODE
+
+@NODE "dir_NOLIST" "'NOLIST' Directive"
+@NEXT "dir_NOPAGE"
+@PREV "dir_MEXIT"
+@TOC  "MAIN"
+
+NAME
+   NOLIST - Stops the function of LIST
+
+SYNTAX
+   NOLIST
+
+FUNCTION
+   Stops the list that was started with LIST.
+
+   This way you can generate a listing for only a part of the
+   complete program.
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" LIST " LINK "dir_LIST"}
+
+@ENDNODE
+
+@NODE "dir_NOPAGE" "'NOPAGE' Directive"
+@NEXT "dir_ODD"
+@PREV "dir_NOLIST"
+@TOC  "MAIN"
+
+NAME
+   NOPAGE - Deactivate the PAGE option
+
+SYNTAX
+   NOPAGE
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" PAGE " LINK "dir_PAGE"}
+
+@ENDNODE
+
+@NODE "dir_ODD" "'ODD' Directive"
+@NEXT "dir_OFFSET"
+@PREV "dir_NOPAGE"
+@TOC  "MAIN"
+
+NAME
+   ODD - Make next address odd
+
+SYNTAX
+   [label] ODD
+
+FUNCTION
+   Will make the next address an ODD address.
+
+   ODD has the same function as:
+
+   CNOP   1,2
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" CNOP " LINK "dir_CNOP"}, @{" EVEN " LINK "dir_EVEN"}, @{" ALIGN " LINK "dir_ALIGN"}
+
+@ENDNODE
+
+@NODE "dir_OFFSET" "'OFFSET' Directive"
+@NEXT "dir_ORG"
+@PREV "dir_ODD"
+@TOC  "MAIN"
+
+NAME
+   OFFSET - Define Offsets
+
+SYNTAX
+   [label] OFFSET <value>
+
+FUNCTION
+   Allowes you to build offsets without calculation what the
+   actual offset would be.
+
+EXAMPLE
+
+   start:     OFFSET    100
+   dat0:      dc.b      1
+   dat1:      dc.b      9
+              ENDOFF
+
+   This will give the labels 'start' and 'dat0' the value 100,
+   and the label 'dat1' the value 100+1.
+
+REMARK
+   An OFFSET only works in the same section.
+
+   An OFFSET is ended when @{" ENDOFF " LINK "dir_ENDOFF"}, @{" SECTION " LINK "dir_SECTION"}, OFFSET or @{" END " LINK "dir_END"}.
+
+VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "dir_ORG" "'ORG' Directive"
+@NEXT "dir_PAGE"
+@PREV "dir_OFFSET"
+@TOC  "MAIN"
+
+NAME
+   ORG - Set absolute program start
+
+SYNTAX
+   [label] ORG <address>
+
+FUNCTION
+   In combination with LOAD, your program will be assembled starting
+   at the address by LOAD, and will also be executed at the address
+   specified by ORG.
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" LOAD " LINK "dir_LOAD"}
+
+@ENDNODE
+
+@NODE "dir_PAGE" "'PAGE' Directive"
+@NEXT "dir_PLEN"
+@PREV "dir_ORG"
+@TOC  "MAIN"
+
+NAME
+   PAGE - Start at new page in the listing
+
+SYNTAX
+   PAGE
+
+FUNCTION
+   PAGE will start a new page, and will also start a new page
+   if the previous was full.
+
+   It functions in combination with LIST.
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" NOPAGE " LINK "dir_NOPAGE"}, @{" LIST " LINK "dir_LIST"}
+
+@ENDNODE
+
+@NODE "dir_PLEN" "'PLEN' Directive"
+@NEXT "dir_PRINTT"
+@PREV "dir_PAGE"
+@TOC  "MAIN"
+
+NAME
+   PLEN - Set page length
+
+SYNTAX
+   PLEN <page-length>
+
+FUNCTION
+   Sets the length of the page for the printer.
+
+   <page-length> must be a number between 20 and 100.
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" LLEN " LINK "dir_LLEN"}
+
+@ENDNODE
+
+@NODE "dir_PRINTT" "'PRINTT' Directive"
+@NEXT "dir_PRINTV"
+@PREV "dir_PLEN"
+@TOC  "MAIN"
+
+NAME
+   PRINTT - PRINTT a string
+
+SYNTAX
+   PRINTT <string>
+
+FUNCTION
+   While assembling, the <string> will be printed (on screen) where
+   PRINTT was in the source.
+
+   Nice in combination with MACRO's.
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" Building and Using MACRO's " LINK "adv_MACROs"}
+
+@ENDNODE
+
+@NODE "dir_PRINTV" "'PRINTV' Directive"
+@NEXT "dir_REM"
+@PREV "dir_PRINTT"
+@TOC  "MAIN"
+
+NAME
+   PRINTV - Print value
+
+SYNTAX
+   PRINTV <label/value>[,label/value...]
+
+FUNCTION
+   Prints the value of <label> or just the <value> (on screen).
+
+   Also very handy in combination with REPT and MACRO's
+
+EXAMPLE
+
+   PRINTV StartingAddress
+
+   ; -- Actual Source --
+
+   StartingAddress:
+         MOVEQ  #0,D0
+         RTS
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" Building and Using MACRO's " LINK "adv_MACROs"}, @{" REPT " LINK "dir_REPT"}
+
+@ENDNODE
+
+@NODE "dir_REM" "'REM' Directive"
+@NEXT "dir_REG"
+@PREV "dir_PRINTV"
+@TOC  "MAIN"
+
+NAME
+   REM - Add Remark
+
+SYNTAX
+   REM
+
+FUNCTION
+   Enables you (together with EREM) to out comment large pieces
+   of code without the need to start every line with an semi-colon
+   (;).
+
+   Everything between REM and EREM will be ignored by ASM-One.
+
+VERSION
+   V1.15
+
+SEE ALSO
+   @{" EREM " LINK "dir_EREM"}
+
+@ENDNODE
+
+@NODE "dir_REG" "'REG' Directive"
+@NEXT "dir_REGF"
+@PREV "dir_REM"
+@TOC  "Directive
+
+NAME
+   REG - Assign label to RegisterList
+
+SYNTAX
+   <label> REG <registerlist>
+
+FUNCTION
+   Enables you to assign a name to a registerlist. This is
+   very handy for MOVEM.
+
+EXAMPLE
+
+   AllRegs:  REG  D0-A6
+
+             MOVEM.L  AllRegs,-(A7)
+
+REMARK
+   Only Data- and Address registers are allowed.
+   The <label> can not be used again for something else.
+
+VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "dir_REGF" "'REGF' Directive"
+@NEXT "dir_REPT"
+@PREV "dir_REG"
+@TOC  "Directive
+
+NAME
+   REGF - Assign label to FPU RegisterList
+
+SYNTAX
+   <label> REGF <FPU registerlist>
+
+FUNCTION
+   Enables you to assign a name to a FPU registerlist. This is
+   very handy for FMOVEM.
+
+REMARK
+   Only FPU Data- and Control registers are allowed.
+   The <label> can not be used again for something else.
+
+VERSION
+   V1.47
+
+@ENDNODE
+
+@NODE "dir_REPT" "'REPT' Directive"
+@NEXT "dir_RORG"
+@PREV "dir_REGF"
+@TOC  "MAIN"
+
+NAME
+   REPT - Repete something
+
+SYNTAX
+   REPT <number>
+
+FUNCTION
+   Allowes you to repete the same line(s) of coding several times
+   automatically.
+
+EXAMPLE
+
+         REPT    20
+         MOVE.B  (A3)+.(A2)+
+         ENDR
+
+REMARK
+   Between version V1.29 and V1.39 a minimal REPT of 2 was required.
+   As from version V1.40, all REPTs where allowed again (except negative),
+   and from version V1.41 all crash bugs have been sloved.
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" ENDR " LINK "dir_ENDR"}
+
+@ENDNODE
+
+@NODE "dir_RORG" "'RORG' Directive"
+@NEXT "dir_RS"
+@PREV "dir_REPT"
+@TOC  "MAIN"
+
+NAME
+   RORG - Set relative start
+
+SYNTAX
+   [label] RORG <value>
+
+FUNCTION
+   Not complete clear, but:
+
+   Will add <value> to the starting address of a section, so
+   that the next address ill be the starting address plus <value>.
+
+VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "dir_RS" "'RS' Directive"
+@NEXT "dir_RSRESET"
+@PREV "dir_RORG"
+@TOC  "MAIN"
+
+NAME
+   RS - Add value to RS counter
+
+SYNTAX
+   [label] RS.[size] <value>
+
+FUNCTION
+   Does add the <value> to the value of the internal RS counter.
+
+   Legal sizes are: B (byte), W (word) and L (longword)
+
+EXAMPLE
+
+           RSRESET
+           RS.B     -30   ; Start value
+   Open:   RS.B     -6
+   Close:  RS.B     -6
+   Read:   RS.B     -6
+   Write:  RS.B     -6
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" RSRESET " LINK "dir_RSRESET"}, @{" RSSET " LINK "dir_RSSET"}
+
+@ENDNODE
+
+@NODE "dir_RSRESET" "'RSRESET' Directive"
+@NEXT "dir_RSSET"
+@PREV "dir_RS"
+@TOC  "MAIN"
+
+NAME
+   RSRESET - Reset the RS counter
+
+SYNTAX
+   [label] RSRESET
+
+FUNCTION
+   Will reset the internal RS counter to zero.
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" RS " LINK "dir_RS"}, @{" RSSET " LINK "dir_RSSET"}
+
+@ENDNODE
+
+@NODE "dir_RSSET" "'RSSET' Directive"
+@NEXT "dir_SECTION"
+@PREV "dir_RSRESET"
+@TOC  "MAIN"
+
+NAME
+   RSSET - Set RS counter
+
+SYNTAX
+   [label] RSSET <value>
+
+FUNCTION
+   Will reset the internal RS counter, and set the internal RS
+   counter to <value>.
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" RS " LINK "dir_RS"}, @{" RSRESET " LINK "dir_RSRESET"}
+
+@ENDNODE
+
+@NODE "dir_SECTION" "'SECTION' Directive"
+@NEXT "dir_SET"
+@PREV "dir_RSSET"
+@TCO  "MAIN"
+
+NAME
+   SECTION - Define a new section
+
+SYNTAX
+   [label] SECTION <name>[,type][_memory]
+
+FUNCTION
+   Will start a new section with <name> as name, of type [type],
+   allocated in memory [memory]
+
+   Legal types are: CODE, DATA and BSS (case is not important)
+
+   Legal memory types are: _C (chip), _F (fast) and _P (public)
+
+REMARK
+   If no section is specified, ASM-One will start with a CODE
+   section with the name 'Text'.
+
+   A maximum of 255 section is allowed.
+
+VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "dir_SET" "'SET' Directive"
+@NEXT "dir_SETCPU"
+@PREV "dir_SECTION"
+@TOC  "MAIN"
+
+NAME
+   SET - Assign value
+
+SYNTAX
+   [label] SET <value>
+
+FUNCTION
+   Works the same as EQU, but the [label] can get another
+   value assigned by SET is needed.
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" EQU " LINK "dir_EQU"}
+
+@ENDNODE
+
+@NODE "dir_SETCPU" "'SETCPU' Directive"
+@NEXT "dir_SETFPU"
+@PREV "dir_SET"
+@TOC  "MAIN"
+
+NAME
+   SETCPU - Set CPU type
+
+SYNTAX
+   SETCPU <option>
+
+FUNCTION
+   Allowes you to override the current settings for
+   the CPU (as specified in the Preferences).
+
+   Legal values for <option> are:
+
+   000  : 68000
+   010  : 68010
+   020  : 68020
+   030  : 68030
+   040  : 68040
+   060  : 68060
+   PUSH : Store current value
+   PULL : Restore stored value
+
+VERSION
+   V1.3x
+
+SEE ALSO
+   @{" SETFPU " LINK "dir_SETFPU"}, @{" SETMMU " LINK "dir_SETMMU"}
+
+@ENDNODE
+
+@NODE "dir_SETFPU" "'SETFPU' Directive"
+@NEXT "dir_SETMMU"
+@PREV "dir_SETCPU"
+@TOC  "MAIN"
+
+NAME
+   SETFPU - Set current FPU
+
+SYNTAX
+   SETFPU <option>
+
+FUNCTION
+   Will override the current Preference settings for the FPU.
+
+   Legal values for <option> are:
+
+   ON   : Set FPU on
+   OFF  : SET FPU off
+   PUSH : Store current value
+   PULL : Restore stored value
+
+VERSION
+   V1.3x
+
+SEE ALSO
+   @{" SETCPU " LINK "dir_SETCPU"}, @{" SETMMU " LINK "dir_SETMMU"}
+
+@ENDNODE
+
+@NODE "dir_SETMMU" "'SETMMU' Directive"
+@NEXT "dir_SPC"
+@PREV "dir_SETFPU"
+@TOC  "MAIN"
+
+NAME
+   SETMMU - Set current MMU
+
+SYNTAX
+   SETMMU <option>
+
+FUNCTION
+   Allowes you to set the MMU regardless of the Preferences.
+
+   Legal values for <option> are:
+
+   ON   : Set MMU on
+   OFF  : Set MMU off
+   PUSH : Store current value
+   PULL : Restore storde value
+
+VERSION
+   V1.3x
+
+SEE ALSO
+   @{" SETCPU " LINK "dir_SETCPU"}, @{" SETFPU " LINK "dir_SETFPU"}
+
+@ENDNODE
+
+@NODE "dir_SPC" "'SPC' Directive"
+@NEXT "dir_TEXT"
+@PREV "dir_SETMMU"
+@TOC  "MAIN"
+
+NAME
+   SPC - Add empty lines
+
+SYNTAX
+   SPC <value>
+
+FUNCTION
+   When showing a listing (with LIST), you can specify with SPC
+   a number of empty lines. The number of empty lines is specified
+   by <value>
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" LIST " LINK "dir_LIST"}
+
+@ENDNODE
+
+@NODE "dir_TEXT" "'TEXT' Directive"
+@NEXT "dir_TTL"
+@PREV "dir_SPC"
+@TOC  "MAIN"
+
+NAME
+   TEXT - Start a text block
+
+SYNTAX
+   [label] TEXT
+
+FUNCTION
+   TEXT allowes you (together with ETEXT) to enter text without the
+   addition of DC.B's.
+
+   Adding a | will start the hex mode. Of every character between two
+   | (pipes), ASM-One will substract $30.
+
+VERSION
+   V1.15
+
+SEE ALSO
+   @{" ETEXT " LINK "dir_ETEXT"}, @{" DC " LINK "dir_DC"}
+
+@ENDNODE
+
+@NODE "dir_TTL" "'TTL' Directive"
+@NEXT "dir_XDEF"
+@PREV "dir_TEXT"
+@TOC  "MAIN"
+
+NAME
+   TTL - Set program title
+
+SYNTAX
+   TTL <string>
+
+FUNCTION
+   Sets the program title for a listing.
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" LIST " LINK "dir_LIST"}
+
+@ENDNODE
+
+@NODE "dir_XDEF" "'XDEF' Directive"
+@NEXT "dir_XREF"
+@PREV "dir_TTL"
+@TOC  "MAIN"
+
+NAME
+   XDEF - External Definition
+
+SYNTAX
+   XDEF <label>[,label....]
+
+FUNCTION
+   Will define <label> as an external value, so it can be
+   used by other modules.
+
+   This is mainly interesting for linking assembeler routines
+   into code made by higher programming languages.
+
+    You will need a linker (like BLink) to link the code.
+
+EXAMPLE
+   See @{" XREF " LINK "dir_XREF"}
+
+REMARK
+   Sources that contain XDEF, are not executables. And therefore
+   can NOT be executed !!
+
+   You will need the @{" WO " LINK "WO_DLC"} to write the
+   assembled object file.
+
+   XDEF has the same function as ENTRY, EXTRN and GLOBAL.
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" XREF " LINK "dir_XREF"}, @{" ENTRY " LINK "dir_ENTRY"}, @{" GLOBAL " LINK "dir_GLOBAL"}, @{" EXTRN " LINK "dir_EXTRN"}, @{" WO " LINK "WO_DLC"}
+
+@ENDNODE
+
+@NODE "dir_XREF" "'XREF' Directive"
+@NEXT "dir_EXTERN"
+@PREV "dir_XDEF"
+@TOC  "MAIN"
+
+NAME
+   XREF - Define External Definition
+
+SYNTAX
+   XREF <label>[,label....]
+
+FUNCTION
+   Will tell ASM-One that <label> is defined outside
+   this program. So that ASM-One ill keep on assembling.
+
+   This is mainly interesting for linking assembeler routines
+   into code made by higher programming languages.
+
+   You will need a linker (like BLink) to link the code.
+
+EXAMPLE
+
+   Program 1:
+
+            XDEF    ClearScreen
+   ClearScreen:
+            CLR.L   Screen
+            RTS
+
+   Screen:  DC.L    0
+
+
+   Program 2:
+
+            XREF    ClearScreen
+   GoClear: JMP     ClearScreen
+
+REMARK
+   Sources that contain ENTRY, are not executables. And therefore
+   can NOT be executed !!
+
+   You will need the @{" WO " LINK "WO_DLC"} to write the
+   assembled object file.
+
+   ENTRY has the same function as XDEF, EXTRN and GLOBAL.
+
+VERSION
+   V1.01
+
+SEE ALSO
+   @{" XDEF " LINK "dir_XDEF"}, @{" ENTRY " LINK "dir_ENTRY"}, @{" GLOBAL " LINK "dir_GLOBAL"}, @{" EXTRN " LINK "dir_EXTRN"}, @{" WO " LINK "WO_DLC"}
+
+@ENDNODE

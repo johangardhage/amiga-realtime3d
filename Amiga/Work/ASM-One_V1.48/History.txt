@@ -1,0 +1,274 @@
+Bug fixes and enhancements since Revision 471a (ASM-One V1.47)
+
+Revision 482
+------------
+
+- ASM-One V1.48 Public Release (31-12-2002)
+
+
+Revision 481
+------------
+
+- There is no Memory Directory at the moment
+
+- Fixed file size in 'V' command (now shows up to 999 Mb
+  instead of only 999 Kb).
+
+- Cleaned up 'V' output.
+
+- 'V' will now always show you the current directory. While
+  'V<path>' will show you the contents of the <path>
+  specified.
+
+  Previously ASM-One would mixup things which made the 'V'
+  directive not very usefull to use..
+
+
+Revision 480
+------------
+
+- FRxx was never allowed.
+
+  Fixed now...
+
+- The mtspr opcode was not recognized.
+
+  Fixed..
+
+- ASM-One's PPC register support was (to put it nicely) weak !!
+
+  Only a selected few where actualy recognized as PPC registers,
+  the rest gave errors. I don't understand why I didn't test
+  this before releasing V1.47 and claiming to have PPC support ??
+
+  However, all these bugs have been fixed...
+
+- Rearranged new PPC errors.
+
+- Added PPC Errors to the ASM-One Guide.
+
+- General PPC/FPU/AltiVec Registers allowed numbers between
+  0 and 39. Now only between 0 and 31.
+
+- GPRxx and FPRxx where never allowed !!!
+
+  Fixed now.
+
+- Forgot to clear the AA and LK bit when disassembling the
+  (conditional)branch opcodes.
+
+- When disassembling, all general PPC registers and most numbers
+  under 40 where always zero !!
+
+  Not anymore..
+
+- Edited some of the PPC Errors.
+
+- Branch instructions used the wrong offset for calculating
+  the relative branch.
+
+  Fixed now...
+
+- BO and BI where never allowed to be numbers.
+
+  Fixed now..
+
+
+Revision 479
+------------
+
+- Added PPC specific assembling errors.
+
+
+Revision 478
+------------
+
+- Fixed the Write Link in combination with XDEF problem..
+
+
+Revision 477
+------------
+
+- FPU opcodes with Byte as immediate operand could never be debugged
+  since the byte size was never recognized by the debugger.
+
+  This had no effect on the assembly or disassembly of the opcode and
+  thus NEVER on the generated executable !!!
+
+- A FPU EQUate will show up as being a '- FPU EQU -' in the symbol
+  list.
+
+- Added EQUates with FPU sizes:
+
+  EQUS = Single
+  EQUD = Double
+  EQUX = Extended
+  EQUP = Packed
+
+  Also, FPU opcodes now work with EQU's (set, =) if the size
+  of the opcode is not Byte, Word or Longword, but the value size is.
+
+  Example 1:
+
+hello:	equ	1
+
+a:	fmove.s	#hello,fp0
+	rts
+
+  Example 2:
+
+hello:	equs	5.5
+
+a:	fmove.s	#hello,fp0
+	fmove.d	#hello,fp1
+	rts
+
+  Note: As you can see, you can use a value defined as a Single as
+  a Double in the opcode. ASM-One will save the value as Single if
+  you used EQUS, and ASM-One will restore this value when parsing
+  the opcode. But when the actual code is written, the value will be
+  written as the size defined by the opcode (in the above example
+  as Double) !!
+
+  Another Note: ASM-One is allocating extra memory for the FPU Data
+  that is generated during an Assembly run. The size of the allocated
+  memory is expanded if that's needed.
+
+  Every Assembly run the memory is cleared (that is, we start at 0).
+
+  The memory is only Freeed when you quite or restart ASM-One.
+
+  I've chosen this method to prevent memory defragmentation. Typically
+  the extra memory will only be allocated when you use EQUS, EQUD, EQUX
+  and/or EQUP. If you never use them, no extra memory will be allocated.
+
+
+Revision 476
+------------
+
+- The MOVEM routines in combination with REG and EQUR where much
+  to complex.
+
+- Removed OPT directive
+
+- When debugging, the disassembled line was never cleared so sometimes
+  disassembled stuff from the previous line was still visable.
+  (RTG Only)
+
+- Filename was only changed when a sources was read or written ?
+
+- When swapping to an empty source, the current dir will be set to
+  the StartUp Dir !!!!
+
+- Directories where not properly initialized when swapping the source.
+
+
+Revision 475
+------------
+
+- FMOVEM was assembled wrong (mode and registerlist where mixed up).
+
+- During debugging, FPU output was never updated.
+
+- Debug registers have been moved below the source instead of beside it.
+  This is only true when in RTG mode...
+
+- PPC instructions b, ba, bc, bca, bcl, bcla, bl and bla where never
+  correctly assembled because the operands wher never examined !!
+
+- Fixed badly visable cursor in menubar (during searching, etc.)
+
+
+Revision 474
+------------
+
+- When using the BLOCK function 'Registers', the menubar was left
+  blanc. So you could never see the results.
+
+  Fixed now
+
+
+Revision 473
+------------
+
+- Fixed a bug that 'V' complained about an invalid directory. ASM-One
+  now takes the Current Directory.
+
+- Fixed a bug that when doing 'V<directory-name>' ASM-One would take that
+  directory as the new Current Directory (this should only happen when
+  u use 'V <directory-name>')
+
+- Fixed a bug that when using 'V' ASM-One would update your current source
+  in the wrong directory (ideal for losing files or filling up your HD B-)
+
+- Fixed a bug that ASM-One would write to the wrong directory. It would
+  write to the last directory accessed with V, W or R regardless of what
+  the current source was.
+
+  Source swapping works now correct for these directories.
+
+- Fixed a bug that sometimes ASM-One updated a file (when using U)
+  because it thought the file was gone (which was not the case).
+
+  This only happend when the directory you where in was not the
+  same directory as where the source was u loaded.
+
+- Fixed problems with new Directories
+
+  ASM-One has now 5 different directories and Filenames.
+  They are as follows:
+
+  Dir/File Buffer 1:
+  ReadSource, WriteSource, WriteBlock, InsertSource
+
+  Dir/File Buffer 2:
+  ReadBinary, WriteBinary
+
+  Dir/File Buffer 3:
+  ReadObject. WriteObject, WriteLink
+
+  Dir/File Buffer 4:
+  WritePreferences, ReadPreferences
+
+  Dir/File Buffer 5:
+  DirectOutput, WriteProject, ReadProject
+
+  Dir/File Buffer 1 is saved when you switch to another source.
+
+  Except for Buffer 1, the other buffers only work when using
+  the requester, a direct command (examp.: RB <filename>) will
+  not set any buffers.
+
+  The reason for this is that it's probaly to difficult to remember
+  5 different locations. And since the 'V' command only works with
+  Buffer 1, you can't check where a Buffer is pointing too using
+  a direct command.
+
+- When you break off a Source Read/Write (or when it fails), the source
+  name will no longer change in the Sources Menu or in the Title bar.
+
+- Rewrote Startup Directory related stuff
+
+- Rewrote Requester Routines to use new file/directory buffers
+
+- Changed directory structure (5 directories instead of only 3)
+
+
+Revision 472
+------------
+
+- Removed some lines of coding in the CD (Create Directory)
+  routine
+
+- Commenting and cleaning up of the source
+
+
+Revision 471b-c
+---------------
+
+- Canceling the Screen Requester could exit ASM-One in
+  some cases.
+
+- Removed some lines of coding in the ADD and SUB
+  parser routines.
+

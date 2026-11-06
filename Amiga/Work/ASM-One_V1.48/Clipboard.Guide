@@ -1,0 +1,789 @@
+@DATABASE Clipboard.Guide
+
+@NODE "MAIN" "MAIN"
+@TOC  "ASM-One_V1.4x.Guide/MAIN"
+@ENDNODE
+
+@NODE "clip_MAIN" "Some info about ASM-One V1.45 and the Clipboard"
+@TOC  "ASM-One_V1.4x.Guide/MAIN"
+@PREV "clip_NothingPasted"
+@NEXT "clip_OpenIFFRead"
+
+			General Information
+			-------------------
+
+As of version V1.45 ASM-One supports Copy & Past to/from the
+Clipboard.
+
+This generaly means that you can copy stuff from within ASM-One to
+any other application that supports the Clipboard (like CygnusEd).
+And visa versa.
+
+It also means some other things:
+
+- Copied data will no longer be lost if you exit the Editor
+- If you copied something in another application, it will now
+  be pasted to ASM-One (previously, nothing would happen if you
+  hadn't copied anything yet).
+
+Some of you may have problems adapting, but in the end I think
+you ALL will love this functionality.
+
+
+			  Using KS/WB 2.x ?
+			  -----------------
+
+According to the AmigaOS 3.5 Autodocs, the OpenClipboard() call
+in the iffparse.library prior to V39 had some nasty bugs. This
+is what they say about it:
+
+    This function had several bugs prior to V39.
+
+    First bug was that if the clipboard.device couldn't open, two calls
+    to FreeSignal() were made with uninitialized values as parameters.
+    The result of this was a corrupt signal mask in the Task field.
+
+    Second bug was that OpenDevice() was called with an IO request that
+    didn't have a valid MsgPort pointer in it.
+
+    Third bug was that the two message ports allocated by the function
+    (ClipboardHandle->cbh_CBport and ClipboardHandle->cbh_SatisfyPort)
+    were not being initialized correctly and would cause a system crash
+    if a message ever got to either of them.
+
+To my opinion this doesn't mean that OpenClipboard() will crash a
+2.x system directly. 
+
+But just in case: The Clipboard support is optional. You can set it
+on or off in the Environment Preferences.
+
+
+			       Error's
+			       -------
+
+Allthough I personally think that it's very unlikely that you
+encounter any error message, it's handy to know what errors
+can be generated when Coping & Pasting:
+
+		@{" `OpenIFF` for read failed                     " LINK "clip_OpenIFFRead"}
+		@{" `OpenIFF` for write failed                    " LINK "clip_OpenIFFWrite"}
+
+		@{" Error closing `CHRS` Chunk                    " LINK "clip_ClosingCHRSChunk"}
+		@{" Error closing `FTXT Chunk                     " LINK "clip_ClosingFTXTChunk"}
+		@{" Error opening `Clipboard, unit 0`             " LINK "clip_Clipboard0"}
+		@{" Error writing `CHRS` to IFF Stream            " LINK "clip_WritingCHRS"}
+		@{" Error writing `FTXT` to IFF Stream            " LINK "clip_WritingFTXT"}
+
+		@{" Failed obtaining an IFF Handle                " LINK "clip_IFFHandle"}
+		@{" Failed to install ExitHandler for ParseIFF    " LINK "clip_ExitHandler"}
+		@{" Failed to read from Clipboard                 " LINK "clip_FailedRead"}
+		@{" Failed to write to Clipboard                  " LINK "clip_FailedWrite"}
+
+		@{" Not enough memory to past data from Clipboard " LINK "clip_MemoryError"}
+
+		@{" There was nothing to past from the Clipboard  " LINK "clip_NothingPasted"}
+
+
+What ever happens to/with the Clipboard: you can ALWAYS copy & past within ASM-One !!
+
+
+@ENDNODE
+
+@NODE "clip_OpenIFFRead" "`OpenIFF` for read failed"
+@PREV "clip_MAIN"
+@NEXT "clip_OpenIFFWrite"
+@TOC  "clip_MAIN"
+
+
+ERROR
+-----
+
+`OpenIFF` for read failed
+
+
+MEANING
+-------
+
+Items that are COPIED FROM the Clipboard need to be formated according
+to the IFF (Interchange File Format) format.
+
+The iffparse.library can do this conversion for you. To do this, you need
+to open an so called 'IFF Stream'.
+
+If you get this error, that stream could not be opened.
+
+
+REASON
+------
+
+The most plausible reason is that there is not enough memory available
+to do this action.
+
+
+RESULT
+------
+
+Nothing was read from the Clipboard. Data that is present in the internal
+Copy/Past buffer of ASM-One will be pasted instead.
+
+If no data was present, nothing will happen.
+
+
+SOLVE
+-----
+
+The only thing you can do is to try it again.
+
+
+REMARK
+------
+
+Please understand that if you PASTE data into ASM-One, that data is COPIED
+from the Clipboard, and visa versa !!!
+
+Thus: the action preformed on the Clipboard is the REVERSED of the action
+being preformed in ASM-One.
+
+@ENDNODE
+
+@NODE "clip_OpenIFFWrite" "`OpenIFF` for write failed"
+@PREV "clip_OpenIFFRead"
+@NEXT "clip_ClosingCHRSChunk"
+@TOC  "clip_MAIN"
+
+
+ERROR
+-----
+
+`OpenIFF` for write failed
+
+
+MEANING
+-------
+
+Items that are PASTED TO the Clipboard need to be formated according
+to the IFF (Interchange File Format) format.
+
+The iffparse.library can do this conversion for you. To do this, you need
+to open an so called 'IFF Stream'.
+
+If you get this error, that stream could not be opened.
+
+
+REASON
+------
+
+The most plausible reason is that there is not enough memory available
+to do this action.
+
+
+RESULT
+------
+
+Nothing was written to the Clipboard. So nothing can be copied to
+other applications.
+
+
+SOLVE
+-----
+
+The only thing you can do is to try it again.
+
+
+REMARK
+------
+
+Please understand that if you PASTE data into ASM-One, that data is COPIED
+from the Clipboard, and visa versa !!!
+
+Thus: the action preformed on the Clipboard is the REVERSED of the action
+being preformed in ASM-One.
+
+@ENDNODE
+
+@NODE "clip_ClosingCHRSChunk" "Error closing `CHRS` Chunk"
+@PREV "clip_OpenIFFWrite"
+@NEXT "clip_ClosingFTXTChunk"
+@TOC  "clip_MAIN"
+
+
+ERROR
+-----
+
+Error closing `CHRS` Chunk
+
+
+MEANING
+-------
+
+Items that are PASTED TO the Clipboard need to be formated according
+to the IFF (Interchange File Format) format.
+
+If you get this error, the iffparse.library was unable to close
+the 'CHRS' Chunk (the part of the IFF data ASM-One tried to copy
+to the Clipboard, that contains the actual text to be copied).
+
+
+REASON
+------
+
+The most plausible reason is that there is not enough memory available
+to do this action.
+
+
+RESULT
+------
+
+Nothing was written to the Clipboard. So nothing can be copied to
+other applications.
+
+
+SOLVE
+-----
+
+The only thing you can do is to try it again.
+
+
+REMARK
+------
+
+Please understand that if you PASTE data into ASM-One, that data is COPIED
+from the Clipboard, and visa versa !!!
+
+Thus: the action preformed on the Clipboard is the REVERSED of the action
+being preformed in ASM-One.
+
+@ENDNODE
+
+@NODE "clip_ClosingFTXTChunk" "Error closing `FTXT` Chunk"
+@PREV "clip_ClosingCHRSChunk"
+@NEXT "clip_Clipboard0"
+@TOC  "clip_MAIN"
+
+
+ERROR
+-----
+
+Error closing `FTXT` Chunk
+
+
+MEANING
+-------
+
+Items that are PASTED TO the Clipboard need to be formated according
+to the IFF (Interchange File Format) format.
+
+If you get this error, the iffparse.library was unable to close
+the 'FTXT' Chunk (which is actualy the 'header' of the data ASM-One
+tried to copy to the Clipboard).
+
+
+REASON
+------
+
+The most plausible reason is that there is not enough memory available
+to do this action.
+
+
+RESULT
+------
+
+Nothing was written to the Clipboard. So nothing can be copied to
+other applications.
+
+
+SOLVE
+-----
+
+The only thing you can do is to try it again.
+
+
+REMARK
+------
+
+Please understand that if you PASTE data into ASM-One, that data is COPIED
+from the Clipboard, and visa versa !!!
+
+Thus: the action preformed on the Clipboard is the REVERSED of the action
+being preformed in ASM-One.
+
+@ENDNODE
+
+@NODE "clip_Clipboard0" "Error opening `Clipboard, unit 0`"
+@PREV "clip_ClosingFTXTChunk"
+@NEXT "clip_WritingCHRS"
+@TOC  "clip_MAIN"
+
+
+ERROR
+-----
+
+Error opening `Clipboard, unit 0`
+
+
+MEANING
+-------
+
+The AmigaOS actualy knows 256 different Clipboards, called units.
+Unit 0 is the Clipboard generaly used to copy data between
+applications.
+
+If it can not be opened, no data can be copied or pasted to/from
+the Clipboard that is usefull for other programs.
+
+
+REASON
+------
+
+The most plausible reason is that there is not enough memory available
+to do this action.
+
+
+RESULT
+------
+
+Data copied in ASM-One can not be pasted to other applications. And you
+can not copy data from other applications into ASM-One.
+
+
+SOLVE
+-----
+
+The only thing you can do is to try it again.
+
+
+REMARK
+------
+
+Please understand that if you PASTE data into ASM-One, that data is COPIED
+from the Clipboard, and visa versa !!!
+
+Thus: the action preformed on the Clipboard is the REVERSED of the action
+being preformed in ASM-One.
+
+@ENDNODE
+
+@NODE "clip_WritingCHRS" "Error writing `CHRS` to IFF Stream"
+@PREV "clip_Clipboard0"
+@NEXT "clip_WritingFTXT"
+@TOC  "clip_MAIN"
+
+
+ERROR
+-----
+
+Error writing `CHRS` to IFF Stream
+
+
+MEANING
+-------
+
+Items that are PASTED TO the Clipboard need to be formated according
+to the IFF (Interchange File Format) format.
+
+If you get this error, the iffparse.library was unable to add the
+'CHRS' header to the IFF data ASM-One tried to build.
+
+
+REASON
+------
+
+The most plausible reason is that there is not enough memory available
+to do this action.
+
+
+RESULT
+------
+
+Nothing was written to the Clipboard. So nothing can be copied to
+other applications.
+
+
+SOLVE
+-----
+
+The only thing you can do is to try it again.
+
+
+REMARK
+------
+
+Please understand that if you PASTE data into ASM-One, that data is COPIED
+from the Clipboard, and visa versa !!!
+
+Thus: the action preformed on the Clipboard is the REVERSED of the action
+being preformed in ASM-One.
+
+@ENDNODE
+
+@NODE "clip_WritingFTXT" "Error writing `FTXT` to IFF Stream"
+@PREV "clip_WritingCHRS"
+@NEXT "clip_IFFHandle"
+@TOC  "clip_MAIN"
+
+
+ERROR
+-----
+
+Error writing `FTXT` to IFF Stream
+
+
+MEANING
+-------
+
+Items that are PASTED TO the Clipboard need to be formated according
+to the IFF (Interchange File Format) format.
+
+If you get this error, the iffparse.library was unable to add the
+'FTXT' header to the IFF data ASM-One tried to build.
+
+
+REASON
+------
+
+The most plausible reason is that there is not enough memory available
+to do this action.
+
+
+RESULT
+------
+
+Nothing was written to the Clipboard. So nothing can be copied to
+other applications.
+
+
+SOLVE
+-----
+
+The only thing you can do is to try it again.
+
+
+REMARK
+------
+
+Please understand that if you PASTE data into ASM-One, that data is COPIED
+from the Clipboard, and visa versa !!!
+
+Thus: the action preformed on the Clipboard is the REVERSED of the action
+being preformed in ASM-One.
+
+@ENDNODE
+
+@NODE "clip_IFFHandle" "Failed obtaining an IFF Handle"
+@PREV "clip_WritingFTXT"
+@NEXT "clip_ExitHandler"
+@TOC  "clip_MAIN"
+
+
+ERROR
+-----
+
+Failed obtaining an IFF Handle
+
+
+MEANING
+-------
+
+Items that are PASTED TO/COPIED FROM the Clipboard need to be formated
+according to the IFF (Interchange File Format) format.
+
+If you get this error, the iffparse.library was unable to open a
+structure which the iffparse.library uses to do the conversion to/from
+IFF.
+
+
+REASON
+------
+
+The most plausible reason is that there is not enough memory available
+to do this action.
+
+
+RESULT
+------
+
+Data copied in ASM-One can not be pasted to other applications. And you
+can not copy data from other applications into ASM-One.
+
+
+SOLVE
+-----
+
+The only thing you can do is to try it again.
+
+
+REMARK
+------
+
+Please understand that if you PASTE data into ASM-One, that data is COPIED
+from the Clipboard, and visa versa !!!
+
+Thus: the action preformed on the Clipboard is the REVERSED of the action
+being preformed in ASM-One.
+
+@ENDNODE
+
+@NODE "clip_ExitHandler" "Failed to install ExitHandler for ParseIFF"
+@PREV "clip_IFFHandle"
+@NEXT "clip_FailedRead"
+@TOC  "clip_MAIN"
+
+
+ERROR
+-----
+
+Failed to install ExitHandler for ParseIFF
+
+
+MEANING
+-------
+
+Items that are COPIED FROM the Clipboard need to be formated
+according to the IFF (Interchange File Format) format.
+
+The iffparse.library searches the data available on the Clipboard.
+ASM-One is looking for certain data (TEXT) The ExitHandler
+makes sure that when the data ASM-One needs is found, the
+iffparse.library stops searching so ASM-One can process the data.
+
+
+REASON
+------
+
+The most plausible reason is that there is not enough memory available
+to do this action.
+
+
+RESULT
+------
+
+Nothing was read from the Clipboard. So data from other applications
+can not be copied into ASM-One.
+
+
+SOLVE
+-----
+
+The only thing you can do is to try it again.
+
+
+REMARK
+------
+
+Please understand that if you PASTE data into ASM-One, that data is COPIED
+from the Clipboard, and visa versa !!!
+
+Thus: the action preformed on the Clipboard is the REVERSED of the action
+being preformed in ASM-One.
+
+@ENDNODE
+
+@NODE "clip_FailedRead" "Failed to read from Clipboard"
+@PREV "clip_ExitHandler"
+@NEXT "clip_FailedWrite"
+@TOC  "clip_MAIN"
+
+
+ERROR
+-----
+
+Failed to read from Clipboard
+
+
+MEANING
+-------
+
+Items that are COPIED FROM the Clipboard need to be formated
+according to the IFF (Interchange File Format) format.
+
+When this happens, something is wrong with the data ASM-One
+is trying to read from the Clipboard.
+
+
+REASON
+------
+
+The most plausible reason is that the data on the Clipboard
+is damaged, or not stored accoring to the IFF format.
+
+
+RESULT
+------
+
+It could be that some data was read from the Clipboard. If this
+was left in the internal copy/paste buffer of ASM-One, you could
+get very strange data when you tried to paste something.
+
+Therefore, ASM-One's internal copy/paste buffer is cleared when
+this error happens.
+
+
+SOLVE
+-----
+
+The only thing you can do is to try it again.
+
+
+REMARK
+------
+
+Please understand that if you PASTE data into ASM-One, that data is COPIED
+from the Clipboard, and visa versa !!!
+
+Thus: the action preformed on the Clipboard is the REVERSED of the action
+being preformed in ASM-One.
+
+@ENDNODE
+
+@NODE "clip_FailedWrite" "Failed to write to Clipboard"
+@PREV "clip_FailedRead"
+@NEXT "clip_MemoryError"
+@TOC  "clip_MAIN"
+
+
+ERROR
+-----
+
+Failed to write to Clipboard
+
+
+MEANING
+-------
+
+Items that are COPIED FROM the Clipboard need to be formated
+according to the IFF (Interchange File Format) format.
+
+When this error occurs, ASM-One failed to write one (or more)
+bytes of data to the Clipboard.
+
+
+REASON
+------
+
+The most plausible reason is that there is not enough memory available
+to do this action.
+
+
+RESULT
+------
+
+Nothing was written to the Clipboard. So nothing can be copied to
+other applications.
+
+
+SOLVE
+-----
+
+The only thing you can do is to try it again.
+
+
+REMARK
+------
+
+Please understand that if you PASTE data into ASM-One, that data is COPIED
+from the Clipboard, and visa versa !!!
+
+Thus: the action preformed on the Clipboard is the REVERSED of the action
+being preformed in ASM-One.
+
+@ENDNODE
+
+@NODE "clip_MemoryError" "Not enough memory to past data from Clipboard"
+@PREV "clip_FailedWrite"
+@NEXT "clip_NothingPasted"
+@TOC  "clip_MAIN"
+
+
+ERROR
+-----
+
+Not enough memory to past data from Clipboard
+
+
+MEANING
+-------
+
+Items that are COPIED FROM the Clipboard are copied into
+the internal copy/paste buffer of ASM-One.
+
+When this error occurs, the memory you allocated at the
+start of ASM-One has no room left for the data you try to
+copy from the Clipboard (and thus paste into your source).
+
+
+REASON
+------
+
+There is no room in the memory allocated by ASM-One.
+
+
+RESULT
+------
+
+Nothing was read from the Clipboard, But what was in the internal
+copy/paste buffer of ASM-One will be pasted into your source.
+
+
+SOLVE
+-----
+
+You can add memory by using the {" =M DLC. " LINK "ASM-One_V1.4x.Guide/=M_DLC"}
+
+
+REMARK
+------
+
+Please understand that if you PASTE data into ASM-One, that data is COPIED
+from the Clipboard, and visa versa !!!
+
+Thus: the action preformed on the Clipboard is the REVERSED of the action
+being preformed in ASM-One.
+
+@ENDNODE
+
+@NODE "clip_NothingPasted" "There was nothing to past from the Clipboard"
+@PREV "clip_MemoryError"
+@NEXT "clip_MAIN"
+@TOC  "clip_MAIN"
+
+
+ERROR
+-----
+
+There was nothing to past from the Clipboard
+
+
+MEANING
+-------
+
+There was nothing on the Clipboard that could be pasted
+to ASM-One.
+
+
+RESULT
+------
+
+What ever was in the internal copy/paste buffer of ASM-One will
+be pasted into your source.
+
+
+SOLVE
+-----
+
+Copy something (ANYTHING !!!)
+
+
+REMARK
+------
+
+This error is NOT activated. Otherwise you would get requesters which
+have actually nothing to say B-)
+
+Please understand that if you PASTE data into ASM-One, that data is COPIED
+from the Clipboard, and visa versa !!!
+
+Thus: the action preformed on the Clipboard is the REVERSED of the action
+being preformed in ASM-One.
+
+@ENDNODE
+

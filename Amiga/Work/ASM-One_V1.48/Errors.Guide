@@ -1,0 +1,2571 @@
+@DATABASE Errors.Guide
+
+@NODE "err_MAIN" "Warnings & Errors"
+@NEXT "Errors1"
+@PREV "Errors"
+@TOC  "ASM-One_V1.4x.Guide/MAIN"
+
+
+                              Warnings & Errors
+                              -----------------
+
+ASM-One knows more than 100 errors. Currently most errors are very cryptic, and
+in some cases you can get different errors for what is actualy the same problem.
+
+This problem will be addressed as soon as possible.
+
+Most of the errors are generated when assembling. The rest will show up when
+using @{" DLCs " LINK "DLCs"}.
+
+Warnings are ONLY generated when assembling. They warn you about the CPU/MMU/FPU
+you where programming.
+
+
+           @{" Errors " LINK "errors1"}			@{" Warnings " LINK "warnings"}
+
+@ENDNODE
+
+
+@NODE "Errors1" "Errors"
+@NEXT "Errors2"
+@PREV "Errors5"
+@TOC  "err_MAIN"
+
+	@{" Workspace Memory Full        " LINK "err_workmemfull"}
+	@{" Address Register Byte/Logic  " LINK "err_addrregbyte"}
+	@{" Address Register Expected    " LINK "err_addrregexp"}
+	@{" Comma Expected               " LINK "err_commaexp"}
+	@{" Data Register Expected       " LINK "err_dataregexp"}
+	@{" Double Symbol                " LINK "err_doublesymbol"}
+	@{" Unexpected End of File       " LINK "err_unexpeof"}
+	@{" End of File                  " LINK "err_eof"}
+	@{" User made FAIL               " LINK "err_usermadefail"}
+	@{" Illegal Command              " LINK "err_illcommand"}
+	@{" Illegal Address Size         " LINK "err_illaddrsize"}
+	@{" Illegal Operand              " LINK "err_illoperand"}
+	@{" Illegal Operator             " LINK "err_illoperator"}
+	@{" Illegal Operator in BSS Area " LINK "err_illoperatorbss"}
+	@{" Illegal Order                " LINK "err_illorder"}
+	@{" Illegal Register Size        " LINK "err_illregsize"}
+	@{" Illegal Section Type         " LINK "err_illsection"}
+	@{" Illegal Size                 " LINK "err_illsize"}
+	@{" Illegal MACRO Definition     " LINK "err_illmacrodef"}
+	@{" Immediate Operand Expected   " LINK "err_immoperandexp"}
+	@{" Include Jam                  " LINK "err_includejam"}
+	@{" MACRO Overflow               " LINK "err_macroover"}
+	@{" Invalid Address Mode         " LINK "err_invalidaddrmode"}
+	@{" LOAD without ORG             " LINK "err_loadorg"}
+
+@ENDNODE
+
+@NODE "Errors2" "Errors"
+@NEXT "Errors3"
+@PREV "Errors1"
+@TOC  "Errors"
+
+	@{" Missing Quote                        " LINK "err_misquote"}
+	@{" Conditional Overflow                 " LINK "err_conover"}
+	@{" No Operand Space Allowed             " LINK "err_nooperandspace"}
+	@{" No Constant/Label                    " LINK "err_noconstant"}
+	@{" Not in MACRO                         " LINK "err_notinmacro"}
+	@{" Out of Range 0/3/4/5/6/7/8/16/32 bit " LINK "err_outrangebit"}
+	@{" Relative Mode Error                  " LINK "err_relativemode"}
+	@{" Reserved Word                        " LINK "err_resword"}
+	@{" Closing Parenthesis Expected         " LINK "err_closingparexp"}
+	@{" SECTION Overflow                     " LINK "err_secover"}
+	@{" String Expected                      " LINK "err_stringexp"}
+	@{" Undefined Symbol                     " LINK "err_undefsymbol"}
+	@{" Register Expected                    " LINK "err_regexp"}
+	@{" Word at ODD Address                  " LINK "err_wordodd"}
+	@{" Not a Local Area                     " LINK "err_notlocal"}
+	@{" Code Moved During Pass 2..           " LINK "err_codemoved"}
+	@{" Bcc.B Out of Rang in MACRO           " LINK "err_bccoutmacro"}
+	@{" Out of Range (20 to 100)             " LINK "err_outrange20"}
+	@{" Out of Range (60 to 132)             " LINK "err_outrange60"}
+	@{" Include Overflow                     " LINK "err_incover"}
+	@{" Linker Limitation                    " LINK "err_linkerlimit"}
+	@{" Repeat Overflow                      " LINK "err_repeatover"}
+	@{" Not in Repeat Area                   " LINK "err_notrepeat"}
+	@{" Double Definition                    " LINK "err_doubledef"}
+
+@ENDNODE
+
+@NODE "Errors3" "Errors"
+@NEXT "Errors4"
+@PREV "Errors2"
+@TOC  "Errors"
+
+	@{" Relocation made to EMPTY Section                 " LINK "err_relocemptysec"}
+	@{" File Error                                       " LINK "err_file"}
+	@{" No Files                                         " LINK "err_nofiles"}
+	@{" No Object                                        " LINK "err_noobject"}
+	@{" No File Space                                    " LINK "err_nofilespace"}
+	@{" Printer Device Missing                           " LINK "err_printermissing"}
+	@{" Not Done                                         " LINK "err_notdone"}
+	@{" Illegal Path                                     " LINK "err_illpath"}
+	@{" Illegal Device                                   " LINK "err_illdev"}
+	@{" Write Protected                                  " LINK "err_writeprot"}
+	@{" No Disk in Drive                                 " LINK "err_nodisk"}
+	@{" Illegal Option !!                                " LINK "err_illoption"}
+	@{" REM without EREM                                 " LINK "err_erem"}
+	@{" TEXT without ETEXT                               " LINK "err_etext"}
+	@{" Illegal Xn Scale Size                            " LINK "err_illscale"}
+	@{" Field Offset Expected: {OFFSET:width}            " LINK "err_offexp"}
+	@{" Missing Brace                                    " LINK "err_misbrace"}
+	@{" Colon Expected                                   " LINK "err_colonexp"}
+	@{" Missing Bracket                                  " LINK "err_misbracket"}
+	@{" FPU needed for Operation !!                      " LINK "err_misfpu"}
+	@{" To Many Watchpoints (maximal 8)                  " LINK "err_tomanywatch"}
+	@{" Illegal Source, not Activated !!                 " LINK "err_illsource"}
+	@{" No Valid Memory Directory Present                " LINK "err_novalidmemdir"}
+	@{" AUTO Command Overflow (more than 256 characters) " LINK "err_autoover"}
+
+@ENDNODE
+
+@NODE "Errors4" "Errors"
+@NEXT "Errors5"
+@PREV "Errors3"
+@TOC  "Errors"
+
+	@{" End should be Higher than Start !                                    " LINK "err_endhigher"}
+	@{" Illegal Source Number                                                " LINK "err_illsourcenum"}
+	@{" Including Empty Source ?                                             " LINK "err_incemptysource"}
+	@{" Include Source Jam                                                   " LINK "err_incsourcejam"}
+	@{" Unknown Conversion Mode: should be RB or RN                          " LINK "err_unknownconmode"}
+	@{" Unknown CMAP Place: should be (B)EFORE,(A)FTER or (N)ONE             " LINK "err_wrongcmapplace"}
+	@{" Unknown CMAP Mode: should be AGA or ECS                              " LINK "err_unknowncmap"}
+	@{" Trying to Include NON IFF File                                       " LINK "err_noiff"}
+	@{" IFF File is Not a ILBM File                                          " LINK "err_noilbm"}
+	@{" Can't handle a BODY before BMHD Chunk                                " LINK "err_bodybeforedmhd"}
+	@{" Illegal Floating Point Size: should be B, W, L, S, D, X or P         " LINK "err_illfloatsize"}
+	@{" Illegal Size for Data Register: should be B, W, L or S               " LINK "err_illdatasize"}
+	@{" Bcc.W Out of Range in MACRO                                          " LINK "err_macrooutword"}
+	@{" Floating Point Register Expected                                     " LINK "err_floatexp"}
+	@{" This is not an ASM-One Project File                                  " LINK "err_noasmproj"}
+	@{" Bitfield can't be Out of 32 Bit Range                                " LINK "err_bitfieldoutof32"}
+	@{" Illegal CMAP Mode Error: expecting 12, 24, CE or CA                  " LINK "err_illcmap"}
+	@{" Illegal Color Offset (Bank) Specified                                " LINK "err_illcoloffset"}
+	@{" IFF Color(s) Out of Range                                            " LINK "err_coloutrange"}
+	@{" To Many Errors                                                       " LINK "err_tomanyerr"}
+	@{" Invalid Function Code: only SFC, DFC, Dn or #<data> Allowed          " LINK "err_invalidfc"}
+	@{" Address Register Indirect Mode Expected, for Return Address Register " LINK "err_addresinreturn"}
+	@{" Address Register Direct Mode Expected, for Return Address Register   " LINK "err_addresdirreturn"}
+	@{" Level Out of 3 Bit Range                                             " LINK "err_leveloutrange"}
+	@{" Mask Out of 3 Bit Range                                              " LINK "err_maskout3range"}
+	@{" Mask Out of 4 Bit Range                                              " LINK "err_maskout4range"}
+
+@ENDNODE
+
+@NODE "Errors5" "Warnings & Errors"
+@NEXT "Errors1"
+@PREV "Errors4"
+@TOC  "Errors"
+
+	@{" Function Code Out of 3 Bit Range     " LINK "err_fcout3range"}
+	@{" Function Code Out of 4 Bit Range     " LINK "err_fcout4range"}
+	@{" Insuficient Memory to change Source  " LINK "err_changesource"}
+	@{" MMU Register Expected as 1st Operand " LINK "err_mmureg1"}
+	@{" MMU Register Expected as 2nd Operand " LINK "err_mmureg2"}
+	@{" Invalid MMU Register as 1st Operand  " LINK "err_invalidmmureg1"}
+	@{" Invalid MMU Register as 2nd Operand  " LINK "err_invalidmmureg2"}
+	@{" Missing START address or Label       " LINK "err_missingSTART"}
+	@{" Incorrect Index Register Specified   " LINK "err_incorindexreg"}
+	@{" PC/ZPC can't be used as Index Register " LINK "err_pczpcindex"}
+	@{" We haven't come up with a nice text for this error Error " LINK "err_donotno"}
+	@{" ZPC Not allowed in this addressing mode " LINK "err_zpcnotallowed"}
+	@{" Field Width Expected {offset:WIDTH}  " LINK "err_fieldwidthexp"}
+	@{" Field Width can't be ZERO            " LINK "err_fieldwidthzero"}
+
+@ENDNODE
+
+@NODE "err_workmemfull" "Workspace Memory Full"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Workspace Memory Full
+
+CAUSE	
+   When starting ASM-One, you are allocating an certain amount of memory
+   for the source.
+
+   If you assemble the source, some of the allocated memory is used to
+   store pointers, reloc tabels, the assembled source (depending on
+   the type of sections) and other stuff. This is done to reduce memory
+   fragmentation.
+
+   The allocated memory maybe enough to load the source, but not to
+   assemble it.
+
+SALVE
+   Use the @{" The '=M' DLC " LINK "=M_DLC"} to allocate more memory.
+
+@ENDNODE
+
+@NODE "err_addrregbyte" "Address Register Byte/Logic"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Address Regsiter Byte/Logic
+
+CAUSE
+   1) You can't access an Address Register Direct with a Byte size
+   2) You can't use an Address Register in an logical opcode (like OR.x)
+
+EXAMPLE
+   1) Address Register Direct with Byte size:
+
+   MOVE.B	A0,D0
+   
+   2) Address Register Direct in logical opcode:
+
+   OR.W		A0,D0
+
+SALVE
+   Move the Address Register to a Data Register.
+
+@ENDNODE
+
+@NODE "err_addrregexp" "Address Register Expected"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Address Register Expected
+
+CAUSE
+   Some opcodes need an Address Register as source and/or destination
+   operand.
+
+EXAMPLE
+
+   CMPA.L	(A0),D0
+
+SALVE
+   Use another opcode with the same functionality but which accepts
+   the operand you want (not possible in all cases).
+
+@ENDNODE
+
+@NODE "err_commaexp" "Comma Expected"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Comma Expected
+
+CAUSE
+   Most opcodes need two operands. These must be seperated by an comma.
+
+EXAMPLE
+
+   MOVE.L	(A0)
+
+SALVE
+   Supply the missing operand.
+
+@ENDNODE
+
+@NODE "err_dataregexp" "Data Register Expected"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Date Register Expected
+
+CAUSE
+   Some opcodes need a Data Register as source and/or destination
+   operand.
+
+EXAMPLE
+
+   MOVEQ	#4,A0
+
+SALVE
+   Use another opcode with the same functionality but which accepts
+   the operand you want (not possible in all cases).
+
+@ENDNODE
+
+@NODE "err_doublesymbol" "Double Symbol"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Double Symbol
+
+CAUSE
+   It's not possible to have two labels with the same name.
+
+SALVE
+   Come up with another name for the label.
+   Set 'UCase=LCase' off.
+   Use local labels.
+
+@ENDNODE
+
+@NODE "err_unexpeof" "Unexpected End of File"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Unexpected End of File
+
+CAUSE
+   Generated becose a MACRO definition, REPT block, or IF
+   statemant was not properly closed.
+
+SALVE
+   Check you @{" MACRO " LINK "Directive.Guide/dir_MACRO"}, @{" REPT " LINK "Directive.Guide/dir_REPT"} and @{" IF " LINK "Directive.Guide/dir_IF"} definitions.
+
+@ENDNODE
+
+@NODE "err_eof" "End of File"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   End of File
+
+CAUSE
+   The End of File mark was reached.
+
+   Mostly generated after a search/replace operation.
+
+SALVE
+   It's not realy an error, more some kind of notification to the
+   user.
+
+@ENDNODE
+
+@NODE "err_usermadefail" "User made FAIL"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   User made FAIL
+
+CAUSE
+   Generated when during assembling the FAIL directive is
+   encountered.
+
+SALVE
+   Remove this directive.
+   See @{" FAIL " LINK "Directive.Guide/dir_FAIL"}
+
+@ENDNODE
+
+@NODE "err_illcommand" "Illegal Command"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Illegal Command
+
+CAUSE
+   While assembly, ASM-One found a word in the command colom,
+   that's unknown to ASM-One.
+
+SALVE
+   Remove that word.
+   Check your spelling.
+
+@ENDNODE
+
+@NODE "err_illaddrsize" "Illegal Address Size"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Illegal Address Size
+
+CAUSE
+   - You used the Absolute Addressing mode with a Byte size
+   - You tried to clear a byte of an Address Register
+
+EXAMPLE
+
+   MOVE.L	($FE).B,D0
+
+   CLR.B	A0
+
+SALVE
+   Use another size.
+
+@ENDNODE
+
+@NODE "err_illoperand" "Illegal Operand"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Illegal Operand
+
+CAUSE
+   The operand(s) used are illegal for this opcode
+   There's an illegal operand somewhere on the source line
+
+EXAMPLE
+
+
+SALVE
+   Remove the offending operand.
+   Check for spelling.
+
+@ENDNODE
+
+@NODE "err_illoperator" "Illegal Operator"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Illegal Operator
+
+CAUSE
+   A misspelled data directive.
+
+EXAMPLE
+
+   test:	dcg.w	$0
+
+SALVE
+   Check your spelling.
+
+@ENDNODE
+
+@NODE "err_illoperatorbss" "Illegal Operator in BSS Area"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Illegal Operator in BSS Area
+
+CAUSE
+   Only the @{" DS " LINK "Directive.Guide/dir_DS"} may be used in a BSS area.
+   A misspelled data directive.
+
+EXAMPLE
+
+		SECTION	TEST,BSS_P
+   test:	DC.W	$0
+
+SALVE
+   Check for spelling.
+   See @{" DS " LINK "Directive.Guide/dir_DS"}
+
+@ENDNODE
+
+@NODE "err_illorder" "Illegal Order"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Illegal Order
+
+CAUSE
+   MOVEM expects Address and Dataregister as operands. The list
+   should first contain the Data Registers and than the Address
+   Registers, in an increasing order.
+
+EXAMPLE
+
+   MOVEM.L	A0,D4-D0.-(A7)
+
+SALVE
+   Swap the Registers.
+
+@ENDNODE
+
+@NODE "err_illregsize" "Illegal Register Size"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Illegal Register Size
+
+CAUSE
+   Index registers can only have a WORD or LONGWORD size.
+
+EXAMPLE
+
+   MOVE.L	(A0,D0.B),D1
+
+SALVE
+   Remove the size, default is WORD.
+   Change the size to WORD or LONGWORD.
+  
+@ENDNODE
+
+@NODE "err_illsection" "Illegal Section Type"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Illegal Section Type
+
+CAUSE
+   The SECTION directive allows the following section types:
+
+   CODE = A code section
+   DATA = A dats section
+   BSS  = A BSS section
+
+EXAMPLE
+
+   		SECTION	TEST,CHIP_P
+
+SALVE
+   Use one of the legal section types
+   Remove the section.
+   See @{" SECTION " LINK "Directive.Guide/dir_SECTION"}
+
+@ENDNODE
+
+@NODE "err_illsize" "Illegal Size"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Illegal Size
+
+CAUSE
+   You specified an illegal size for an operand, or for the
+   index register in the used addressing mode.
+
+EXAMPLE
+
+   ADDA.B	D0,A0
+
+   MOVE.L	([$45,A0],D1.B*8),D3
+
+SALVE
+   Change the size.
+  
+@ENDNODE
+
+@NODE "err_illmacrodef" "Illegal MACRO Definition"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Illegal MACRO Definition
+
+CAUSE
+   You specified a MACRO within a MACRO.
+
+SALVE
+   Recode your MACRO definition.
+   See @{" MACRO " LINK "Directive.Guide/dir_MACRO"}.
+  
+@ENDNODE
+
+@NODE "err_immoperandexp" "Immediate Operand Expected"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Immediate Operand Expected
+
+CAUSE
+   Some opcodes allow ONLY Immediate Operands as first operand.
+
+EXAMPLE
+
+   ADDI.B	D0,(A0)
+
+SALVE
+   Use another opcode (possible in moste cases).
+  
+@ENDNODE
+
+@NODE "err_includejam" "Include Jam"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Include Jam
+
+CAUSE
+   A very unique error, only hapens when you include includes
+   during pass two.
+
+SALVE
+   Check your include(s).
+   Check conditional directives.
+
+@ENDNODE
+
+@NODE "err_macroover" "MACRO Overflow"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   MACRO Overflow
+
+CAUSE
+   MARCO's can only be nested 25 levels deep.
+
+SALVE
+   See @{" MACRO " LINK "Directive.Guide/dir_MACRO"}.
+
+@ENDNODE
+
+@NODE "err_invalidaddrmode" "Invalid Adrressing Mode"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Invalid Addressing Mode
+
+CAUSE
+   Not all operands allow all addressing modes.
+
+SALVE
+   Check your Programmers Manual.
+
+@ENDNODE
+
+@NODE "err_loadorg" "LOAD without ORG"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   LOAD without ORG
+
+CAUSE
+   LOAD can't be used without ORG.
+
+SALVE
+   Add an ORG directive.
+   See @{" LOAD " LINK "Directive.Guide/dir_LOAD"} and @{" ORG " LINK "Directive.Guide/dir_ORG"}.
+
+@ENDNODE
+
+@NODE "err_misquote" "Missing Quote"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Missing Quote
+
+CAUSE
+   Text blocks should have an ending Quote.
+
+EXAMPLE
+
+   test:	DC.B	'hallo
+
+SALVE
+   Check your Quotes.
+
+@ENDNODE
+
+@NODE "err_conover" "Conditional Overflow"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Conditional Overflow
+
+CAUSE
+   Conditional directives can only be nested 25 deep
+
+SALVE
+   Check your conditional directives.
+
+@ENDNODE
+
+@NODE "err_nooperandspace" "No Operand Space Allowed"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   No Operand Space Allowed
+
+CAUSE
+   Operands can't be seperated with spaces or tabs
+
+EXAMPLE
+
+   MOVE.L	D0,	(A0)
+
+SALVE
+   Remove offending space(s). and/or tab(s).
+
+@ENDNODE
+
+@NODE "err_noconstant" "No Constant/Label"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   No Constant/Label
+
+CAUSE
+   Occurs when you use MACRO names in calculations.
+
+SALVE
+   - Remove the @{" MACRO " LINK "Directive.Guide/dir_MACRO"} name.
+   - Check your spelling.
+
+@ENDNODE
+
+@NODE "err_notinmacro" "Not in MACRO"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Not in MACRO
+
+CAUSE
+   Some directives (like @{" ENDM " LINK "Directive.Guide/dir_ENDM"}, @{" MEXIT " LINK "Directive.Guide/dir_MEXIT"} or @{" CMEXIT " LINK "Directive.Guide/dir_CMEXIT"}) are not allowed
+   outside a MACRO.
+
+SALVE
+   Check you MACRO's.
+
+@ENDNODE
+
+@NODE "err_outrangebit" "Out of Range 0/3/4/5/6/7/8/16/32 bit"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Out of Range 0/3/4/5/6/7/8/16/32 bit
+
+CAUSE
+   The used value is bigger than the maximum size allowed.
+
+SALVE
+   Check you spelling.
+
+@ENDNODE
+
+@ENDNODE
+
+@NODE "err_relativemode" "Relative Mode Error"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Relative Mode Error
+
+CAUSE
+   PC related addressing modes are only allowed in the SAME
+   section.
+
+SALVE
+   Use a non PC related addressing mode.
+
+@ENDNODE
+
+@NODE "err_resword" "Reserved Word"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Reserved Word
+
+CAUSE
+   You used a Register name as label or constant.
+
+EXAMPLE
+
+   srp:		JSR	do_somthing_good
+
+SALVE
+   Check the @{" Register Names " LINK "registernames"} list.
+
+@ENDNODE
+
+@NODE "err_closingparexp" "Closing Parenthesis Expected"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Closing Parenthesis Expected
+
+CAUSE
+   ASM-One found the opening parenthesis, but missed the closing
+   parenthesis.
+
+EXAMPLE
+
+   test:	MOVE.L	(A0,D0.W,D0
+
+SALVE
+   Check you spelling.
+
+@ENDNODE
+
+@NODE "err_secover" "SECTION Overflow"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   SECTION Overflow
+
+CAUSE
+   The maximum number of SECTION's is 255.
+
+SALVE
+   Delete some @{" SECTION's " LINK "Directive.Guide/dir_SECTION"}.
+
+@ENDNODE
+
+@NODE "err_stringexp" "String Expected"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   String Expected
+
+CAUSE
+   Some directive (like @{" PRINTT " LINK "Directive.Guide/dir_PRINTT"}) expect a string as operand.
+
+SALVE
+   Give them a string.
+
+@ENDNODE
+
+@NODE "err_undefsymbol" "Undefined Symbol"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Undefined Symbol
+
+CAUSE
+   The label/constant was not defined, and ASM-One doesn't recognize
+   it either.
+
+SALVE
+   Check your spelling.
+
+@ENDNODE
+
+@NODE "err_regexp" "Register Expected"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Register Expected
+
+CAUSE
+   The index register in addressing modes (Xn) must be an
+   Address or Data Register.
+
+EXAMPLE
+
+   MOVE.L	([$45,A0],#$43,#$23),D1
+
+SALVE
+   Check your spelling.
+
+@ENDNODE
+
+@NODE "err_wordodd" "Word at Odd Address"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Word at Odd Address
+
+CAUSE
+   The 68020++ CPU allows data to be at an ODD address.
+   Code, however, may not be on an ODD address.
+
+SALVE
+   Set the data even with @{" ALIGN " LINK "Directive.Guide/dir_ALIGN"}, @{" EVEN " LINK "Directive.Guide/dir_EVEN"}, @{" ODD " LINK "dir_ODD"} or @{" CNOP " LINK "Directive.Guide/dir_CNOP"}
+
+@ENDNODE
+
+@NODE "err_notlocal" "Not a Local Area"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Not a Local Area
+
+CAUSE
+   Local labels are sperated by global labels.
+
+SALVE
+   Read more about @{" Labels " LINK "labels"}.
+
+@ENDNODE
+
+@NODE "err_codemoved" "Code Moved During Pass 2.."
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Code Moved During Pass 2..
+
+CAUSE
+   In Pass 1 all labels get an address, they may NOT
+   move during Pass 2 of the assembling process.
+
+SALVE
+   Check your conditional directives.
+   Check your spelling.
+
+@ENDNODE
+
+@NODE "err_bccoutmacro" "Bcc.B Out of Range in MACRO"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Bcc.B Out of Range in MACRO
+
+CAUSE
+   Bcc.B's within MACRO's ar not optimized to Bcc.W's if needed.
+
+SALVE
+   Check your @{" MACRO's " LINK "Directive.Guide/dir_MACRO"}.
+
+@ENDNODE
+
+@NODE "err_outrange20" "Out od Range (20 to 100)"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Out of Range (20 to 100)
+
+CAUSE
+   PLEN accepts ONLY values from 20 to 100.
+
+SALVE
+   Check @{" PLEN " LINK "Directive.Guide/dir_PLEN"}.
+
+@ENDNODE
+
+@NODE "err_outrange60" "Out od Range (60 to 132)"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Out of Range (60 to 132)
+
+CAUSE
+   LLEN accepts ONLY values from 60 to 132.
+
+SALVE
+   Check @{" LLEN " LINK "Directive.Guide/dir_LLEN"}.
+
+@ENDNODE
+
+@NODE "err_incover" "Include Overflow"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Include Overflow
+
+CAUSE
+   Includes can be nested 5 levels deep. Normal includes
+   are 3 levels deep nested.
+
+SALVE
+   Check your includes.
+   Check @{" INCLUDE " LINK "Directive.Guide/dir_INCLUDE"}
+
+@ENDNODE
+
+@NODE "err_linkerlimit" "Linker Limitation"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Linker Limitation
+
+CAUSE
+   You can't make calculations with two XREF's
+
+SALVE
+   Check your calculations.
+   Check @{" XREF " LINK "Directive.Guide/dir_XREF"}, @{" XDEF " LINK "Directive.Guide/dir_XDEF"}, @{" GLOBAL " LINK "Directive.Guide/dir_GLOBAL"}, @{" ENTRY " LINK "Directive.Guide/dir_ENTRY"} and @{" EXTRN " LINK "Directive.Guide/EXTRN"}
+
+@ENDNODE
+
+@NODE "err_repeatover" "Repeat Overflow"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Repeat Overflow
+
+CAUSE
+   REPT can be nested 4 levels deep.
+
+SALVE
+   Check @{" REPT " LINK "Directive.Guide/dir_REPT"}.
+
+@ENDNODE
+
+@NODE "err_notrepeat" "Not in Repeat Area"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Not in Repeat Area
+
+CAUSE
+   ENDR can only be used in conjunction with REPT.
+
+SALVE
+   Check @{" REPT " LINK "Directive.Guide/dir_REPT"} and @{" ENDR " LINK "Directive.Guide/dir_ENDR"}.
+
+@ENDNODE
+
+@NODE "err_doubledef" "Double Definition"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Double Definition
+
+CAUSE
+   A register can only be defined once with BASEREG. Or ENDB should
+   be between two BASEREG's for the same register.
+
+SALVE
+   Check @{" BASEREG " LINK "Directive.Guide/dir_BASEREG"} and @{" ENDB " LINK "Directive.Guide/dir_ENDB"}.
+
+@ENDNODE
+
+@NODE "err_relocemptysec" "Relocation made to EMPTY Section"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Relocation made to EMPTY Section
+
+CAUSE
+   You made an reference to an empty SECTION, so you can't write
+   an object (executable) file.
+
+SALVE
+   Check your @{" SECTION's " LINK "Directive.Guide/dir_SECTION"}.
+
+@ENDNODE
+
+@NODE "err_file" "File Error"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   File Error
+
+CAUSE
+   Occures when your file couldn't be loaded or written.
+
+SALVE
+   Check your (hard)drive, or the device you are using.
+
+@ENDNODE
+
+@NODE "err_nofiles" "No Files"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   No Files
+
+CAUSE
+   When you changed to an empry directory with V, and do
+   V again. ASM-One will have no files to show.
+
+EXAMPLE
+
+   > V empty:
+   > V
+   ----------------------------------------------------------------------
+   Name : empty                         0 Bytes Free    346624 Bytes Used
+   ----------------------------------------------------------------------
+   ** No Files
+   >
+
+SALVE
+   See @{" The 'V' DLC " LINK "V_DLC"}.
+
+@ENDNODE
+
+@NODE "err_noobject" "No Object"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   No Object
+
+CAUSE
+   Occures when you didn't assemble something, and tried to
+   write an object (executable) anyway.
+
+SALVE
+   See @{" The 'A' DLC " LINK "A_DLC"}.
+
+@ENDNODE
+
+@NODE "err_nofilespace" "No File Space"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   No File Space
+
+CAUSE
+   Occures when there is no space to write a file
+   to the selected device.
+
+SALVE
+   See @{" The 'ZF' DLC " LINK "ZF_DLC"} and @{" The 'Y' DLC" LINK "Y_DLC"}.
+
+@ENDNODE
+
+@NODE "err_printermissing" "Printer Device Missing"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Printer Device Missing
+
+CAUSE
+   Occurs when (one of) the following files are missing, while you
+   try to print:
+
+   - printer.device
+   - port.handler
+   - parallel.device
+   - serial.device (if printer conected to the serial port)
+
+SALVE
+   Check your Amiga configuration, and the Manual of your Printer or
+   your Amiga about Printers.
+
+@ENDNODE
+
+@NODE "err_notdone" "Not Done"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Not Done
+
+CAUSE
+   Occures whenever an action was canceled.
+
+@ENDNODE
+
+@NODE "err_illpath" "Illegal Path"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Illegal Path
+
+CAUSE
+   Occurs when do V to an illegal/non-existing path.
+
+SALVE
+   See @{" The 'V' DLC " LINK "V_DLC"} and @{" The 'CD' DLC LINK "CD_DLC"}.
+
+@ENDNODE
+
+@NODE "err_illdev" "Illegal Device"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Illegal Device
+
+CAUSE
+   Occurs when [drive-number] is higer than 3 or lower than 0.
+
+SALVE
+   See @{" The 'WT' DLC " LINK "WT_DLC"}, @{" The 'WS' DLC " LINK "WS_DLC"}, @{" The 'RT' DLC " LINK "RT_DLC"} and @{" The 'RS' DLC" LINK "RS_DLC"}.
+
+@ENDNODE
+
+@NODE "err_writeprot" "Write Protected"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Write Protected
+
+CAUSE
+   Occurs when try to write to a write protected device.
+
+SALVE
+   Remove the protection from the device, or those another device.
+
+@ENDNODE
+
+@NODE "err_nodisk" "No Disk in Drive"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   No Disk in Drive
+
+CAUSE
+   Occurs when try to write to a device which does NOT contain
+   a disk.
+
+SALVE
+   Insert a disk in the selected device.
+
+@ENDNODE
+
+@NODE "err_illoption" "Illegal Option !!"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Illegal Option !!
+
+CAUSE
+   Implemented but not used at the moment.
+
+@ENDNODE
+
+@NODE "err_erem" "REM without EREM"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   REM without EREM
+
+CAUSE
+   A REM block MUST be closed with the EREM directive.
+
+SALVE
+   See @{" REM " LINK "Directive.Guide/dir_REM"} and @{" EREM " LINK "Directive.Guide/dir_EREM"}.
+
+@ENDNODE
+
+@NODE "err_etext" "TEXT without ETEXT"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   TEXT without ETEXT
+
+CAUSE
+   A TEXT block MUST be closed with the ETEXT directive.
+
+SALVE
+   See @{" TEXT " LINK "Directive.Guide/dir_TEXT"} and @{" ETEXT " LINK "Directive.Guide/dir_ETEXT"}.
+
+@ENDNODE
+
+@NODE "err_illscale" "Illegal Xn Scale Size"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Illegal Xn Scale Size, only nothing, 1, 2, 4 or 8 allowed
+
+CAUSE
+   If an addressing mode alows scaling of the index register,
+   the scaling MUST be 0 (or nothing), 2, 4 or 8.
+
+SALVE
+   Use a valid scaling size.
+
+@ENDNODE
+
+@NODE "err_offexp" "Field OFFSET Expected: {OFFSET:width}"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Field OFFSET Expected: {OFFSET:width}
+
+CAUSE
+   Some 68020++ bit functions expect an offset and a width
+   as operand.
+
+EXAMPLE
+
+   test:	BFEXTU	D0{1:5},D1
+
+SALVE
+   Provide a correct offset and width.
+
+@ENDNODE
+
+@NODE "err_misbrace" "Missing Brace"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Missing Brace
+
+CAUSE
+   Occurs when a brace is missing in the operand
+
+EXAMPLE
+
+   test:	BFEXTU	D0{1:5,D1
+
+SALVE
+   Check your operands.
+
+@ENDNODE
+
+@NODE "err_colonexp" "Colon Expected"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Colon Expected
+
+CAUSE
+   Occurs when the offset and width are not seprated by an
+   colon.
+
+EXAMPLE
+
+   test:	BFEXTU	D0{1515},D1
+
+SALVE
+   Check your operands.
+
+@ENDNODE
+
+@NODE "err_misbracket" "Missing Bracket"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Missing Bracket
+
+CAUSE
+   Some 68020++ addressing modes use brackets. If one of them
+   is missing, or not at the expected place, you will get this
+   error.
+
+EXAMPLE
+
+   test:	MOVE.L	([$45,A0,D4.W*8,$2439),D2
+
+SALVE
+   Check your operands.
+
+@ENDNODE
+
+@NODE "err_misfpu" "FPU needed for Operation !!"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   FPU needed for Operation !!
+
+CAUSE
+   To calculate floats (both with the '[' DLC or in your
+   source, you will need a FPU.
+
+SALVE
+   Buy a FPU.
+   See @{" The '[' DLC " LINK "[_DLC"}
+
+@ENDNODE
+
+@NODE "err_tomanywatch" "To Many Watchpoints (maximal 8)"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   To Many Watchpoints (maximum is 8)
+
+CAUSE
+   The number off Watch Points (in the debugger) is currently
+   limited op to 8.
+
+@ENDNODE
+
+@NODE "err_illsource" "Illegal Source, not Activated !!"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Illegal Source, not Activated !!
+
+CAUSE
+   With the 'AS' DLC you can switch between the 10 sources of
+   ASM-One. The number must be, preferable, between 0 and 9.
+
+   Other characters will generate this error
+
+SALVE
+   See @{" The 'AS' DLC " LINK "AS_DLC"}.
+
+@ENDNODE
+
+@NODE "err_novalidmemdir" "No Valid Memory Directory Present"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   No Valid Memory Directory Present
+
+CAUSE
+   If you use the 'V' DLC to examine an illegal directory, and
+   do 'V' again, this error will be shown.
+
+SALVE
+   See @{" The 'V' DLC " LINK "V_DLC"}.
+
+@ENDNODE
+
+@NODE "err_autoover" "Auto Command Overflow (more than 256 characters)"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   AUTO Command Overflow (more than 256 characters)
+
+CAUSE
+   If you specify more than 256 characters long commands for the
+   AUTO directive, than this error message is generated.
+
+SALVE
+   See @{" AUTO " LINK "Directive.Guide/dir_AUTO"}.
+
+@ENDNODE
+
+@NODE "err_endhigher" "End should be Higher than Start !"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   End should be Higher than Start !
+
+CAUSE
+   When using DLCs which need starting and ending addresses/labels,
+   this error may occure when the start is higher thatn the end.
+
+   There's no negative block possible.
+
+SALVE
+   See @{" The 'C' DLC " LINK "C_DLC"} (for example).
+
+@ENDNODE
+
+@NODE "err_illsourcenum" "Illegal Source Number"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Illegal Source Number
+
+CAUSE
+   With the INCSRC directive you can switch between the 10 sources
+   of ASM-One. The number must be, preferable, between 0 and 9.
+
+   Other characters will generate this error
+
+SALVE
+   See @{" INCSRC " LINK "Directive.Guide/dir_INCSRC"}.
+
+@ENDNODE
+
+@NODE "err_incemptysource" "Including Empty Source ?"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Including Empty Source ?
+
+CAUSE
+   When the source you wanted to include with the INCSRC
+   directive is empty, you will get this error.
+
+SALVE
+   Include a source with something in it.
+   See @{" INCSRC " LINK "Directive.Guide/dir_INCSRC"}.
+
+@ENDNODE
+
+@NODE "err_incsourcejam" "Include Source Jam"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Include Source Jam
+
+CAUSE
+   This error will occure when you try to include the
+   source which is currently active into the source that's
+   currently active with the INCSRC directive.
+
+SALVE
+   Include another source.
+   See @{" INCSRC " LINK "Directive.Guide/dir_INCSRC"}.
+
+@ENDNODE
+
+@NODE "err_unknownconmode" "Unknown Conversion Mode: should be RB or RN"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Unknown Conversion Mode: should be RB or RN
+
+CAUSE
+   This error will occure when you use anything else than
+   RB (RawBlit) or RN (RawNorm) as one of operand of the
+   INCIFF directive.
+
+SALVE
+   Use RB or RN.
+   See @{" INCIFF " LINK "Directive.Guide/dir_INCIFF"}.
+
+@ENDNODE
+
+@NODE "err_wrongcmapplace" "Unknown CMAP Place: should be (B)EFORE,(A)FTER or (N)ONE"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Unknown CMAP Place: should be (B)EFORE,(A)FTER or (N)ONE
+
+CAUSE
+   This error will occure when you use anything else than
+   B (Before), A (After) or N (None) as one of operand of the
+   INCIFF directive.
+
+SALVE
+   Use A, B or N.
+   See @{" INCIFF " LINK "Directive.Guide/dir_INCIFF"}.
+
+@ENDNODE
+
+@NODE "err_unknowncmap" "Unknown CMAP Mode: should be AGA or ECS"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Unknown CMAP Mode: should be AGA or ECS
+
+CAUSE
+   This error will occure when you use anything else than
+   AGA or ECS as one of operand of the INCIFF directive.
+
+SALVE
+   Use AGA or ECS.
+   See @{" INCIFF " LINK "Directive.Guide/dir_INCIFF"}.
+
+@ENDNODE
+
+@NODE "err_noiff" "Trying to Include NON IFF File"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Trying to Include NON IFF File
+
+CAUSE
+   This error will occure when you try to include
+   a non IFF file with the INCIFF directive.
+
+SALVE
+   Select a valid IFF file.
+   See @{" INCIFF " LINK "Directive.Guide/dir_INCIFF"}.
+
+@ENDNODE
+
+@NODE "err_noilbm" "IFF File is Not a ILBM File"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   IFF File is Not a ILBM File
+
+CAUSE
+   This error will occure when you try to include an IFF
+   which is not of the ILBM (picture) type with the INCIFF
+   directive.
+
+SALVE
+   Select an ILBM IFF file.
+   See @{" INCIFF " LINK "Directive.Guide/dir_INCIFF"}.
+
+@ENDNODE
+
+@NODE "err_bodybeforedmhd" "Can't handle a BODY before BMHD Chunk"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Can't handle a BODY before BMHD Chunk
+
+CAUSE
+   This error will occure when you try to include an IFF
+   which has it's chunk at the wrong place, or is simply
+   missing chunks, with the INCIFF directive.
+
+SALVE
+   Select an ILBM IFF file.
+   See @{" INCIFF " LINK "Directive.Guide/dir_INCIFF"}.
+
+@ENDNODE
+
+@NODE "err_illfloatsize" "Illegal Floating Point Size: should be B, W, L, Q, S, D, X or P"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Illegal Floating Point Size: should be B, W, L, Q, S, D, X or P
+
+CAUSE
+   Strange ?
+
+SALVE
+   There are no other sizes ???
+
+@ENDNODE
+
+@NODE "err_illdatasize" "Illegal Size for Data Register: should be B, W, L or S"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Illegal Size for Data Register: should be B, W, L or S
+
+CAUSE
+   Strange ?
+
+SALVE
+   There are no other sizes ???
+
+@ENDNODE
+
+@NODE "err_macrooutword" "Bcc.W Out of Range in MACRO"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Bcc.W Out of Range in MACRO
+
+CAUSE
+   Bcc.W's within MACRO's are NOT optimized.
+
+SALVE
+   Keep the MACRO within a 16 bit range.
+   See @{" MACRO " LINK "Directive.Guide/dir_MACRO"}.
+
+@ENDNODE
+
+@NODE "err_floatexp" "Floating Point Register Expected"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Floating Point Register Expected
+
+CAUSE
+   FPU opcodes always expect an FPU register as first
+   or second operand AT LEAST..
+
+SALVE
+   Possible are FP0 - FP7, for the rest see the
+   @{" Register Names " LINK "registernames"} List.
+
+@ENDNODE
+
+@NODE "err_noasmproj" "This is not an ASM-One Project File"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   This is not an ASM-One Project File
+
+CAUSE
+   This error will occure when you try to load a NON .Aprj
+   file with the 'RE' DLC.
+
+SALVE
+   See @{" The 'RE' DLC" LINK "RE_DLC"}.
+
+@ENDNODE
+
+@NODE "err_bitfieldoutof32" "Bitfield can't be Out of 32 Bit Range"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Bitfield can't be Out of 32 Bit Range
+
+CAUSE
+   When specifing the offset and the width of a bitfield with
+   immediates, the total of offset+width may not exceed 32.
+
+SALVE
+   Legal is 0 to 31. If you are unsure, add the offset to the width.
+   Remember: a width of ZERO is actualy a 32 bit width !!!!
+
+@ENDNODE
+
+@NODE "err_illcmap" "Illegal CMAP Mode Error: expecting 12, 24, CE or CA"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Illegal CMAP Mode Error: expecting 12, 24, CE or CA
+
+CAUSE
+   This error will occure when you use anything else than 12 (12 Bit),
+   24 (24 Bit, CE (ECS Copper) or CA (AGA Copper) as 'mode' in the
+   INCIFFP directive.
+
+SALVE
+   Use 12, 24, CE or CA.
+   See @{" INCIFFP " LINK "Directive.Guide/dir_INCIFFP"}.
+
+@ENDNODE
+
+@NODE "err_illcoloffset" "Illegal Color Offset (Bank) Specified"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Illegal Color Offset (Bank) Specified
+
+CAUSE
+   This error will occure when you use the wrong 'offset' with
+   the INCIFFP directive.
+
+SALVE
+   See @{" INCIFFP " LINK "Directive.Guide/dir_INCIFFP"}.
+
+@ENDNODE
+
+@NODE "err_coloutrange" "IFF Color(s) Out of Range"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   IFF Color(s) Out of Range
+
+CAUSE
+   Unknown.
+
+SALVE
+   Unknown.
+
+@ENDNODE
+
+@NODE "err_tomanyerr" "To Many Errors"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   To Many Errors
+
+CAUSE
+   If a source generates more than 100 errors/warnings when
+   assembling, this error will be displayed.
+
+SALVE
+   Unselect 'Processor Warn'.
+
+@ENDNODE
+
+@NODE "err_invalidfc" "Invalid Function Code: only SFC, DFC, Dn or #<data> Allowed"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Invalid Function Code: only SFC, DFC, Dn or #<data> Allowed
+
+CAUSE
+   If a MMU opcode uses a FC (Function Code) as operand, the
+   FC should be one of the following types:
+
+   - SFC	(Source Function Code Register)
+   - DFC	(Destination Function Code Register)
+   - Dn		(Data Register)
+   - #<data>	(Immediate)
+
+SALVE
+   Check your Programmers Reference Manual.
+
+@ENDNODE
+
+@NODE "err_addresinreturn" "Address Register Indirect Mode Expected, for Return Address Register"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Address Register Indirect Mode Expected, for Return Address Register
+
+CAUSE
+   The PTESTR/W opcode expects another addressing mode for the
+   Return Address on the 68030 than on the 68851.
+
+   For the 68030:
+
+   PTESTR/W	FC,<ea>,#level,An	; DIRECT
+
+   For the 68851:
+
+   PTESTR/W	FC,<ea>,#level,(An)	; INDIRECT
+
+
+SALVE
+   Check your Programmers Reference Manual.
+
+@ENDNODE
+
+@NODE "err_addresdirreturn" "Address Register Direct Mode Expected, for Return Address Register"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Address Register Direct Mode Expected, for Return Address Register
+
+CAUSE
+   The PTESTR/W opcode expects another addressing mode for the
+   Return Address on the 68030 than on the 68851.
+
+   For the 68030:
+
+   PTESTR/W	FC,<ea>,#level,An	; DIRECT
+
+   For the 68851:
+
+   PTESTR/W	FC,<ea>,#level,(An)	; INDIRECT
+
+
+SALVE
+   Check your Programmers Reference Manual.
+
+@ENDNODE
+
+@NODE "err_leveloutrange" "Level Out of 3 Bit Range"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Level Out of 3 Bit Range
+
+CAUSE
+   The level used in an MMU opcode may NOT exceed
+   the 3 bit range (0 - 7).
+
+SALVE
+   Check your Programmers Reference Manual.
+
+@ENDNODE
+
+@NODE "err_maskout3range" "Mask Out of 3 Bit Range"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Mask Out of 3 Bit Range
+
+CAUSE
+   The mask used in an 68030 MMU opcode may NOT exceed
+   the 3 bit range (0 - 7).
+
+SALVE
+   Check your Programmers Reference Manual.
+
+@ENDNODE
+
+@NODE "err_maskout4range" "Mask Out of 4 Bit Range"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Mask Out of 4 Bit Range
+
+CAUSE
+   The mask used in an 68851 MMU opcode may NOT exceed
+   the 4 bit range (0 - 15).
+
+SALVE
+   Check your Programmers Reference Manual.
+
+@ENDNODE
+
+@NODE "err_fcout3range" "Function Code Out of 3 Bit Range"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Function Code Out of 3 Bit Range
+
+CAUSE
+   The FC used in an 68030 MMU opcode may NOT exceed
+   the 3 bit range (0 - 7).
+
+SALVE
+   Check your Programmers Reference Manual.
+
+@ENDNODE
+
+@NODE "err_fcout4range" "Function Code Out of 4 Bit Range"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Function Code Out of 4 Bit Range
+
+CAUSE
+   The FC used in an 68851 MMU opcode may NOT exceed
+   the 4 bit range (0 - 7).
+
+SALVE
+   Check your Programmers Reference Manual.
+
+@ENDNODE
+
+@NODE "err_changesource" "Insuficient Memory to change Source"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Insuficient Memory to change Source
+
+CAUSE
+   The 10 loaded sources are kept in memory. This error occurs
+   when there is not enough memory to switch from the current
+   source, to another source.
+
+SALVE
+   Buy more memory.
+
+@ENDNODE
+
+@NODE "err_mmureg1" "MMU Register Expected as 1st Operand"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   MMU Register Expected as 1st Operand
+
+CAUSE
+   You used a NON MMU Register as first operand.
+
+SALVE
+   Check your Programmers Reference Manual.
+
+@ENDNODE
+
+@NODE "err_mmureg2" "MMU Register Expected as 2nd Operand"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   MMU Register Expected as 2nd Operand
+
+CAUSE
+   You used a NON MMU Register as second operand.
+
+SALVE
+   Check your Programmers Reference Manual.
+
+@ENDNODE
+
+@NODE "err_invalidmmureg1" "Invalid MMU Register as 1st Operand: CAL, VAL or SCC Expected"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Invalid MMU Register as 1st Operand: CAL, VAL or SCC Expected
+
+CAUSE
+   PMOVE.B does only allow CAL, VAL or SCC as 1st operand.
+
+SALVE
+   Check your Programmer's Reference Manual.
+
+@ENDNODE
+
+@NODE "err_invalidmmureg2" "Invalid MMU Register as 2nd Operand: CAL, VAL or SCC Expected"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Invalid MMU Register as 2nd Operand: CAL, VAL or SCC Expected
+
+CAUSE
+   POVE.B does only allow CAL, VAL or SCC as 2nd operand.
+
+SALVE
+   Check your Programmer's Reference Manual.
+
+@ENDNODE
+
+@NODE "err_missingSTART" "Missing START address or Label !!"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Missing START address or Label !!
+
+CAUSE
+   The @{" RB " LINK "RB_DLC"} DLC does expect a STARTing address.
+
+SALVE
+   Give a STARTing address
+
+@ENDNODE
+
+@NODE "err_incorindexreg" "Incorrect Index Register Specified. Only An, Dn or SP allowed"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Incorrect Index Register Specified. Only An, Dn or SP allowed
+
+CAUSE
+   See MESSAGE
+
+SALVE
+   Use the An, Dn or the SP..
+
+@ENDNODE
+
+@NODE "err_pczpcindex" "PC/ZPC cann't be used as Index Register. Only An, Dn or SP allowed"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   PC/ZPC cann't be used as Index Register. Only An, Dn or SP allowed
+
+CAUSE
+   See MESSAGE
+
+SALVE
+   Use the An, Dn or the SP...
+
+@ENDNODE
+
+@NODE "err_donotno" "We haven't come up with a nice text for this error Error !!!!"
+@PREV "errors1"
+@NEXT "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   We haven't come up with a nice text for this error Error !!!!
+
+CAUSE
+   An error that we haven't figured out what actualy heppens yet.
+
+SALVE
+   Wait for a next release of ASM-One
+
+@ENDNODE
+
+@NODE "err_zpcnotallowed" "The use of ZPC is not allowed in this addressing mode !!"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   The use of ZPC is not allowed in this addressing mode !!
+
+CAUSE
+   You used the ZPC in a mode that doesn't allow that
+
+SALVE
+   Well, I can't think of an addressing mode at the moment, to
+   be honest B-)
+
+@ENDNODE
+
+@NODE "err_fieldwidthexp" "Field Width Expected: {offset:WIDTH}"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Field Width Expected: {offset:WIDTH}
+
+CAUSE
+   You didn't specify a WIDTH.
+
+SALVE
+   Check your Programmer's Reference Manual
+
+@ENDNODE
+
+@NODE "err_fieldwidthzero" "Field Width can't be ZERO"
+@NEXT "errors1"
+@PREV "errors1"
+@TOC  "errors1"
+
+MESSAGE
+   Field Width can't be ZERO
+
+CAUSE
+   If you used an immediate operand to specify the width,
+   only numbers from 1 to 31 are allowed.
+
+SALVE
+   Not used at the moment...
+
+@ENDNODE
+
+@NODE "warnings" Warnings & Errors"
+@NEXT "warnings"
+@PERV "warnings"
+@TOC  "err_MAIN"
+
+			ASM-One: Warnings
+			-----------------
+
+ASM-One knows some warnings, which are genarly generated while assembling
+a source.
+
+ASM-One will not stop assembling when it generates a warning.
+
+Here's the list of known warnings:
+
+
+	@{" >> Warning << Value Signed Extended to Longword   " LINK "warn_valueext"}
+	@{" >> Warning << 68010++ Command Used                " LINK "warn_68010++"}
+	@{" >> Warning << 68020++ Command Used                " LINK "warn_68020++"}
+	@{" >> Warning << 68030++ Command Used                " LINK "warn_68030++"}
+	@{" >> Warning << 68040++ Command Used                " LINK "warn_68040++"}
+	@{" >> Warning << 68010 Specific Command Used         " LINK "warn_68010spec"}
+	@{" >> Warning << 68020 Specific Command Used         " LINK "warn_68020spec"}
+	@{" >> Warning << 68030 Specific Command Used         " LINK "warn_68030spec"}
+	@{" >> Warning << 68040 Specific Command Used         " LINK "warn_68040spec"}
+	@{" >> Warning << 68060 Specific Command Used         " LINK "warn_68060spec"}
+	@{" >> Warning << 68020/030/040 Specfici Command Used " LINK "warn_680203040spec"}
+	@{" >> Warning << 68020/030 Specific Command Used     " LINK "warn_6802030spec"}
+	@{" >> Warning << MOVEP not supported by the 68060    " LINK "warn_movep060"}
+	@{" >> Warning << 68030/68851 Command Used            " LINK "warn_68030-851"}
+	@{" >> Warning << 68051 Command Used                  " LINK "warn_68851"}
+	@{" >> Warning << 68881/68882 Command Used            " LINK "warn_6888x"}
+	@{" >> Warning << PFLUSHA Assembled with 68030/68851  " LINK "warn_pflush030851"}
+	@{" >> Warning << PFLUSHA Assembled with 68040        " LINK "warn_pflush040"}
+
+@ENDNODE
+
+@NODE "warn_valueext" ">> Warning <<, Value Signed Extended to Longword"
+@NEXT "warn_68010++"
+@PREV "warnings"
+@TOC  "warnings"
+
+MESSAGE
+   >> Warning <<, Value Signed Extended to Longword
+
+CAUSE
+   Implemented but not used at the moment.
+
+@ENDNODE
+
+@NODE "warn_68010++" ">> Warning << 68010++ Command Used"
+@NEXT "warn_68020++"
+@PREV "warn_valueext"
+@TOC  "warnings"
+
+MESSAGE
+   >> Warning << 68010++ Command Used
+
+CAUSE
+   You used an 68010++ command, which could crash an
+   68000 CPU.
+
+SALVE
+   Check your Programmers Reference Manual.
+
+@ENDNODE
+
+@NODE "warn_68020++" ">> Warning << 68020++ Command Used"
+@NEXT "warn_68030++"
+@PREV "warn_68010++"
+@TOC  "warnings"
+
+MESSAGE
+   >> Warning << 68020++ Command Used
+
+CAUSE
+   You used an 68020++ command, which could crash an
+   68010 or lower CPU.
+
+SALVE
+   Check your Programmers Reference Manual.
+
+@ENDNODE
+
+@NODE "warn_68030++" ">> Warning << 68030++ Command Used"
+@NEXT "warn_68040++"
+@PREV "warn_68020++"
+@TOC  "warnings"
+
+MESSAGE
+   >> Warning << 68030++ Command Used
+
+CAUSE
+   You used an 68030++ command, which could crash an
+   68020 or lower CPU.
+
+SALVE
+   Check your Programmers Reference Manual.
+
+@ENDNODE
+
+@NODE "warn_68040++" ">> Warning << 68040++ Command Used"
+@NEXT "warn_68010spec"
+@PREV "warn_68030++"
+@TOC  "warnings"
+
+MESSAGE
+   >> Warning << 68040++ Command Used
+
+CAUSE
+   You used an 68040++ command, which could crash an
+   68030 or lower CPU.
+
+SALVE
+   Check your Programmers Reference Manual.
+
+@ENDNODE
+
+@NODE "warn_68010spec" ">> Warning << 68010 Specific Command Used"
+@NEXT "warn_68020spec"
+@PREV "warn_68040++"
+@TOC  "warnings"
+
+MESSAGE
+   >> Warning << 68010 Specific Command Used
+
+CAUSE
+   You used an 68010 specific command, which could crash
+   other 680x0 CPU's.
+
+SALVE
+   Check your Programmers Reference Manual.
+
+@ENDNODE
+
+@NODE "warn_68020spec" ">> Warning << 68020 Specific Command Used"
+@NEXT "warn_68030spec"
+@PREV "warn_68010spec"
+@TOC  "warnings"
+
+MESSAGE
+   >> Warning << 68020 Specific Command Used
+
+CAUSE
+   You used an 68020 specific command, which could crash
+   other 680x0 CPU's.
+
+SALVE
+   Check your Programmers Reference Manual.
+
+@ENDNODE
+
+@NODE "warn_68030spec" ">> Warning << 68030 Specific Command Used"
+@NEXT "warn_68040spec"
+@PREV "warn_68020spec"
+@TOC  "warnings"
+
+MESSAGE
+   >> Warning << 68030 Specific Command Used
+
+CAUSE
+   You used an 68030 specific command, which could crash
+   other 680x0 CPU's.
+
+SALVE
+   Check your Programmers Reference Manual.
+
+@ENDNODE
+
+@NODE "warn_68040spec" ">> Warning << 68040 Specific Command Used"
+@NEXT "warn_68060spec"
+@PREV "warn_68030spec"
+@TOC  "warnings"
+
+MESSAGE
+   >> Warning << 68040 Specific Command Used
+
+CAUSE
+   You used an 68040 specific command, which could crash
+   other 680x0 CPU's.
+
+SALVE
+   Check your Programmers Reference Manual.
+
+@ENDNODE
+
+@NODE "warn_68060spec" ">> Warning << 68060 Specific Command Used"
+@NEXT "warn_680203040spec"
+@PREV "warn_68040spec"
+@TOC  "warnings"
+
+MESSAGE
+   >> Warning << 68060 Specific Command Used
+
+CAUSE
+   You used an 68060 specific command, which could crash
+   other 680x0 CPU's.
+
+SALVE
+   Check your Programmers Reference Manual.
+
+@ENDNODE
+
+@NODE "warn_680203040spec" ">> Warning << 68020/030/040 Specific Command Used"
+@NEXT "warn_6802030spec"
+@PREV "warn_68060spec"
+@TOC  "warnings"
+
+MESSAGE
+   >> Warning << 68020/030/040 Specific Command Used
+
+CAUSE
+   When using MOVEC, the following registers are NOT supported by the
+   68060, or CPU's lower than the 68020:
+
+   CAAR
+   MSP
+   ISP
+   MMUSR
+
+SALVE
+   Check your Programmers Reference Manual.
+
+@ENDNODE
+
+@NODE "warn_6802030spec" " Warning << 68020/030 Specific Command Used"
+@NEXT "warn_movep060"
+@PREV "warn_680203040spec"
+@TOC  "warnings"
+
+MESSAGE
+    Warning << 68020/030 Specific Command Used
+
+CAUSE
+   When using MOVEC, the CAAR is only allowed on the 68020 and 68030.
+
+SALVE
+   Check your Programmers Reference Manual.
+
+@ENDNODE
+
+@NODE "warn_movep060" ">> Warning << MOVEP not supported by the 68060"
+@NEXT "warn_68030-851"
+@PREV "warn_68060spec"
+@TOC  "warnings"
+
+MESSAGE
+   >> Warning << MOVEP not supported by the 68060"
+
+CAUSE
+   The MOVEP opcode is NOT supported by the 68060, and will
+   therefore generate an Illegal Instruction Trap if
+   executed on the 68060.
+
+SALVE
+   MOVEP will be assembled according to the 68010/20/30/40.
+   Check your Programmers Reference Manual.
+
+@ENDNODE
+
+@NODE "warn_68030-851" ">> Warning << 68030/68851 Command Used"
+@NEXT "warn_68851"
+@PREV "warn_movep060"
+@TOC  "warnings"
+
+MESSAGE
+   >> Warning << 68030/68851 Command Used
+
+CAUSE
+   You used an 68030/68851 command, which could crash
+   other 68k MMU's.
+
+SALVE
+   Check your Programmers Reference Manual.
+
+@ENDNODE
+
+@NODE "warn_68851" ">> Warning << 68851 Command Used"
+@NEXT "warn_6888x"
+@PREV "warn_68030-851"
+@TOC  "warnings"
+
+MESSAGE
+   >> Warning << 68851 Command Used
+
+CAUSE
+   You used an 68851 command, which could crash
+   other 68k MMU's.
+
+SALVE
+   Check your Programmers Reference Manual.
+
+@ENDNODE
+
+@NODE "warn_6888x" ">> Warning << 68881/68882 Command Used"
+@NEXT "warn_pflush030851"
+@PREV "warn_68851"
+@TOC  "warnings"
+
+MESSAGE
+   >> Warning << 68881/68882 Command Used
+
+CAUSE
+   You used an 68881/68882 command, which could crash
+   other 68k FPU's.
+
+SALVE
+   Check your Programmers Reference Manual.
+
+@ENDNODE
+
+@NODE "warn_pflush030851" ">> Warning << PFLUSHA Assembled with 68030/68851"
+@NEXT "warn_pflush040"
+@PREV "warn_6888x"
+@TOC  "warnings"
+
+MESSAGE
+   >> Warning << PFLUSHA Assembled with 68030/68851
+
+CAUSE
+   PFLUSHA is assembled according to the 68030/68851
+   specifications.
+
+SALVE
+   Check your Programmers Reference Manual.
+
+@ENDNODE
+
+@NODE "warn_pflush040" ">> Warning << PFLUSHA Assembled with 68040"
+@NEXT "warnings"
+@PREV "warn_pflush030851"
+@TOC  "warnings"
+
+MESSAGE
+   >> Warning << PFLUSHA Assembled with 68040
+
+CAUSE
+   PFLUSHA is assembled according to 68040/68060
+   specifications.
+
+SALVE
+   Check your Programmers Reference Manual.
+
+@ENDNODE
+

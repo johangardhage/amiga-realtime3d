@@ -1,0 +1,481 @@
+@DATABASE AddressingModes.Guide
+
+@NODE "MAIN" "M68000 Family Addressing Modes"
+@TOC  "ASM-One_V1.4x.Guide/MAIN"
+
+			M68000 Family Addressing Modes
+			------------------------------
+
+The M68000 Family knows 18 different addressing modes.
+
+ASM-One supports all of them, but there are possibilities to surpress
+elements in addressing modes. So here's a complete list of all
+possible addressing modes.
+
+Special symbols are used. @{" Here " LINK "modes_expl"} is an explenation of them.
+
+
+
+	@{" Data Register Direct Mode                                      " LINK "modes_DRDM"}
+	@{" Address Register Direct Mode                                   " LINK "modes_ARDM"}
+	@{" Address Register Indirect Mode                                 " LINK "modes_ARIM"}
+	@{" Address Register Indirect with Postincrement Mode              " LINK "modes_ARIwPostM"}
+	@{" Address Register Indirect with Predecrement Mode               " LINK "modes_ARIwPreM"}
+	@{" Address Register Indirect with Displacement Mode               " LINK "modes_ARIwDM"}
+	@{" Address Register Indirect with Index (8-bit Displacement) Mode " LINK "modes_ARIwI8bdM"}
+	@{" Address Register Indirect with Index (Base Displacement) Mode  " LINK "modes_ARIwIbdM"}
+	@{" Memory Indirect Postindexed Mode                               " LINK "modes_MIPostM"}
+	@{" Memory Indirect Preindexed Mode                                " LINK "modes_MIPreM"}
+	@{" Program Counter Indirect with Displacement Mode                " LINK "modes_PCIwDM"}
+	@{" Program Counter Indirect with Index (8-bit Displacement) Mode  " LINK "modes_PCIwI8bdM"}
+	@{" Program Counter Indirect with Index (Base Displacement) Mode   " LINK "modes_PCIwIbdM"}
+	@{" Program Counter Memory Indirect Postindexed Mode               " LINK "modes_PCMIPostM"}
+	@{" Program Counter Memory Indirect Preindexed Mode                " LINK "modes_PCMIPreM"}
+	@{" Absolute Short Addressing Mode                                 " LINK "modes_ASAM"}
+	@{" Absolute Long Addressing Mode                                  " LINK "modes_ALAM"}
+	@{" Immediate Data                                                 " LINK "modes_ID"}
+
+
+REMARK: As of ASM-One V1.47 the SCALING factor can also be defined by an EQUate
+        (or = or SET).
+
+
+@ENDNODE
+
+@NODE "modes_DRDM" "Data Register Direct Mode"
+@NEXT "modes_ARDM"
+@PREV "modes_ID"
+@TOC  "MAIN"
+
+
+		Data Register Direct Mode
+		-------------------------
+
+Assembler Notation :	Dn
+ASM-One Notation   :	Dn
+Processor          :	All
+
+Example:
+
+	MOVE.L	D0,D1
+
+@ENDNODE
+
+@NODE "modes_ARDM" "Address Register Direct Mode"
+@NEXT "modes_ARIM"
+@PREV "modes_DRDM"
+@TOC  "MAIN"
+
+
+		Address Register Direct Mode
+		----------------------------
+
+Assembler Notation :	An
+ASM-One Notation   :	An
+Processor          :	All
+
+Example:
+
+	SUB.L	A1,A2
+
+@ENDNODE
+
+@NODE "modes_ARIM" "Address Register Indirect Mode"
+@NEXT "modes_ARIwPostM"
+@PREV "modes_ARDM"
+@TOC  "MAIN"
+
+
+		Address Register Indirect Mode
+		------------------------------
+
+Assembler Notation :	(An)
+ASM-One Notation   :	(An)
+Processor          :	All
+
+Example:
+
+	ADDI.W	#1,(A3)
+
+@ENDNODE
+
+@NODE "modes_ARIwPostM" "Address Register Indirect with PostincrementMode"
+@NEXT "modes_ARIwPreM"
+@PREV "modes_ARIM"
+@TOC  "MAIN"
+
+
+		Address Register Indirect with Postincrement Mode
+		-------------------------------------------------
+
+Assembler Notation :	(An)+
+ASM-One Notation   :	(An)+
+Processor          :	All
+
+Example:
+
+	MOVE.B	(A5)+,D0
+
+@ENDNODE
+
+@NODE "modes_ARIwPreM" "Address Register Indirect with Predecrement Mode"
+@NEXT "modes_ARIwDM"
+@PREV "modes_ARIwPostM"
+@TOC  "MAIN"
+
+
+		Address Register Indirect with Predecrement Mode
+		------------------------------------------------
+
+Assembler Notation :	-(An)
+ASM-One Notation   :	-(An)
+Processor          :	All
+
+Example:
+
+	MOVEM.L	D0-A6,-(A7)
+
+@ENDNODE
+
+@NODE "modes_ARIwDM" "Address Register Indirect with Displacement Mode"
+@NEXT "modes_ARIwI8bdM"
+@PREV "modes_ARIwPreM"
+@TOC  "MAIN"
+
+
+		Address Register Indirect with Displacement Mode
+		------------------------------------------------
+
+Assembler Notation :	(d16,An)
+ASM-One Notation   :	d16(An)
+			(d16,An)
+Processor          :	All
+
+Example:
+
+label:	MOVE.L	$7FFF(A2),D0
+	MOVE.L	label(A6),D2
+	MOVE.L	[begin-end](A4),D5
+
+
+begin:	DC.L	0
+end:	DC.L	0
+
+@ENDNODE
+
+@NODE "modes_ARIwI8bdM" "Address Register Indirect with Index (8-bit Displacement) Mode"
+@NEXT "modes_ARIwIbdM"
+@PREV "modes_ARIwDM"
+@TOC  "MAIN"
+
+
+		Address Register Indirect with Index (8-bit Displacement) Mode
+		--------------------------------------------------------------
+
+Assembler Notation : (d8,An,Xn.SIZE*SCALE)
+ASM-One Notation   : (d8,An,Xn.SIZE*SCALE)
+Processor          : Without SCALEing: All
+		     With SCALEing: 68020 and up
+Remark		   : Default SIZE is W (Word)
+		     Default SCALE is 1
+
+Example:
+
+label:	MOVE.L	$7FFF(A2),D0
+	MOVE.L	label(A6),D2
+	MOVE.L	[begin-end](A4),D5
+
+
+begin:	DC.L	0
+end:	DC.L	0
+
+@ENDNODE
+
+@NODE "modes_ARIwIbdM" "Address Register Indirect with Index (Base Displacement) Mode"
+@NEXT "modes_MIPostM"
+@PREV "modes_ARIwI8bdM"
+@TOC  "MAIN"
+
+
+		Address Register Indirect with Index (Base Displacement) Mode
+		-------------------------------------------------------------
+
+Assembler Notation   : (bd,An,Xn.SIZE*SCALE)
+ASM-One Notation     : (An,Xn,bd)
+		       (An,Xn.SIZE,bd)
+		       (An,Xn*SCALE,bd)
+		       (An,Xn.SIZE*SCALE,bd)
+Processor            : 68020 and up
+Surpressable Elements: An, Xn and bd
+Remark		     : Default SIZE is W (Word)
+		       Default SCALE is 1
+
+Example:
+
+label:	MOVE.L	(A2,D2,label),D0
+	MOVE.L	(A6,A3.W*4),D2
+	MOVE.L	(A4,D5.L,[end-begin]),D5
+
+
+begin:	DC.L	0
+end:	DC.L	0
+
+@ENDNODE
+
+@NODE "modes_MIPostM" "Memory Indirect Postindexed Mode"
+@NEXT "modes_MIPreM"
+@PREV "modes_ARIwIbdM"
+@TOC  "MAIN"
+
+
+		Memory Indirect Postindexed Mode
+		--------------------------------
+
+Assembler Notation   : ([bd,An],Xn.SIZE*SCALE,od)
+ASM-One Notation     : ([bd,An],Xn.SIZE*SCALE,od)
+Processor            : 68020 and up
+Surpressable Elements: An, Xn, bd and od
+Remark		     : Default SIZE is W (Word)
+		       Default SCALE is 1
+
+Example:
+
+label:	MOVE.L	([$7FFFFF,A2],D2,$7FFFFF),D0
+	MOVE.L	([A6],A3.W*4),D2
+	MOVE.L	([A4],D5.L,$7FFF.W),D5
+
+@ENDNODE
+
+@NODE "modes_MIPreM" "Memory Indirect Preindexed Mode"
+@NEXT "modes_PCIwDM"
+@PREV "modes_MIPostM"
+@TOC  "MAIN"
+
+
+		Memory Indirect Preindexed Mode
+		-------------------------------
+
+Assembler Notation   : ([bd,An,Xn.SIZE*SCALE],od)
+ASM-One Notation     : ([bd,An,Xn.SIZE*SCALE],od)
+Processor            : 68020 and up
+Surpressable Elements: An, Xn, bd and od
+Remark		     : Default SIZE is W (Word)
+		       Default SCALE is 1
+
+Example:
+
+label:	MOVE.L	([$7FFFFF,A2,D2],$7FFFFF),D0
+	MOVE.L	([A6,A3.W*4]),D2
+	MOVE.L	([A4,D5.L],$7FFF.W),D5
+
+@ENDNODE
+
+@NODE "modes_PCIwDM" "Program Counter Indirect with Displacement Mode"
+@NEXT "modes_PCIwI8bdM"
+@PREV "modes_MIPreM"
+@TOC  "MAIN"
+
+
+		Program Counter Indirect with Displacement Mode
+		-----------------------------------------------
+
+Assembler Notation   : (d16,PC)
+ASM-One Notation     : (d16,PC)
+		     : d16(PC)
+Processor            : All
+
+Example:
+
+label:	MOVE.L	(label,PC),D0
+	RTS
+
+@ENDNODE
+
+@NODE "modes_PCIwI8bdM" "Program Counter Indirect with Index (8-bit Displacement) Mode"
+@NEXT "modes_PCIwIbdM"
+@PREV "modes_PCIwDM"
+@TOC  "MAIN"
+
+
+		Program Counter Indirect with Index (8-bit Displacement) Mode
+		-------------------------------------------------------------
+
+Assembler Notation   : (d8,PC,Xn.SIZE*SCALE)
+ASM-One Notation     : (d8,PC,Xn.SIZE*SCALE)
+Processor            : Without SCALEing: All
+		       With SCALEing: 68020 and up
+Remark		     : Default SIZE is W (Word)
+		       Default SCALE is 1
+
+Example:
+
+label:	MOVE.L	($7F,PC,D2.W*4),D0
+	RTS
+
+@ENDNODE
+
+@NODE "modes_PCIwIbdM" "Program Counter Indirect with Index (Base Displacement) Mode"
+@NEXT "modes_PCMIPostM"
+@PREV "modes_PCIwI8bdM"
+@TOC  "MAIN"
+
+
+		Program Counter Indirect with Index (Base Displacement) Mode
+		------------------------------------------------------------
+
+Assembler Notation   : (bd,PC,Xn.SIZE*SCALE)
+ASM-One Notation     : (bd,PC,Xn.SIZE*SCALE)
+Processor            : 68020 and up
+Surpressable Elements: An, Xn, and bd
+Remark		     : Default SIZE is W (Word)
+		       Default SCALE is 1
+Note		     : A PC of ZERO is represented by the ZPC symbol
+
+Example:
+
+label:	MOVE.L	(label,PC,D2.W*4),D0
+	MOVE.L	(label,ZPC,D2.W*4),D0
+	RTS
+
+@ENDNODE
+
+@NODE "modes_PCMIPostM" "Program Counter Memory Indirect Postindexed Mode"
+@NEXT "modes_PCMIPreM"
+@PREV "modes_PCIwIbdM"
+@TOC  "MAIN"
+
+
+		Program Counter Memory Indirect Postindexed Mode
+		------------------------------------------------
+
+Assembler Notation   : ([bd,PC],Xn.SIZE*SCALE,od)
+ASM-One Notation     : ([bd,PC],Xn.SIZE*SCALE,od)
+Processor            : 68020 and up
+Surpressable Elements: An, Xn, bd and od
+Remark		     : Default SIZE is W (Word)
+		       Default SCALE is 1
+Note		     : A PC of ZERO is represented by the ZPC symbol
+
+Example:
+
+label:	MOVE.L	([label,PC],D2.W*4,$7FFFFF),D0
+	MOVE.L	([label,ZPC],D2.W*4,$7FFFFF),D0
+	RTS
+
+@ENDNODE
+
+@NODE "modes_PCMIPreM" "Program Counter Memory Indirect Preindexed Mode"
+@NEXT "modes_ASAM"
+@PREV "modes_PCMIPostM"
+@TOC  "MAIN"
+
+
+		Program Counter Memory Indirect Preindexed Mode
+		------------------------------------------------
+
+Assembler Notation   : ([bd,PC,Xn.SIZE*SCALE],od)
+ASM-One Notation     : ([bd,PC,Xn.SIZE*SCALE],od)
+Processor            : 68020 and up
+Surpressable Elements: An, Xn, bd and od
+Remark		     : Default SIZE is W (Word)
+		       Default SCALE is 1
+Note		     : A PC of ZERO is represented by the ZPC symbol
+
+Example:
+
+label:	MOVE.L	([label,PC,D2.W*4],$7FFFFF),D0
+	MOVE.L	([label,ZPC,D2.W*4],$7FFFFF),D0
+	RTS
+
+@ENDNODE
+
+@NODE "modes_ASAM" "Absolute Short Addressing Mode"
+@NEXT "modes_ALAM"
+@PREV "modes_PCMIPreM"
+@TOC  "MAIN"
+
+
+		Absolute Short Addressing Mode
+		------------------------------
+
+Assembler Notation   : (xxx).W
+ASM-One Notation     : (xxx).W
+Processor            : All
+
+Example:
+
+label:	MOVE.L	($7FF).W,D0
+	RTS
+
+@ENDNODE
+
+@NODE "modes_ALAM" "Absolute Long Addressing Mode"
+@NEXT "modes_ID"
+@PREV "modes_ASAM"
+@TOC  "MAIN"
+
+
+		Absolute Long Addressing Mode
+		-----------------------------
+
+Assembler Notation   : (xxx).L
+ASM-One Notation     : (xxx).L
+Processor            : All
+
+Example:
+
+label:	MOVE.L	(label).L,D0
+	RTS
+
+@ENDNODE
+
+@NODE "modes_ID" "Immediate Data"
+@NEXT "modes_DRDM"
+@PREV "modes_ALAM"
+@TOC  "MAIN"
+
+
+		Immediate Data
+		--------------
+
+Assembler Notation   : #xxx
+ASM-One Notation     : #xxx
+Processor            : All
+
+Example:
+
+label:	MOVE.L	#label,D0
+	RTS
+
+@ENDNODE
+
+@NODE "modes_expl" "Explenation of Used Symbols"
+@TOC  "MAIN"
+
+
+	 @{B}Symbol@{UB}	| @{B}Explenation@{UB}
+	--------+---------------------------------------------------------
+	   Dn   | Data Register, n = 0-7
+	--------+---------------------------------------------------------
+	   An   | Address Register, n = 0-7
+	--------+---------------------------------------------------------
+	   PC	| Program Counter
+	--------+---------------------------------------------------------
+	   ZPC	| Zero Program Counter
+	--------+---------------------------------------------------------
+	   Xn   | Index Register, X = A or D, n = 0-7
+	--------+---------------------------------------------------------
+	   d8   | 8-bit Displacement
+	--------+---------------------------------------------------------
+	   d16  | 16-bit Displacement
+	--------+---------------------------------------------------------
+	   bd   | Base Displacement
+	--------+---------------------------------------------------------
+	   od   | Outer Displacement
+	--------+---------------------------------------------------------
+	  SIZE  | Index Register Size, could be nothing, W or L
+	--------+---------------------------------------------------------
+	  SCALE | Index Register Scaling, could be nothing, 1, 2, 4, or 8
+	--------+---------------------------------------------------------
+
+@ENDNODE

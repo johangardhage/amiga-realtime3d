@@ -1,0 +1,4374 @@
+@DATABASE ASM-One_V1.3x.guide
+
+@NODE "MAIN" "ASM-One V1.4x Manual"
+
+
+                          The ASM-One V1.4x Manual
+
+                     The MOST Complete guide to ASM-One
+
+                  Copyright (C) 1999-2002 By Boussh of TFA
+
+
+			         THIRD DRAFT
+
+
+			@{" Copyright                          " LINK "Copyright"}
+			@{" About                              " LINK "About"}
+
+			@{" What is ASM-One                    " LINK "What is ASM-One"}
+			@{" Bugs and ideas                     " LINK "bugs"}
+
+			@{" ASM-One & RTG                      " LINK "RTG"}
+
+			@{" Starting with ASM-One              " LINK "Starting"}
+
+			@{" ASM-One's MENU Structure           " LINK "menus"}
+			@{" DLCs                               " LINK "DLCs"}
+			@{" Directive                          " LINK "Directive.Guide/MAIN"}
+			@{" Register Names & Private Symbols   " LINK "registernames"}
+
+			@{" ASM-One.Pref File                  " LINK "asm_preffile"}
+
+			@{" Working with the Clipboard         " LINK "Clipboard.Guide/clip_MAIN"}
+
+			@{" Warnings & Errors                  " LINK "Errors.Guide/err_MAIN"}
+
+			-- Advanced Techniques --
+
+			@{" Conditional Branches with IF       " LINK "Advanced.Guide/adv_conbranch"}
+			@{" Building and Using MACRO's         " LINK "Advanced.Guide/adv_MACROs"}
+
+			-- MC68000 Family Information --
+
+			@{" M68000 Family Instruction Set      " LINK "instructions"}
+			@{" M68000 Family Mnemonic Description " LINK "description"}
+			@{" M68000 Family Addressing Modes     " LINK "AddressingModes.Guide/MAIN"}
+
+			-- PPC Family Information --
+
+			@{" ASM-One & PPC Assembly/Disassembly " LINK "PPC.Guide/ppc_MAIN"}
+			@{" PPC Mnemonic Description           " LINK "PPC.Guide/mne_MAIN"}
+			@{" PPC Registers & Symbols            " LINK "PPC.Guide/reg_MAIN"}
+
+
+			@{" Contacting the Autor               " LINK "contact"}
+			@{" Thanks to....                      " LINK "thanks"}
+
+@ENDNODE
+
+@NODE "Copyright" "Copyright notice"
+@TOC "Main"
+
+Copyright
+*********
+
+Copyright Notice
+----------------
+
+   This document is Copyright (C) 2002 by Boushh of TFA.
+
+Disclaimer
+----------
+
+   This document is offered "as is", and the author will not be held
+responsible for any damage resulting from mistakes contained within, though
+the best effort has been made to ensure that all the information is
+complete and correct.
+
+Distribution
+------------
+
+   This is only Copyrighted in order to protect the integrity of this
+document and to ensure its free availability to all.  You may not directly
+profit from the distribution of this document.  You may not put it in a disk
+collection without prior permission from the author. You may freely and for
+free distribute it across any medium.
+
+   There is no shareware registration fee since this is "freeware".
+
+About
+-----
+
+   This document was written on an Amiga 3000, with an 1,5 Gb hd and 12MB ram.
+This guide is created with CygnusEd Professional V4.2.
+
+@ENDNODE
+
+@NODE "About" "About this Manual"
+@TOC "Main"
+
+About this Manual
+=================
+
+   Since the first release of ASM-One (V1.01, programmed by Rune
+Gram-Madsen), TFA added many new instructions, commands, directives
+etc. etc.
+
+   V1.01 probaly had a printed manual (German). V1.02 (released by
+Venture) had the printed manual as an ASCII file on disk, as well as
+a small english version.
+
+   Up untill version V1.15 of ASM-One, those manuals did cover most
+of ASM-One's functions. But after V1.15, there where more and more
+differences after every new release of ASM-One. Those manuals where
+therefore left out.
+
+   Around version V1.20 I (Boushh) translated the original German
+manual to Dutch (mainly for my convenience). But this was on paper
+and the programs used to edit the text, where non-Amiga programs, so
+it was no good idea to include it into a new release.
+
+   Since then, many ideas have been send to use. And we discovered that
+quite a lot of these ideas where already build into ASM-One. But nobody
+knew, becose they where not documented. But also new users had absolutly
+no idea what ASM-One could do.
+
+   Therefore I decided to finaly put all the features of ASM-One in
+one AmigaGuide. And you are looking at it B-)
+
+   I did my best to make it as complete as possible, but if you have
+any suggestions, they are welcom.
+
+
+     Boushh
+     (remco.weg@endemol.nl)
+
+
+P.S. ASM-One hase been cloned quite much. Many of these clones (like
+Trash'm-One (Deftronic), AsmPro (Genetic), etc, etc, will have most
+of ASM-One's functionality. So, if you are a user of those clones,
+you can use the manual as well B-)
+
+
+But.... Why should you use a clone when you can use the original ??
+@ENDNODE
+
+@NODE "What is ASM-One" "What is ASM-One"
+@TOC "Main"
+
+What is ASM-One ?
+=================
+
+   ASM-One is an intergrated assembler developing environment. Where other
+assemblers (commercial of PD) offer some intergration, or only CLI
+execution, ASM-One offers everything in one package.
+
+   ASM-One consists of:
+
+- An Editor
+- An Assembler
+- A  Debugger
+- A  Monitor
+
+   ASM-One gives you the possibility to develop your software without
+browsing through several programs. Everything you need is available
+right at your hands.
+
+@ENDNODE
+
+@NODE "Bugs" "Bugs and ideas"
+@NEXT "main"
+@PREV "main"
+@TOC  "Main"
+
+                           Bugs & Ideas
+                           ------------
+
+We maintain webpages with the lastest fixes.
+
+It's located at:
+
+http://www.euronet.nl/users/jdm/
+
+Before you mail me a bug or an idea, please READ this manual and
+check out our webpages !!!!
+
+
+			Mailing Bugs & Ideas
+			--------------------
+
+If you mail Ideas:
+
+- Tell as exactely as you can how you think your idea should work.
+- If possible, include sourcecode of your idea (WB/KS 2.x compatible).
+
+If you mail bugs:
+
+- Be as detailed as possible.
+- Write down what you did, AND what the result was.
+- Include sample sourcecode, generating the error (if possible).
+- Include your system configuration (get that with tools/Showconfig).
+- Include your ASM-One.Pref file.
+
+Boushh
+(remco.weg@endemol.nl)
+
+@ENDNODE
+
+@NODE "RTG" "ASM-One & RTG"
+@NEXT "main"
+@PREV "main"
+@TOC  "Main"
+
+                          ASM-One & RTG
+                          -------------
+
+As of ASM-One V1.46, ASM-One can work with RTG screens.
+
+There is a switch called 'RTG Mode' in the Environment Preferences
+which let you select if ASM-One uses it's RTG routines.
+
+When selected, ASM-One should show up on any Screen (both RTG and
+normal Amiga Screens).
+
+When not selected, ASM-One will use it's 'Bang-the-Hardware'
+routines. And thus will not show up on a RTG Screen.
+
+The reason for both ways is that people who do not have a Graphics
+Card will not loose speed.
+
+So if you start ASM-One and you only see a box, change your
+Environment Preferences (Amiga+[). And make sure you save them.
+
+
+			RTG Considerations
+			------------------
+
+When starting ASM-One, it first checks if you have KS/WB 3.x. This
+is essential since the RTG routines REQUIRE KS/WB 3.x to work.
+
+If you do not have KS/WB 3.x, ASM-One will disable it's RTG
+code and switch back to the old 'Banging-the-Hardware' routines.
+It will also gray-out the 'RTG Mode' option in the Environment
+Preferences to prevent you from accidentialy choosing to use
+ASM-One's RTG Mode.
+
+If ASM-One could not open your selected screen (which has nothing
+to do with the RTG option) it will put up a requester so you can
+select a new screenmode instead of trying to open a PAL or NTSC screen.
+
+Anyways, check the Environment Preferences and make SURE they
+reflect what you want !!!
+
+For the best and fastest results:
+
+Screen	      | RTG Mode
+--------------+---------
+CyberGraphiX  | On
+Picasso96     | On
+AmigaForever  | On
+UAE           | On
+Amiga OCS     | Off
+Amiga ECS     | Off
+Amiga AGA     | Off
+
+@ENDNODE
+
+@NODE "Starting" "Starting with ASM-One"
+@TOC "Main"
+
+                         Starting ASM-One
+			 ----------------
+
+Here's is an example of a first session with ASM-One:
+
+
+Starting
+--------
+
+Start ASM-One from the CLI (a Shell) or by double clicking on it's icon.
+
+
+First Steps
+-----------
+
+After ASM-One is started, you will get the following line:
+
+	ALLOCATE Fast/Chip/Publ/Abs>
+
+Here you can select in which kind of memory your source will be located.
+
+F = FastMem
+C = ChipMem
+P = PublicMem (the largest available memory block)
+A = Absolute
+
+(Remember: Images and sounds that are to be used by the Amiga's native
+chipset, need to be in CHIP memory. Or the custom chips will not be
+able to get to the data. It is however good practice to store your
+source into so called Public Memory. Public Memory is normally FAST
+memory, unless there is no FAST Memory, then it will be CHIP memory.
+You can always use the SECTION directive to allocate the correct memory)
+
+
+After you have selected where your source should be located, you will
+have to choose how large the allocated block of memory should be:
+
+	WORKSPACE (Max.7680) KB>
+
+After Max. is the largest available block of memory available.
+
+(Remember: the allocted block needs to be large enough to hold the source,
+anything that use the INCBIN directive, labels and such !! However,
+includes are not stored in this area)
+
+Now you are ready to rock & roll B-)
+
+Loading a source
+----------------
+
+Type R after the >, and a requester will show up.
+
+Select the source you want to work with.
+
+
+Going to the Editor
+-------------------
+
+Press the ESC key to go into the Editor
+
+(If you don't have a source to work with, press the ESC key to go into
+the Editor and make your own source.)
+
+Assembling a source
+-------------------
+
+Press ESC to go to the > again.
+
+Type A (Assemble), and ASM-One will assemble your source.
+
+If any errors occure, press ESC and go into the Editor to correct them.
+
+Writing an object
+-----------------
+
+After you have assembled a source, you have an object (executable file).
+You can save the object by typing WO (Write Object) at the >.
+
+If you assembled a source that's not executable, type WB (Write Binary)
+at the >.
+
+If you have made changes to your source, type U (Update) at the >.
+
+If you made a new source, type W (Write) at the >.
+
+@ENDNODE
+
+@NODE "menus" "ASM-One's MENU Structure"
+@NEXT "genmenu"
+@PREV "menus"
+@TOC  "main"
+
+                         ASM-One's MENU Structure
+			 ------------------------
+
+ASM-One has different menu's for every part of ASM-One:
+
+@{" General MENU Structure " LINK "genmenu"}
+@{" Editor MENU Structure " LINK "CommandMenus.Guide/editmenu"}
+@{" Debug MENU Structure " LINK "Command/Menus.Guide/debugmenu"}
+@{" Monitor MENU Structure " LINK "CommandMenus.Guide/monmenu"}
+@{" Preference MENU Structure " LINK "prefmenu"}
+
+@ENDNODE
+
+@NODE "genmenu" "General MENU Structure"
+@NEXT "editmenu"
+@PREV "menus"
+@TOC  "menus"
+
+                         General MENU Structure
+			 ----------------------
+
+The 'General MENU Structure' is available when you are at the CLI of
+ASM-One. You are there when you can type commands after the >.
+
+This menu is divided into three parts:
+
+@{" Project " LINK "genmune"}			@{" Assembler " LINK "genmenu"}			@{" Commands " LINK "genmenu"}
+
+@{" Project Info   =P " LINK "=P_DLC"}		@{" Assemble       »" LINK "gemenu"}		@{" Editor             »" LINK "genmenu"}
+@{" Old             O " LINK "O_DLC"}			@{"Assemble     A " LINK "A_DLC"}			@{" Jump Top        T  " LINK "T_DLC"}
+@{" Read             »" LINK "genmenu"}			@{"Optimize     O " LINK "AO_DLC"}			@{" Jump Bottom     B  " LINK "B_DLC"}
+	@{" Environment  RE " LINK "RE_DLC"}		@{"Check Only  AC " LINK "AC_DLC"}			@{" Search          S  " LINK "S_DLC"}
+	@{" Source       R  " LINK "R_DLC"}		@{"Object Info =  " LINK "=_DLC"}			@{" Zap Line(s)     ZL " LINK "ZL_DLC"}
+	@{" Binary       RB " LINK "RB_DLC"}	 ----------------			@{" Print Line(s)   P  " LINK "P_DLC"}
+	@{" Object       RO " LINK "RO_DLC"}	@{" Editor        E " LINK "editor"}			@{" Extend Labels   EL " LINK "EL_DLC"}
+@{" Write            »" LINK "write"}		@{" Debugger      D " LINK "debugger"}		@{" Memory             »" LINK "genmenu"}
+	@{" Environment  WE " LINK "WE_DLC"}	@{" Monitor       M " LINK "monitor"}			@{" Edit            M  " LINK "M_DLC"}
+	@{" Source +Mark W  " LINK "W_DLC"}	@{" Preferences    »" LINK "genmenu"}			@{" Assemble        D  " LINK "D_DLC"}
+	@{" Source -Mark WN " LINK "WN_DLC"}		@{" Environment [ " LINK "envprefs"}			@{" HEX Dump        H  " LINK "H_DLC"}
+	@{" Binary       WB " LINK "WB_DLC"}		@{" Assembler   ] " LINK "assprefs"}			@{" ASCII           N  " LINK "N_DLC"}
+	@{" Object       WO " LINK "WO_DLC"}	@{" AGA Guide     = " LINK "agaguide"}			 -------------------
+	@{" Link         WL " LINK "WL_DLC"}						@{" DisassembleLine @D " LINK "@D_DLC"}
+	@{" Preferences  WP " LINK "WP_DLC"}						@{" Assemble        @A " LINK "@A_DLC"}
+@{" Insert          I " LINK "I_DLC"}							@{" HEX Line        @H " LINK "@H_DLC"}
+@{" Update           »" LINK "genmenu"}							@{" ASCII Line      @N " LINK "@N_DLC"}
+	@{" Source       U  " LINK "U_DLC"}						@{" Binary Line     @B " LINK "@B_DLC"}
+	@{" Project      UA " LINK "UA_DLC"}						 -------------------
+@{" Zap Auto-Alloc ZA " LINK "ZA_DLC"}							@{" Search Memory   S  " LINK "S_DLC"}
+@{" Zap File       ZF " LINK "ZF_DLC"}							@{" Fill Memory     F  " LINK "F_DLC"}
+@{" Zap Include    ZI " LINK "ZI_DLC"}							@{" Copy Memory     C  " LINK "C_DLC"}
+@{" Zap Source     ZS " LINK "ZI_DLC"}							@{" Compare Memory  Q  " LINK "Q_DLC"}
+ ------------------							@{" Create Sinus    CS " LINK "CS_DLC"}
+@{" Add WorkMem    =M " LINK "=M_DLC"}						@{" Insert             »" LINK "genmenu"}
+ ------------------							@{" Disassembly     ID " LINK "ID_DLC"}
+@{" About          #  " LINK "#_DLC"}							@{" HEX Dump        IH " LINK "IH_DLC"}
+ ------------------							@{" ASCII Dump      IN " LINK "IN_DLC"}
+@{" Quit/Restart    ! " LINK "! _DLC"}							@{" Binary Dump     IB " LINK "IB_DLC"}
+@{" Quick Quit     !! " LINK "!!_DLC"}							@{" Create Sinus    IS " LINK "IS_DLC"}
+								@{" Assemble           »" LINK "genmenu"}
+									@{" Assemble        A  " LINK "A_DLC"}
+									@{" Memory          @A " LINK "@A_DLC"}
+									@{" Optimize        AO " LINK "AO_DLC"}
+									@{" Debug           AD " LINK "AD_DLC"}
+									@{" Symbols         =S " LINK "=S_DLC"}
+									@{" Parameters Set  PS " LINK "PS_DLC"}
+								@{" Monitor            »" LINK "genmenu"}
+									@{" Jump            J  " LINK "J_DLC"}
+									@{" Go              G  " LINK "G_DLC"}
+									@{" Step            K  " LINK "K_DLC"}
+									@{" Status          X  " LINK "X_DLC"}
+									@{" Zap BPS         ZB " LINK "ZB_DLC"}
+								@{" Disk               »" LINK "genmenu"}
+									@{" Read Sector     RS " LINK "RS_DLC"}
+									@{" Read Track      RT " LINK "RT_DLC"}
+									 -------------------
+									@{" Write Sector    WS " LINK "WS_DLC"}
+									@{" Write Track     WT " LINK "WT_DLC"}
+									 -------------------
+									@{" Calc. Checksum  CC " LINK "CC_DLC"}
+								 --------------------
+								@{" Extern           E  " LINK "E_DLC"}
+								@{" Output           >  " LINK ">_DLC"}
+								@{" Calculate        ?  " LINK "?_DLC"}
+								@{" Calculate Float  [  " LINK "[_DLC"}
+								@{" Custom Registers =R " LINK "=R_DLC"}
+
+@ENDNODE
+
+@NODE "editmenu" "Editor MENU Structure"
+@NEXT "debugmenu"
+@PREV "genmenus"
+@TOC  "menus"
+
+                         Editor MENU Structure
+			 ----------------------
+
+The 'Editor MENU Structure' is available when you are in the Editor.
+
+This menu is divided into three parts:
+
+@ENDNODE
+
+@NODE "debugmenu" "Debug MENU Structure"
+@NEXT "monmenu"
+@PREV "editmenus"
+@TOC  "menus"
+
+                         Debug MENU Structure
+			 ----------------------
+
+The 'Debug MENU Structure' is available when you are in the Debugger.
+
+This menu is divided into two parts:
+
+@ENDNODE
+
+@NODE "monmenu" "Monitor MENU Structure"
+@NEXT "prefmenu"
+@PREV "debugmenus"
+@TOC  "menus"
+
+                         Monitor MENU Structure
+			 ----------------------
+
+The 'Monitor MENU Structure' is available when you are in the Monitor.
+
+This menu is divided into two parts:
+
+@ENDNODE
+
+@NODE "prefmenu" "Preference MENU Structure"
+@NEXT "menus"
+@PREV "monmenus"
+@TOC  "menus"
+
+                         Preference MENU Structure
+			 -------------------------
+
+The 'Preference MENU Structure' is available when you are in one
+of the Preference windows.
+
+This menu is divided into two parts:
+
+@ENDNODE
+
+
+@NODE "DLC_Syntax" "DLC Syntax"
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC  "DLCs"
+
+DLC Sytnax
+----------
+
+
+NAME
+<COMMAND> [short function description]
+
+SYNTAX
+- <command syntax>
+
+[KEY-SHORTCUT]
+
+FUNCTION
+- <function description>
+
+[EXAMPLE]
+
+[INPUT]
+
+[RESULT]
+
+[REMARKS]
+
+[SEE ALSO]
+
+FROM VERSION
+- <version number>
+
+[BUGS]
+
+@ENDNODE
+
+@NODE "DLCs" "DLCs"
+@NEXT "Main"
+@PREV "main"
+@TOC "Main"
+
+DLCs
+====
+
+What means DLCs ?
+----------------
+
+   DLCs is short for: "Direct Line Command(s)". You issue a DLC at the
+Command Line Interperter (CLI) of ASM-One. This CLI is the place where you
+normaly start. It begins with the ">".
+
+
+This part will cover all the DLCs from ASM-One in alfabetical
+order. Using the following @{" SYNTAX " LINK "DLC_Syntax"}.
+
+So, here we go B-)
+
+@{" !  " LINK "!_DLC"}		@{" B  " LINK "B_DLC"}		@{" P  " LINK "P_DLC"}		@{" WS " LINK "WS_DLC"}
+@{" !! " LINK "!!_DLC"}		@{" C  " LINK "C_DLC"}		@{" PS " LINK "PS_DLC"}		@{" WT " LINK "WT_DLC"}
+@{" #  " LINK "#_DLC"}		@{" CC " LINK "CC_DLC"}		@{" Q  " LINK "Q_DLC"}		@{" X  " LINK "X_DLC"}
+@{" =  " LINK "=_DLC"}		@{" CS " LINK "CS_DLC"}		@{" R  " LINK "R_DLC"}		@{" Y  " LINK "Y_DLC"}
+@{" =C " LINK "=C_DLC"}		@{" D  " LINK "D_DLC"}		@{" RB " LINK "RB_DLC"}		@{" ZA " LINK "ZA_DLC"}
+@{" =F " LINK "=F_DLC"}		@{" E  " LINK "E_DLC"}		@{" RE " LINK "RE_DLC"}		@{" ZB " LINK "ZB_DLC"}
+@{" =M " LINK "=M_DLC"}		@{" EL " LINK "EL_DLC"}		@{" RO " LINK "RO_DLC"}		@{" ZF " LINK "ZF_DLC"}
+@{" =P " LINK "=P_DLC"}		@{" F  " LINK "F_DLC"}		@{"    " LINK "_DLC"}		@{" ZI " LINK "ZI_DLC"}
+@{" =R " LINK "=R_DLC"}		@{" G  " LINK "G_DLC"}		@{" RS " LINK "RS_DLC"}		@{" ZL " LINK "ZL_DLC"}
+@{" =S " LINK "=S_DLC"}		@{" H  " LINK "H_DLC"}		@{" RT " LINK "RT_DLC"}		@{" ZS " LINK "ZS_DLC"}
+@{" >  " LINK ">_DLC"}		@{" I  " LINK "I_DLC"}		@{" S  " LINK "S_DLC"}
+@{" ?  " LINK "?_DLC"}		@{" IB " LINK "IB_DLC"}		@{" T  " LINK "T_DLC"}		Leftovers:
+@{" [  " LINK "[_DLC"}		@{" ID " LINK "ID_DLC"}		@{" U  " LINK "U_DLC"}
+@{" @A " LINK "@A_DLC"}		@{" IH " LINK "IH_DLC"}		@{" UA " LINK "UA_DLC"}		@{" CD " LINK "CD_DLC"}
+@{" @B " LINK "@B_DLC"}		@{" IN " LINK "IN_DLC"}		@{" V  " LINK "V_DLC"}		@{" =A " LINK "=A_DLC"}
+@{" @D " LINK "@D_DLC"}		@{" IS " LINK "IS_DLC"}		@{" W  " LINK "W_DLC"}		@{" BS " LINK "BS_DLC"}
+@{" @H " LINK "@H_DLC"}		@{" J  " LINK "J_DLC"}		@{" WB " LINK "WB_DLC"}		@{" AS " LINK "AS_DLC"}
+@{" @N " LINK "@N_DLC"}		@{" K  " LINK "K_DLC"}		@{" WE " LINK "WE_DLC"}		@{" AS " LINK "BM_DLC"}
+@{" A  " LINK "A_DLC"}		@{" L  " LINK "L_DLC"}		@{" WL " LINK "WL_DLC"}
+@{" AC " LINK "AC_DLC"}		@{" M  " LINK "M_DLC"}		@{" WN " LINK "WN_DLC"}
+@{" AD " LINK "AD_DLC"}		@{" N  " LINK "N_DLC"}		@{" WO " LINK "WO_DLC"}
+@{" AO " LINK "AO_DLC"}		@{" O  " LINK "O_DLC"}		@{" WP " LINK "WP_DLC"}
+
+@ENDNODE
+
+@NODE "!_DLC" " The '!' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   ! - Quit/Restart ASM-One
+
+SYNTAX
+   !
+
+FUNCTION
+   This will bring up the QUIT-requester (when reqtools is enabled).
+   Here you can choose to QUIT ASM-One, to RESTART ASM-One or to
+   cancel your action.
+
+   If you choose RESTART, ASM-One will reset itself and start like
+   if you started ASM-One for the first time.
+
+RESULT
+   ASM-One will be quited/restarted.
+
+SEE ALSO
+   @{" The '!!' DLC " LINK "!!_DLC"}
+
+FROM VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "!!_DLC" " The '!!' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   !!
+
+SYNTAX
+   !! - Quick Exit
+
+FUNCTION
+   This will end ASM-One WITHOUT ANY REQUESTER.
+
+RESULT
+   ASM-One will be quited
+
+REMARKS
+   Note that nothing will be saved. If you have still unsaved
+   sources, or are unsure, use the '!' DLC.
+
+SEE ALSO
+   @{" The '!' DLC " LINK "!_DLC"}
+
+FROM VERSION
+   V1.25
+
+@ENDNODE
+
+@NODE "#_DLC" " The '#' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   # - About...
+
+SYNTAX
+   #
+
+FUNCTION
+   This will show up the ASM-One 'About...' requester.
+
+RESULT
+   When ReqTools enabled, you will get the 'About...' requester.
+
+FROM VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "=_DLC" " The '=' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   = - Object Info
+
+SYNTAX
+   =
+
+FUNCTION
+   To show the memory usage of your current source.
+
+RESULT
+   Will show the memory usage of your current source.
+
+SEE ALSO
+   @{" The '=M' DLC " LINK "=M_DLC"}
+
+FROM VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "=C_DLC" " The '=C' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   =C - Change the colors of ASM-One
+
+SYNTAX
+   =C
+
+FUNCTION
+   When Reqtools enabled, you will get a Color Requester with the
+   following functions:
+
+   Copy   - Will copy the selected color to another place
+   Swap   - Will swap the selected color with another color
+   Spread - Will start to spread colors from the selected color
+            up till the last color using the selected color as start
+   Ok     - Will install the new colors, but WILL NOT save them
+   Undo   - Will reset the colors as they where, but you will stay
+            in the requester
+   Cancel - Will reset the colors as they where before the =C DLC
+            and quit the requester
+
+RESULT
+   Changed or NOT changed colors.
+
+REMARKS
+   Clicking on the requester's CLOSE gadget will have the same effect
+   as CANCEL
+   DO NOT FORGET to save your preferences if you have picked new
+   colors (or the next time you start ASM-One, you will have the same
+   old boring colors).
+
+FROM VERSION
+   V1.15 (approximaly)
+
+@ENDNODE
+
+@NODE "=A_DLC" " The '=A' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   =A - Show the 5 sections of ASM-One
+
+SYNTAX
+   =A
+
+FUNCTION
+   So you can see where ASM-One is located in memory.
+
+RESULT
+   Something like this:
+
+   ASM-One Location  Start    End           Total
+                  -------- --------   --------
+   1st Code section: 072B1628 072B18D4        684
+   2nd Code section: 073289B0 0733363B      44171
+   1st Data section: 07309AF8 07326902     118282
+   2nd Data section: 07326910 073289A2       8338
+   BSS Data section: 07333648 0733AE41      30713
+
+   (V1.3x values !!!)
+
+FROM VERSION
+   V1.20
+
+@ENDNODE
+
+@NODE "=F_DLC" " The '=F' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC  "DLCs"
+
+NAME
+   =F - Change the Font of ASM-One
+
+SYNTAX
+   =F
+
+FUNCTION
+   When Reqtools enabled, you will get a Font Requester with the
+   following functions:
+
+   Ok     - Will install the new font, but WILL NOT save it
+   Cancel - Will cancel the Font Requester
+
+RESULT
+   Changed or NOT changed font.
+
+REMARKS
+   ASM-One can ONLY handle 8*8 fixed fonts. Default the requester
+   will only show 8 pixels height fonts. But the font maybe to
+   width for ASM-One. The only way to check this is to select the
+   topaz.font, and remember where te last character was. And compare
+   that position with the font you want to select.
+
+   Changes will be made directly, accept for the menu's.
+
+   Save the changes with @{" Write Prefereces " LINK "WP_DLC"} or by choosing
+   SAVE within the Preferences.
+
+FROM VERSION
+   V1.30
+
+BUGS
+   If you select a font, and the requester says: 'Couldn't open Font'.
+   Than DON'T SELECT it. If you do, ASM-One will use the default font
+   (currently: topaz.font). But '=F' will no longer work.
+
+@ENDNODE
+
+@NODE "=M_DLC" " The '=M' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   =M - Add work memory
+
+SYNTAX
+   =M
+
+FUNCTION
+   Gives you the possibility to add workspace.
+
+RESULT
+   More workspace.
+
+REMARKS
+   No mater if you add or don't add memory, you will always
+   get a nice overview of all memory your source uses:
+
+                     Start    End           Total
+                     -------- --------   --------
+   Workspace       : 004453C0 0045E3C0     102400
+   Source          : 004453C1 0044698B       5578
+   Label Pointers  : 00446B8E 0044BB8E      20480
+   Label           : 0044BB8E 0045E35C      75726
+   IncMem          : -------- --------     189628
+
+   If you have not assembled your source, you will get a shorter
+   overview.
+
+SEE ALSO
+   @{" The '=' DLC " LINK "=_DLC"}
+
+FROM VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "=P_DLC" " The '=P' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   =P - Show Project Info
+
+SYNTAX
+   =P
+
+FUNCTION
+   When Reqtools enabled, it will show up an requester with
+   the current status of your Project.
+
+RESULT
+   A Requester.
+
+FROM VERSION
+   V1.28
+
+@ENDNODE
+
+@NODE "=R_DLC" " The '=R' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   =R - Show Register Info
+
+SYNTAX
+   =R [registernumber]
+
+FUNCTION
+   Will show info on the requested Amiga Register.
+
+INPUT
+   Nothing, or a [registernumber]. The [registernumber] should
+   be the last three numbers of the hexadecimal address of the
+   register
+
+EXAMPLE
+
+   >=R 1EC
+    1EC   W  A          VRam (UHRES) bitplane pointer (hi 5 bits).:
+
+    BPLHPTH - UHRES (VRAM) bit plane pntr (high 5 bits)
+    BPLHPTL - UHRES (VRAM) bit plane pntr (low 15 bits)
+
+         When UHRES is enabled, this pointer comes out on the 2nd 'free' cycle
+         after the start of each horizontal line. It`s modulo is added every
+         time it comes out. 'free' means priority above the copper and below
+         the fixed stuff (audio,sprites....).
+         BPLHDAT comes out as an identifier on the RGA lines when the pointer
+         address is valid so that external detectors can use this to do the
+         special cycle for the VRAMs, The SHRHDAT gets the first and third
+         free cycles.
+
+RESULT
+   If no [registernumber] was given, an explenation of the used
+   symbols and a complete list of ALL Amiga registers.
+   Otherwise the requested register (if the number was valid).
+
+FROM VERSION
+   V1.--
+
+@ENDNODE
+
+@NODE "=S_DLC" " The '=S' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   =S - Show Symbols
+
+SYNTAX
+   =S[characters]
+
+FUNCTION
+   Will show ALL currently known Symbols.
+
+   You can also specifiy the first 2 characters of the symbol you
+   are looking for at [characters].
+
+   That will list the symbols from that point.
+
+RESULT
+   List with Symbols (= Labels).
+
+REMARK
+   Think about UpperCase=LowerCase !!!
+
+FROM VERSION
+   V1.01
+   Extra [characters option] from V1.16 and up
+
+@ENDNODE
+
+@NODE ">_DLC" " The '>' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   > - Redirect Output
+
+SYNTAX
+   >[filename]
+
+FUNCTION
+   Will redirect the output on the commandline to a file.
+
+   If no filename was given, and reqtools is enabled, a file
+   requester will show up to specify the filename.
+
+   Choose cancel if you don't want to redirect the ouput any
+   longer.
+
+RESULT
+   File with output from ASM-One
+
+FROM VERSION
+   V1.01
+
+BUGS
+   The file contains a lot of trash characters.
+
+@ENDNODE
+
+@NODE "?_DLC" " The '?' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   ? - Calculate
+
+SYNTAX
+   ?[value(s)]
+
+FUNCTION
+   Will convert between HEX, ASCII, Octal and binair. And will
+   calculate between those formats.
+
+RESULT
+   An answer.
+
+FROM VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "[_DLC" " The '[' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   [ - Calculate Float
+
+SYNTAX
+   [[value(s)]
+
+FUNCTION
+   Will calculate floats.
+
+EXAMPLE
+
+   >[.s383.3827*56.54
+    2.16764579 E 4  $4D4EB90A.S
+   >
+
+   >[.x383.3827*56.54
+    2.16764579 E 4  $401A0000CEB90A2947AE2000.X
+   >
+
+   >[2/3
+    6.66666666»E-1  $401C00009EF21AAAAAAAAAAA.X
+              |
+              +- This means the number continues untill infinity.
+
+   >[2/3
+    6.66666667±E-1  $401C00009EF21AAAAAAAA000.X
+              |
+              +- This means the number is inexact.
+
+RESULT
+   An answer B-)
+
+REMARKS
+   You can specify the the size (.S, .D, .X, .P), this will have
+   no effect on the calculation, but on the hexadecimal output.
+   Extended Precision (.X) is default.
+
+   The inexact and infinity flags only work at the commandline !!
+   Since during debugging ASM-One can not recognize which FPU register
+   caused the inexact/infinity flag it will ignore them !!!
+
+   Entering a Hexadecimal number, you will have to enter the
+   FLOATING-POINT representation, NOT the INTEGER representation !!
+
+FROM VERSION
+   V1.20
+
+@ENDNODE
+
+@NODE "@A_DLC" " The '@A' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   @A - Edit Memory
+
+SYNTAX
+   @A[address/label]
+
+FUNCTION
+   Will enable you to edit the memory at the adres after '@A' in
+   hexidecimal.
+
+EXAMPLE
+   Here's an example:
+
+   >@A$400
+   00000400 4e75
+   00000400
+
+INPUT
+   Optional address or label, otherwise ASM-One will start
+   at address $00000000, or after the last address shown
+   with @B, @D, @H, @N, D, H or N.
+
+RESULT
+   Unknown at the moment
+
+REMARKS
+   With [ESC] you end the session.
+
+FROM VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "@B_DLC" " The '@B' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   @B - Show lines in binary
+
+SYNTAX
+   @B[address/label]
+
+FUNCTION
+   Will show 8 lines starting from address/label in binary.
+
+EXAMPLE
+
+   >@Bstart
+   004484F4 %01110000
+   004484F5 %00000000
+   004484F6 %01001110
+   004484F7 %01110101
+   004484F8 %00010010
+   004484F9 %00110100
+   004484FA %01010110
+   004484FB %01111000
+
+INPUT
+   Address or label.
+
+RESULT
+   Eight binary lines.
+
+FROM VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "@D_DLC" " The '@D' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   @D - Show disassembled lines
+
+SYNTAX
+   @D[address/label]
+
+FUNCTION
+   Will show 12 disassmbled lines starting from address/label.
+
+EXAMPLE
+
+   >@Dstart
+   004621F4 23CF004623DC         MOVE.L      A7,$004623DC
+   004621FA 2C780004             MOVE.L      $0004.W,A6
+   004621FE 23CE004623D0         MOVE.L      A6,$004623D0
+   00462204 93C9                 SUBA.L      A1,A1
+   00462206 4EAEFEDA             JSR         -294(A6)
+   0046220A 2840                 MOVE.L      D0,A4
+   0046220C 6100019C             BSR.W       $004623AA
+   00462210 4AAC00AC             TST.L       $00AC(A4)
+   00462214 6724                 BEQ.B       $0046223A
+   00462216 2C79004623D8         MOVE.L      $004623D8,A6
+   0046221C 4EAEFFC4             JSR         -60(A6)
+   00462220 23C0004623E8         MOVE.L      D0,$004623E8
+
+INPUT
+   Address or label.
+
+RESULT
+   Twelve disassembled lines.
+
+FROM VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "@H_DLC" " The '@H' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   @H - Show hexadecimal lines
+
+SYNTAX
+   @H[address/label]
+
+FUNCTION
+   Will show 8 hexadecimal lines starting from address/label.
+
+EXAMPLE
+
+   >@Hmenuname
+   004625CE 4D 65 6E 75 00 52 65 73 65 74 00 51 75 69 74 00 "Menu.Reset.Quit."
+   004625DE 47 30 00 47 31 00 47 32 00 53 6F 6D 65 20 47 61 "G0.G1.G2.Some Ga"
+   004625EE 64 67 65 74 73 00 4E 65 77 20 54 69 74 6C 65 00 "dgets.New Title."
+   004625FE 69 6E 74 75 69 74 69 6F 6E 2E 6C 69 62 72 61 72 "intuition.librar"
+   0046260E 79 00 64 6F 73 2E 6C 69 62 72 61 72 79 00 54 68 "y.dos.library.Th"
+   0046261E 69 73 20 70 72 6F 67 72 61 6D 20 6D 75 73 74 20 "is program must "
+   0046262E 62 65 20 72 75 6E 20 66 72 6F 6D 20 74 68 65 20 "be run from the "
+   0046263E 57 6F 72 6B 62 65 6E 63 68 0A 12 34 56 78 01 01 "Workbench..4Vx.."
+
+INPUT
+   Address or label.
+
+   If you use a brace ({) after the @H, you will get indirect
+   memory access:
+
+   @h{4      will give you the hexdump starting at the ExecBase.
+   @h{.l4    will give you the hexdump starting at the ExecBase in longwords
+   @h4       will give you the hexdump starting at adress 4
+
+RESULT
+   Eight hexadecimal lines.
+
+FROM VERSION
+   V1.01
+   Indirect option from V1.16 and up
+
+@ENDNODE
+
+@NODE "@N_DLC" " The '@N' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   @N - Show ASCII lines
+
+SYNTAX
+   @N[address/label]
+
+FUNCTION
+   Will show 12 ASCII lines starting from address/label.
+
+EXAMPLE
+
+   >@Nmenuname
+   004625CE "Menu.Reset.Quit.G0.G1.G2.Some Gadgets.New Title.intuition.librar"
+   0046260E "y.dos.library.This program must be run from the Workbench..4Vx.."
+   0046264E "...............$...........6.....P.....V.....\.....f.....n.....x"
+   0046268E "...........°.....`.....`..... .....0.....<.....L.....R.....^...."
+   004626CE ".f.....l.....z.................¸.....`.....`.....`.............."
+   0046270E "...(.....:.....B.....\.......................`.....`.....`.....þ"
+   0046274E "........... .....H.....^.....b.....n.................¶.....`...."
+   0046278E "...............................................................`"
+
+INPUT
+   Address or label.
+
+RESULT
+   Twelve ASCII lines.
+
+FROM VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "A_DLC" " The 'A' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   A - Assemble the source currently in the editor.
+
+SYNTAX
+   A
+
+KEY-SHORTCUT
+   Right-Amiga+Shift+A
+
+FUNCTION
+   This wil start the assembler. The source in the current editor
+   will be assembled.
+
+RESULT
+   Various errors. If you encounter any errors, look them up
+   in the list of errors
+
+FROM VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "AC_DLC" " The 'AC' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   AC - Assemble and Check the source currently in the editor.
+
+SYNTAX
+   AC
+
+FUNCTION
+   Will only CHECK your source on syntax errors. But will NOT
+   assemble the source.
+
+   ASM-One will ONLY do Pass 1, NOT Pass 2.
+
+RESULT
+   Various errors. If you encounter any errors, look them up
+   in the list of errors
+
+FROM VERSION
+   V1.29
+
+@ENDNODE
+
+@NODE "AD_DLC" " The 'AD' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   AD - Assemble and Debug
+
+SYNTAX
+   AD
+
+KEY-SHORTCUT
+   Right-Amiga+Shift+D
+
+FUNCTION
+   This will first assemble the source currently in the editor, and
+   will then start the debugger.
+
+RESULT
+   Various errors. As with the 'A' DLC, you can encounter errors.
+   If an error occurs, ASM-One will NOT go to the Debugger.
+
+FROM VERSION
+   V1.01
+
+BUGS
+   Some times ASM-One goes to the Debugger and will end up in the
+   remark lines (those starting with ';' or '*'). This will display
+   'End of Source reached !!' in the menubar.
+   Just type 'AD' again.
+
+SEE ALSO
+   @{" The Source-Level Debugger " LINK "debugger"}
+
+@ENDNODE
+
+@NODE "AO_DLC" " The 'AO' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   AO - Assemble and Optimize
+
+SYNTAX
+   AO
+
+KEY-SHORTCUT
+   Right-Amiga+Shift+O
+
+FUNCTION
+   ASM-One will start assembling your source. And optimize it when
+   needed.
+
+   ASM-One will only optimize branches from WORD to BYTE, and from
+   BYTE to WORD.
+
+   When Optimizing from Byte to Word, ASM-One will ALLWAYS start
+   reassembling. Since locations of labels AFTER the optimization
+   will be changed from those locations ASM-One got during it's
+   Pass 1.
+
+   This also happens when you normally assemble a source. So the
+   only advantage of AO is currently the optimization of WORD to
+   BYTE.
+
+   An optimization will result in a CHANGED source !!
+
+RESULT
+   An optimized piece of code B-)
+
+REMARKS  
+   ASM-One also optimizes CLR.L Dn -> MOVEQ #0,Dn during assembling.
+
+   ASM-One will also change CMP/ADD/SUB instructions to appropiate
+   instructions (like CMP.x (An)+,(An)+ -> CMPM.x (An)+,(An)+)
+   during assembling.
+
+   But ASM-One WILL NOT change your source for these optimizations !!
+   ONLY the assembled code....
+
+   Other optimizations are under construction. Including changing
+   your source.
+
+   Optimizing can take some time if your source is big and a lot has to be
+   optimized. ASM-One has to move your source the be able to add
+   characters to it.
+
+FROM VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "AS_DLC" " The 'AS' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   AS - Activate Source
+
+SYNTAX
+   AS[source-number]
+
+FUNCTION
+   Activates another source (same as F1-F10).
+
+INPUTE
+   [source-number], can be in the range of 0 - 9.
+
+RESULT
+   The specified source is activated.
+
+FROM VERSION
+   V1.25
+
+@ENDNODE
+
+@NODE "B_DLC" " The 'B' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   B - Bottom of source
+
+SYNTAX
+   B
+
+FUNCTION
+   With this command you will go to the bottom of the source.
+
+RESULT
+   When you go to the editor again, you will be at the bottom of
+   the source.
+
+REMARKS
+   When your source is longer than 65535 lines, ASM-One will not go
+   to the bottom of your source. This is due to the fact that the
+   number of lines is calculated in WORD size.
+
+FROM VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "BM_DLC" " The 'BM' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   BM - Binary Monitor
+
+SYNTAX
+   BM[address/label]
+
+FUNCTION
+   You will jump to the monitor starting at the specified address
+   or label. If you didn't specify an address or label, the Monitor
+   will disassemble memory from address $0.
+
+INPUT
+   Address or label or nothing.
+
+RESULT
+   Memory displayed as binary in the Monitor.
+
+REMARKS
+   If you want to a label from your source you first have to assemble
+   your source, otherwise ASM-One will not recognize the label.
+
+FROM VERSION
+   V1.15
+
+
+SEE ALSO
+   @{" The '@B' DLC " LINK "@B_DLC"}, @{" The Monitor " LINK "monitor"}
+
+@ENDNODE
+
+@NODE "BS_DLC" " The 'BS' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   BS - Bootblock Simulator
+
+SYNTAX
+   BS
+
+FUNCTION
+   Allows you to simulate a BootBlock.
+
+INPUT
+   BEG>  Start of the CODE in your bootblock.
+
+RESULT
+   At address/label specified by BEG> the code from your
+   bootblock will start.
+
+   In other words: ASM-One will start at that address/label.
+   All ather stuff in front of it will be forgotten.
+
+EXAMPLE
+   Boot:           DC.B        "DOS",0
+                   dc.l        0          ; for checksum
+                   dc.l        880        ; root block
+   Bootstart:      move.l      ...
+                   lea         ...
+                   ...         ...
+                   rts
+
+   Would be assembled and started at Bootstart: (so not Boot: !!)
+
+REMARKS
+   Also allows you to assemble source froma certain address/label
+
+FROM VERSION
+   V1.25
+
+@ENDNODE
+
+@NODE "C_DLC" " The 'C' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   C - Copy Memory
+
+SYNTAX
+   C[.size]
+
+FUNCTION
+   Will copy memory from one place to another.
+
+INPUT
+   BEG>  Start address or label
+   END>  End address or label
+   DEST> Destination address or label
+
+   Nothing, or a [.size]. The [.size] can be BYTE (.B), WORD (.W)
+   or LONGWORD (.L).
+
+RESULT
+   Copied memory.
+
+REMARKS
+   Be very CAREFULL with this DLC. Make sure you have saved all
+   your work or otherwise you could destroy it !!!!
+
+FROM VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "CC_DLC" " The 'CC' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   C - Calculate Checksum
+
+SYNTAX
+   CC[drive-number]
+
+FUNCTION
+   Will calculate the Checksum of a floppy disk.
+
+   This is needed if you changed the bootblock of a floppy disk.
+
+INPUT
+   You may specify a Drive number. Legel numbers are:
+
+   0: DF0
+   1: DF1
+   2: DF2
+   3: DF3
+
+   DF0 is default, so if you don't specify a Drive number, the
+   Checksum of the disk in DF0 will be calculated.
+
+RESULT
+   A calculated Checksum.
+
+REMARKS
+   Disks NEED a legal Checksum, or the Amiga will not BOOT from them.
+
+FROM VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "CD_DLC" " The 'CD' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   CD - Create directory
+
+SYNTAX
+   CD [directory-name]
+
+FUNCTION
+   Will create a new directory without leaving ASM-One.
+
+INPUT
+   A [directory-name]
+
+   If none given, ASM-One will ASK for one:
+
+   DIRECTORYNAME>
+
+RESULT
+   If succesfull, the directory will be created. If not, it
+   will not be created B-)
+
+REMARKS
+   ASM-One will create the directory in the current directory
+   (unless an assign or drive label is used, ofcourse). Check
+   where you are with @{" The 'V' DLC " LINK "V_DLC"}.
+
+FROM VERSION
+   V1.06
+
+@ENDNODE
+
+@NODE "CS_DLC" " The 'CS' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   CS - Create Sinus
+
+SYNTAX
+   CS
+
+FUNCTION
+   Will create a sinus at the specified memory address.
+
+INPUT
+  DEST>          Memory destination adress
+  BEG>           Begin angle
+  END>           End angle
+  AMOUNT>        Number of values generated
+  AMPLITUDE>     Amplitude
+  YOFFSET>       Yoffset
+  SIZE>          (B)ytes / (W)ords / (L)ongwords
+  MULTIPLIER>    Afterwards value multiplier (0 = 1)
+  HCORRECTION>   Half step correction (Against irritating ticks)
+  RCORRECTION>   ROUND instead of INT (0,7 = 1 instead of 0)
+
+RESULT
+   A Sinus.
+
+FROM VERSION
+   V1.05
+
+@ENDNODE
+
+@NODE "D_DLC" " The 'D' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   D - Edit Disassembled Memory
+
+SYNTAX
+   D[address/label]
+
+FUNCTION
+   You will jump to the monitor starting at the specified address
+   or label. If you didn't specify an address or label, the Monitor
+   will disassemble memory from address $0.
+
+INPUT
+   Address or label or nothing.
+
+RESULT
+   Disassembled memory in the Monitor.
+
+REMARKS
+   If you want to disassemble your source (by using a label) you
+   first have to assemble your source, otherwise ASM-One will not
+   recognize the label.
+
+FROM VERSION
+   V1.01
+
+
+SEE ALSO
+   @{" The '@D' DLC " LINK "@D_DLC"}, @{" The Monitor " LINK "monitor"}
+
+@ENDNODE
+
+@NODE "E_DLC" " The 'E' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   E - Load External binaries
+
+SYNTAX
+   E[number]
+
+FUNCTION
+   Loads the External binaries which where defined in the source
+   by @{" >EXTERN " LINK "Directive.Guide/dir_EXTERN"}.
+
+   Loads the External binary with the specified [number] if a number
+   was specified by @{" >EXTERN " LINK "Directive.Guide/dir_EXTERN"}.
+
+RESULT
+   The External binaries will be loaded at the specified addresse(s).
+
+REMARKS
+   This command is here for backwards compatibility with SEKA. It's
+   better (and saver) to use @{" INCBIN " LINK "Directive.Guide/dir_INCBIN"} for including binaries,
+   becose EXTERN will load binaries at an ABSOLUTE memory address, while
+   INCBIN will load binaries at a RELATIVE address.
+
+FROM VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "EL_DLC" " The 'EL' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   EL - Extend Labels
+
+SYNTAX
+   EL
+
+FUNCTION
+   Will put a prefix or postfix to ALL labels in the current source:
+
+INPUT
+   Extend Labels with> Characters to extend labels with
+   Prefix (Y/N)>       Y = Prefix, N = Postfix
+   Pass 1..
+   Pass 2..
+   ** End of File
+
+RESULT
+   New labels
+
+REMARK
+   This is a very slow procedure, so be patient.
+
+   Y will generate a Prefix, any other answer a Postfix.
+
+FROM VERSION
+   V1.25
+
+BUGS
+   There is now way back after you entered the 'Extend labels with>'.
+
+@ENDNODE
+
+@NODE "F_DLC" " The 'F' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   F - Fill Memory
+
+SYNTAX
+   F
+
+FUNCTION
+   Will FILL the specified memory with the specified value.
+
+INPUT
+   BEG>  Start address or label
+   END>  End address or label
+   DATA> Data to fill memory with
+
+RESULT
+   A filled part of memory.
+
+REMARKS
+   DATA can only by a BYTE.
+
+   Be EXTREMELY carefull with this DLC, becose it could trash your
+   memory.
+
+FROM VERSION
+   V1.01
+
+BUGS
+   ASM-One will accept any type of DATA (ASCII, HEX, Octall, Decimal),
+   but will ALWAYS take the last BYTE to fill the memory with.
+
+   ASM-One will not warn you if you use other sizes than BYTE.
+
+@ENDNODE
+
+@NODE "G_DLC" " The 'G' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   G - Start executing at Address untill BREAKPOINT reached
+
+SYNTAX
+   G[address/label]
+
+FUNCTION
+   Will start program at address/label, untill the breakpoint
+   is reached
+
+INPUT
+   An address or label. And if you wish, a breakpoint.
+
+RESULT
+   How the program effected the registers. And maybe an error.
+
+REMARKS
+   If NO address or label is given, ASM-One will start at address $0,
+   this will most certainly crash your Amiga !!!!
+
+FROM VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "H_DLC" " The 'H' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   H - Edit Memory in HEX
+
+SYNTAX
+   H[address/label]
+
+FUNCTION
+   Will switch to the Monitor in HEX format.
+
+   See @{" The Monitor " LINK "monitor"} for more information.
+
+FROM VERSION
+   V1.01
+
+SEE ALSO
+   @{" The '@H' DLC " LINK "@H_DLC"}, {@" The Monitor " LINK "monitor"}
+
+@ENDNODE
+
+@NODE "I_DLC" " The 'I' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   I - Insert Source
+
+SYNTAX
+   I [filename]
+
+FUNCTION
+   Will insert the selected source.
+
+   If no filename is given, and reqtools is enabled, a file
+   requester will show up to allow you to select a file
+   to insert.
+
+   The new file will be inserted at the location of the
+   cursor in the current source.
+
+RESULT
+   An inserted source at the location of your cursor.
+
+FROM VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "IB_DLC" " The 'IB' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   IB - Insert Binary
+
+SYNTAX
+   IB
+
+FUNCTION
+   Will allow you to insert binary values as DC.B's into
+   the source, starting at the current location of the cursor.
+
+INPUT
+   BEG>  Starting Address or Label
+   END>  Ending Address or Label
+
+RESULT
+   Inserted DC.B's at the location of your cursor.
+
+FROM VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "ID_DLC" " The 'ID' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   ID - Insert Disassembly
+
+SYNTAX
+   ID
+
+FUNCTION
+   Will allow you to insert disassembled memory as source into
+   the source, starting at the current location of the cursor.
+
+INPUT
+   BEG>  			Starting Address or Label
+   END>  			Ending Address or Label
+   Remove unused labels (Y/N)?	Y = Yes, No = No
+
+RESULT
+   Inserted disassembled memory at the location of your cursor.
+
+   If you don't remove the unused labels, every line will be preceded
+   by a label.
+
+   Y will remove the unused labels, they are not removed otherwise.
+
+FROM VERSION
+   V1.01
+
+BUGS
+   At the 'Remove unused labels (Y/N)?' question, there is no way back !!
+
+@ENDNODE
+
+@NODE "IH_DLC" " The 'IH' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   IH - Insert HEX lines
+
+SYNTAX
+   IH
+
+FUNCTION
+   Will allow you to insert hexadecimal values as DC.B's into
+   the source, starting at the current location of the cursor.
+
+INPUT
+   BEG>  Starting Address or Label
+   END>  Ending Address or Label
+
+RESULT
+   Inserted DC.B's at the location of your cursor.
+
+FROM VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "IN_DLC" " The 'IN' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   IN - Insert ASCII lines
+
+SYNTAX
+   IN
+
+FUNCTION
+   Will allow you to insert ASCII values as DC.B's into
+   the source, starting at the current location of the cursor.
+
+INPUT
+   BEG>  Starting Address or Label
+   END>  Ending Address or Label
+
+RESULT
+   Inserted DC.B's at the location of your cursor.
+
+FROM VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "IS_DLC" " The 'IS' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   IS - Insert Sinus
+
+SYNTAX
+   IS
+
+FUNCTION
+   Will create a sinus at the current cursor location.
+
+INPUT
+  DEST>          Memory destination adress
+  BEG>           Begin angle
+  END>           End angle
+  AMOUNT>        Number of values generated
+  AMPLITUDE>     Amplitude
+  YOFFSET>       Yoffset
+  SIZE>          (B)ytes / (W)ords / (L)ongwords
+  MULTIPLIER>    Afterwards value multiplier (0 = 1)
+  HCORRECTION>   Half step correction (Against irritating ticks)
+  RCORRECTION>   ROUND instead of INT (0,7 = 1 instead of 0)
+
+RESULT
+   A Sinus.
+
+FROM VERSION
+   V1.05
+
+@ENDNODE
+
+@NODE "J_DLC" " The 'J' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   J - Jump to address/label
+
+SYNTAX
+   J[address/label]
+
+FUNCTION
+   Will start program at address/label, as a subroutine.
+
+INPUT
+   An address or label, if non given and the source was assembled,
+   ASM-One will jump to the beginning of the source. If no source
+   is assembled, ASM-One will return immediately.
+
+RESULT
+   How the program effected the registers. And maybe an error.
+
+FROM VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "K_DLC" " The 'K' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   K - Single step n steps
+
+SYNTAX
+   K[steps]
+
+FUNCTION
+   Will start program at address/label, step by step
+
+INPUT
+   Number of steps, if non given , ASM-One will return
+   immediately. If no source is assembled, ASM-One will
+   return immediately.
+
+
+RESULT
+   How the program effected the registers. And maybe an error.
+
+FROM VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "L_DLC" " The 'L' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   L - Locate Text
+
+SYNTAX
+   L[text]
+
+FUNCTION
+   Text search function from the command line.
+
+INPUT
+   Some text. If no text given, L will locate the last
+   text it got with this DLC.
+
+RESULT
+   First line which contains the located text.
+
+FROM VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "M_DLC" " The 'M' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   M - Edit Memory
+
+SYNTAX
+   M[address/label]
+
+FUNCTION
+   Gives you the possibility to edit memory in HEX, Decimal and ASCII
+   at the given address or label. If no address or label given, ASM-One
+   will start at address $0.
+
+RESULT
+   Changed memory.
+
+REMARKS
+   Becarefull, this DLC could ruine your day. Save your source before
+   using this DLC.
+
+FROM VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "N_DLC" " The 'N' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   N - Edit Memory in ASCII
+
+SYNTAX
+   N[address/label]
+
+FUNCTION
+   Gives you the possibility to edit memory in ASCII at the given
+   address or label. If no address or label given, ASM-One will
+   start at address $0.
+
+RESULT
+   Changed memory.
+
+REMARKS
+   Becarefull, this DLC could realy ruine your day. Save your source
+   before using this DLC.
+
+SEE ALSO
+   @{" The Monitor " LINK "monitor"}
+
+FROM VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "O_DLC" " The 'O' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   O - Rescue Source
+
+SYNTAX
+   O
+
+FUNCTION
+   If you by accident did ZS, O will restore your source.
+
+RESULT
+   Your source back.
+
+REMARKS
+   This may also work if the Amiga crashed. Be sure to allocate
+   the same address space (alltough this maybe difficult with
+   the ever increasing size of Memory B-), for the best results.
+
+   You may also use the 'ASM-One Source Rescuer', to try to restore
+   old sources from memory.
+
+FROM VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "P_DLC" " The 'P' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   P - Print Lines
+
+SYNTAX
+   P[number-of-lines]
+
+FUNCTION
+   Gives you the possibility to print a given number of lines
+   from the CURRENT cursor position.
+
+RESULT
+   Source lines on paper.
+
+REMARKS
+   Don't forget to mark 'Printer Dump' in the 'General Preferences'.
+   Or press Ctrl+P.
+
+FROM VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "PS_DLC" " The 'PS' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   PS - Set CLI Parameters
+
+SYNTAX
+   PS
+
+FUNCTION
+   Some programs need CLI input (like DIR) to function properly.
+   With PS you can set the CLI parameters.
+
+INPUT
+   Startup parameters>  The parameters
+
+RESULT
+   The parameters (text) will be stored in a memory location. 
+   Every time you start debugging, the address of this location
+   is put into A0 (just like the real thing B-)
+
+   D0 will contain how many characters there where (including
+   the trailing $a).
+
+REMARKS
+   PS will save the parameters, so you don't have to enter them
+   every time you debug some source. So A0 will ALLWAYS point
+   to the parameters, and D0 will ALLWAYS contain there number
+   (only AFTER you once specified the parameters).
+
+   The text will always be ended with an $a (= RETURN).
+
+   This ONLY works while DEBUGGING !!!
+
+FROM VERSION
+   V1.09
+
+@ENDNODE
+
+@NODE "Q_DLC" " The 'Q' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   Q - Compare Memory
+
+SYNTAX
+   Q
+
+FUNCTION
+   Compare Memory for differences.
+
+INPUT
+   BEG>   Starting address/label of the first block
+   END>   Ending address/label of the first block
+   DEST>  Starting address/label of the second block
+
+RESULT
+   Will show TWO addresses. The first is the address from
+   the byte in the first block that is different from the
+   byte at the address shown as the second address (which
+   should be in the second block).
+
+   If no differences where found, you will get the following
+   message:
+
+   ** Equal Areas
+
+   If any difference was found:
+
+   <first address> <second address>
+   ** NOT Equal Areas
+
+REMARKS
+   You can't specify the end of the second block. That's not
+   strange, since you will compare memory against the first
+   block. Everything that's bigger than the first block,
+   will not be intresting to compare.
+
+   So, the first block will specify the size of the second
+   block (which is: (END-BEG)+DEST).
+
+FROM VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "R_DLC" " The 'R' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   R - Read Source
+
+SYNTAX
+   R [filename]
+
+FUNCTION
+   Read a source in the currently selected source of
+   the editor (with a maximum of ten).
+
+INPUT
+   A [filename], if non given and reqtools is enabled,
+   a requester will show up to allow you to select a
+   source.
+
+RESULT
+   A source to work with in the Editor.
+
+REMARKS
+   ASM-One will read any file, it will NOT check if the
+   file is a source file.
+
+FROM VERSION
+   V1.01, without requester: V1.05
+
+SEE ALSO
+   @{" The 'W' DLC " LINK "W_DLC"}
+
+@ENDNODE
+
+@NODE "RB_DLC" " The 'RB' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   RB - Read Binary
+
+SYNTAX
+   RB [filename]
+
+FUNCTION
+   Read a binary file at the specified address/label.
+
+INPUT
+   BEG>  Starting address or label
+   END>  Ending address or label
+
+   A [filename], if non given and reqtools is enabled,
+   a requester will show up to allow you to select a
+   source.
+
+RESULT
+   A part of your memory filled with a binary file.
+
+REMARKS
+   ASM-One will read any file, it will NOT check if the
+   file is a binary file.
+
+   If a file is longer than speficied by END>, it will
+   be truncated to fit in the specified block.
+
+FROM VERSION
+   V1.01, without requester: V1.05
+
+SEE ALSO
+   @{" The 'WB' DLC " LINK "WB_DLC"}
+
+@ENDNODE
+
+@NODE "RE_DLC" " The 'RE' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   RE - Read Environment (Project)
+
+SYNTAX
+   RE [filename]
+
+FUNCTION
+   Read a complete Environment (Project).
+
+INPUT
+   A [filename], if non given and reqtools is enabled,
+   a requester will show up to allow you to select a
+   source.
+
+RESULT
+   Every one of the 10 source you where working on, is
+   loaded at the same place they where before..
+
+REMARKS
+   This options doesn't work right yet. Many people
+   (including me) have no idea how it realy works. Another
+   problem is that the same thing has different names, which
+   is very confiusing (like Read Environment (RE), Project
+   Info (=P) and Update All (UA)).
+
+SEE ALSO
+   @{" The 'WE' DLC " LINK "WE_DLC"}, @{" The '=P' DLC " LINK "=P_DLC"}, @{" The 'UA' DLC " LINK "UA_DLC"}
+
+FROM VERSION
+   V1.29
+
+BUGS
+   Many... Use at your own risk..
+
+@ENDNODE
+
+@NODE "RO_DLC" " The 'RO' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   RO - Read Object
+
+SYNTAX
+   RO [filename]
+
+FUNCTION
+   Read an object (executable) file at the specified address/label.
+
+INPUT
+   BEG>  Starting address or label
+   END>  Ending address or label
+
+   A [filename], if non given and reqtools is enabled,
+   a requester will show up to allow you to select a
+   source.
+
+RESULT
+   A part of your memory filled with an object file.
+
+   The address where the file was loaded.
+
+REMARKS
+   Memory is allocated for the object file, it's read into
+   memory link if it was a program. The address that's returned
+   is the first line of coding of the loaded binary (and can be
+   executed by jumping to it).
+
+SEE ALSO
+   @{" The 'WO' DLC " LINK "WO_DLC"}
+
+FROM VERSION
+   V1.01, without requester: V1.05
+
+@ENDNODE
+
+@NODE "RS_DLC" " The 'RS' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   RS - Read Sector(s) from floppy disk
+
+SYNTAX
+   RS[drive-number]
+
+FUNCTION
+   Read some sectors from the floppy disk which is in the
+   specified drive.
+
+INPUT
+   RAM PTR>   Address/label where the sectors should be placed
+   DISK PTR>  Sector on disk to start with
+   LENGHT>    Number of sectors to read
+
+   You may specify a Drive number. Legel numbers are:
+
+   0: DF0
+   1: DF1
+   2: DF2
+   3: DF3
+
+   DF0 is default, so if you don't specify a Drive number, the
+   sectors will be read from the disk in DF0.
+
+RESULT
+   The sectors read from the disk will be located at the specified
+   address or label.
+
+REMARKS
+   The Amiga floppy disk (880 Kb formatted) has 1760 sectors.
+   Each sectors is 512 bytes in size.
+
+SEE ALSO
+   @{" The 'WS' DLC " LINK "WS_DLC"}
+
+FROM VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "RT_DLC" " The 'RT' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   RT - Read Track(s) from floppy disk
+
+SYNTAX
+   RT[drive-number]
+
+FUNCTION
+   Read some tracks from the floppy disk which is in the
+   specified drive.
+
+INPUT
+   RAM PTR>   Address/label where the tracks should be placed
+   DISK PTR>  Track on disk to start with
+   LENGHT>    Number of tracks to read
+
+   You may specify a Drive number. Legel numbers are:
+
+   0: DF0
+   1: DF1
+   2: DF2
+   3: DF3
+
+   DF0 is default, so if you don't specify a Drive number, the
+   tracks will be read from the disk in DF0.
+
+RESULT
+   The tracks read from the disk will be located at the specified
+   address or label.
+
+REMARKS
+   The Amiga floppy disk (880 Kb formatted) has 80 tracks.
+   Each divided into 11 sectors.
+
+SEE ALSO
+   @{" The 'WT' DLC " LINK "WT_DLC"}
+
+FROM VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "S_DLC" " The 'S' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   S - Search Memory
+
+SYNTAX
+   S
+
+FUNCTION
+   Search the specified block of memory for the specified
+   data.
+
+INPUT
+   BEG>   Starting address/label of the memory block
+   END>   Ending address/label of the memory block
+   DATA>  Data to be searched for
+
+   To search more specific, DATA kan ben specified with a
+   size:
+
+   .B = Byte
+   .W = Word
+   .L = Longword
+
+RESULT
+   If the data was found, every address at which it was found
+   will be displayed.
+
+REMARKS
+   Any DATA is allowed: ASCII, Hex or decimal.
+
+   For anyone interested, this DLC is perfect for cracking
+   save-games B-)
+
+FROM VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "T_DLC" " The 'T' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   T - Top of Source
+
+SYNTAX
+   T[line-number]
+
+FUNCTION
+   Jumps to the top of your source, or the specified line-
+   number.
+
+INPUT
+   Nothing or  al line number.
+
+RESULT
+   See 'FUNCTION'.
+
+REMARKS
+   ASM-One will not jump to the top of the source if the
+   source has more than 65535 lines. This is becose ASM-One
+   stores the number of lines in WORDs..
+
+SEE ALSO:
+   @{" The 'B' DLC " LINK "B_DLC"}
+
+FROM VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "U_DLC" " The 'U' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   U - Update current source in the Editor
+
+SYNTAX
+   U
+
+FUNCTION
+   If the source has changed, ASM-One will update your
+   source.
+
+RESULT
+   An updated source.
+
+REMARKS
+   ASM-One will check if the source if still there. If not,
+   ASM-Onew ill update the source anyway.
+
+FROM VERSION
+   V1.09, Deleted-source check from: V1.3x and up
+
+@ENDNODE
+
+@NODE "UA_DLC" " The 'UA' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   UA - Update ALL source currently open
+
+SYNTAX
+   UA
+
+FUNCTION
+   Will update all changed sources open at the moment.
+
+RESULT
+   Updated sources.
+
+REMARKS
+   This function is not completely prefect yet. And it may
+   have something to do with the Project and Environment
+   DLCs
+
+SEE ALSO
+   @{" The 'RE' DLC " LINK "RE_DLC"}, @{" The 'WE' DLC " LINK "WE_DLC"}, @{" The '=P' DLC " LINK "=P_DLC"}
+
+FROM VERSION
+   V1.29
+
+@ENDNODE
+
+@NODE "V_DLC" " The 'V' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   V - Change current directory or view a directory
+
+SYNTAX
+   V [directory-name]
+
+FUNCTION
+   You can change your current working directory, or see
+   the contents of a specified directory.
+
+INPUT
+   A [directory-name], if none given, ASM-One will show
+   you the current directory.
+
+RESULT
+   New working directory, or contents of the specified
+   directory.
+
+REMARKS
+   If you do 'V' more than once in a directory, ASM-One will
+   show the directory from memory the second and following
+   times. The directory is only realy read the first time.
+
+FROM VERSION
+   V1.08
+
+@ENDNODE
+
+@NODE "W_DLC" " The 'W' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   W - Write source currently in the Editor
+
+SYNTAX
+   W [file-name]
+
+FUNCTION
+   Will write the current source, including the 10 Marks.
+
+INPUT
+   A [file-name], if non given and reqtools enabled, a
+   file requester will open to allow you to specify the file
+   name.
+
+RESULT
+   If good, the file will be written.
+
+SEE ALSO
+   @{" The 'R' DLC "LINK "R_DLC"}
+
+FROM VERSION
+   V1.01, without requester: V1.05
+
+@ENDNODE
+
+@NODE "WB_DLC" " The 'WB' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   WB - Write binary
+
+SYNTAX
+   WB [file-name]
+
+FUNCTION
+   Will write binary data to the specified file.
+
+INPUT
+   BEG>  Starting address/label of the binary
+   END>  Ending address/label of the binary
+
+   A [file-name], if non given and reqtools enabled, a
+   file requester will open to allow you to specify the file
+   name.
+
+RESULT
+   If good, the file will be written.
+
+REMARKS
+   You can write an assembled source as binary, but you can
+   also save blocks of memory as binary.
+
+SEE ALSO
+   @{" The 'RB' DLC "LINK "RB_DLC"}
+
+FROM VERSION
+   V1.01, without requester: V1.05
+
+@ENDNODE
+
+@NODE "WE_DLC" " The 'WE' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   WE - Write Environment (Project)
+
+SYNTAX
+   WE [file-name]
+
+FUNCTION
+   Will save all sources currently loaded in ASM-One.
+
+INPUT
+   A [file-name], if non given and reqtools enabled, a
+   file requester will open to allow you to specify the file
+   name.
+
+RESULT
+   If good, the file (with extension .Aprj) will be written.
+
+REMARKS
+   Doesn't work correct yet.. Use at own risk.
+
+SEE ALSO
+   @{" The 'RE' DLC " LINK "RE_DLC"}, @{" The '=P' DLC " LINK "=P_DLC"}, @{" The 'UA' DLC " LINK "UA_DLC"}
+
+FROM VERSION
+   V1.29
+
+@ENDNODE
+
+@NODE "WL_DLC" " The 'WL' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   WL - Write Link file
+
+SYNTAX
+   WL [file-name]
+
+FUNCTION
+   Will save an assembled source as an Link file, to be
+   linked with an (for example: C) compiler.
+
+INPUT
+   A [file-name], if non given and reqtools enabled, a
+   file requester will open to allow you to specify the file
+   name.
+
+RESULT
+   If good, the file will be written.
+
+REMARKS
+   The Link file is ALink and BLink compatible.
+
+FROM VERSION
+   V1.29
+
+BUGS
+   Seems to be giving problems with it's SECTIONs !!
+
+@ENDNODE
+
+@NODE "WN_DLC" " The 'WN' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   WN - Write Source WITHOUT Marks
+
+SYNTAX
+   WN [file-name]
+
+FUNCTION
+   Will save the source currently in the editor as a plane
+   ASCII file.
+
+INPUT
+   A [file-name], if non given and reqtools enabled, a
+   file requester will open to allow you to specify the file
+   name.
+
+RESULT
+   If good, the file will be written.
+
+FROM VERSION
+   V1.3x
+
+@ENDNODE
+
+@NODE "WO_DLC" " The 'WO' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   WO - Write Object
+
+SYNTAX
+   WO [file-name]
+
+FUNCTION
+   Will save an assembled source as an object (executable).
+
+INPUT
+   A [file-name], if non given and reqtools enabled, a
+   file requester will open to allow you to specify the file
+   name.
+
+RESULT
+   If good, the file will be written.
+
+SEE ALSO
+   @{" The 'RO' DLC " LINK "RO_DLC"}
+
+FROM VERSION
+   V1.01, without requester: V1.05
+
+@ENDNODE
+
+@NODE "WP_DLC" " The 'WP' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   WP - Write Preferences
+
+SYNTAX
+   WP
+
+FUNCTION
+   Will save the current setting of the Preferences to the
+   ASM-One.pref file.
+
+RESULT
+   New ASM-One.pref file.
+
+REMARKS
+   This action CAN NOT be reversed !!! So take care..
+
+FROM VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "WS_DLC" " The 'WS' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   WS - Write Sector(s) to floppy disk
+
+SYNTAX
+   RS[drive-number]
+
+FUNCTION
+   Write specified sectors to the floppy disk which is in the
+   specified drive.
+
+INPUT
+   RAM PTR>   Starting address/label of data to be written
+   DISK PTR>  Sector on disk to start with
+   LENGHT>    Number of sectors to read
+
+   You may specify a Drive number. Legel numbers are:
+
+   0: DF0
+   1: DF1
+   2: DF2
+   3: DF3
+
+   DF0 is default, so if you don't specify a Drive number, the
+   sectors will be written to the disk in DF0.
+
+REMARKS
+   The Amiga floppy disk (880 Kb formatted) has 1760 sectors.
+   Each sectors is 512 bytes in size.
+
+   Don't forget to use @{" The 'CC' DLC " LINK "CC_DLC"} if you have written
+   something over the bootblock (sector 0 and 1), if you want your
+   disk to be bootabel...
+
+FROM VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "WT_DLC" " The 'WT' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   WT - Write Track(s) to floppy disk
+
+SYNTAX
+   WT[drive-number]
+
+FUNCTION
+   Write specified tracks to the floppy disk which is in the
+   specified drive.
+
+INPUT
+   RAM PTR>   Starting address/label of data to be written
+   DISK PTR>  Track on disk to start with
+   LENGHT>    Number of tracks to read
+
+   You may specify a Drive number. Legel numbers are:
+
+   0: DF0
+   1: DF1
+   2: DF2
+   3: DF3
+
+   DF0 is default, so if you don't specify a Drive number, the
+   tracks will be written to the disk in DF0.
+
+REMARKS
+   The Amiga floppy disk (880 Kb formatted) has 80 tracks.
+   Each divided into 11 sectors.
+
+   Don't forget to use @{" The 'CC' DLC " LINK "CC_DLC"} if you have written
+   something over the bootblock (sector 0 and 1), if you want your
+   disk to be bootabel...
+
+FROM VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "X_DLC" " The 'X' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   X - Look at/Change registers
+
+SYNTAX
+   X[register]
+
+FUNCTION
+   Allows you to change the contents of a register.
+
+INPUT
+   If no [register] given, ASM-One will show the values of the
+   registers. Changes from the last time you saw the registers
+   are printed inverted.
+
+RESULT
+   Changed registers (they now look like you intended them
+   to look B-)
+
+REMARKS
+   Be very carefull, save your source before using this DLC.
+
+FROM VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "Y_DLC" " The 'Y' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   Y - Execute DOS program
+
+SYNTAX
+   Y [file-name]
+
+FUNCTION
+   Allows you to start DOS programs from within ASM-One.
+
+INPUT
+   A [file-name], if non given and reqtools enabled, a
+   file requester will open to allow you to specify the file
+   name.
+
+RESULT
+   New DOS program started.
+
+REMARKS
+   Very simple version of the DOS 'RUN' command.
+
+FROM VERSION
+   V1.07
+
+@ENDNODE
+
+@NODE "ZA_DLC" " The 'ZA' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   ZA - Zap Auto-Alloc memory
+
+SYNTAX
+   ZA 
+
+FUNCTION
+   Will remove any memory that was Automatically allocated by
+   ASM-One during the assembly of a source.
+
+RESULT
+   More free memory.
+
+REMARKS
+   Free's memory allocated during assembly. Memory is automatically
+   allocated if you have the 'Auto-Alloc' option in the Preferences
+   ON.
+
+FROM VERSION
+   V1.29
+
+@ENDNODE
+
+@NODE "ZB_DLC" " The 'ZB' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   ZB - Zap Breakpoints
+
+SYNTAX
+   ZB 
+
+FUNCTION
+   Zap Breakpoint set with @{" The 'G' DLC " LINK "G_DLC"}
+
+RESULT
+   No more breakpoints
+
+FROM VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "ZF_DLC" " The 'ZF' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   ZF - Zap File
+
+SYNTAX
+   ZF [file-name]
+
+FUNCTION
+   Delete specified file.
+
+INPUT
+   A [file-name], if non given and reqtools enabled, a
+   file requester will open to allow you to specify the file
+   name.
+
+RESULT
+   Your file is GONE !!
+
+REMARK
+   NO questions ar asked..
+
+FROM VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "ZI_DLC" " The 'ZI' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   ZI - Zap Includes
+
+SYNTAX
+   ZI 
+
+FUNCTION
+   Remove all loaded includes.
+
+RESULT
+   No more resident includes.
+
+REMARK
+   Files which are loaded with @{" INCBIN " LINK "Directive.Guide/dir_INCBIN"} will stay
+   resident. If you have changed some of your include files, you will
+   have to use this DLC to remove the resident includes, so ASM-One will
+   read your changed includes.
+
+FROM VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "ZS_DLC" " The 'ZS' DLC "
+@NEXT "DLCs"
+@PREV "DLCs"
+@TOC "DLCs"
+
+NAME
+   ZS - Zap Source
+
+SYNTAX
+   ZS 
+
+FUNCTION
+   Remove source currently in the editor.
+
+RESULT
+   An empty editor (only current source !!)
+
+REMARK
+   You will get a requester, besides @{" The 'O' DLC " LINK "O_DLC"} it's your last
+   change to SAVE your source...
+
+FROM VERSION
+   V1.01
+
+@ENDNODE
+
+@NODE "registernames" "Register Names & Private Symbols"
+@NEXT "registernames"
+@PREV "registernames"
+@TOC  "Main"
+
+                     Register Names & Private Symbols
+                     --------------------------------
+
+Some Names are used by ASM-One itself, and may NOT be used by
+the programmers.
+
+Using those symbols will generaly generate the following error:
+
+	@{" Reserved Word " LINK "err_resword"}
+
+Most registers are only valid on certain processors. Check the
+@{" Valid Register Tabel " LINK "valregtab"} on which processor registers are valid.
+
+	Register Names:
+
+	An	- Address Register (n stands for a number from 0 to 7)
+	Dn	- Data Register (n stands for a number from 0 to 7)
+	FPn	- FPU Register (n stands for a number from 0 to 7)
+	BADn	- MMU Register (n stands for a number from 0 to 7)
+	BACn	- MMU Register (n stands for a number from 0 to 7)
+	SR	- Status Register
+	CCR	- Condition Code Register
+	USP	- User Stack Pointer
+	SFC	- Source Function Code Register
+	DFC	- Destination Function Code Register
+	CACR	- Cache Control Register
+	CAAR	- Cache Address Register
+	TC	- Translation Control Register
+	ITT0	- Instruction Transparant Translation Register 0
+	ITT1	- Instruction Transparant Translation Register 1
+	IACR0	- Instruction Access Control Register 0
+	IACR1	- Instruction Access Control Register 1
+	DTT0	- Data Transparant Translaton Register 0
+	DTT1	- Data Transparant Translation Register 1
+	DACR0	- Data Access Control Register 0
+	DACR1	- Data Access Control Register 1
+	FPIAR	- Floating-Point Instruction Address Register
+	FPSR	- Floating-Point Status Register
+	FPCR	- Floating-Point Control Register
+	VBR	- Vector Base Register
+	MSP	- Master Stack Pointer Register
+	ISP	- Interrupt Stack Pointer Register
+	URP	- User Root Pointer Register
+	SRP	- Supervisor Root Pointer Register
+	DRP	- DMA Root Pointer Register
+	CRP	- CPU Root Pointer Register
+	CAL	- Current Access Level Register
+	VAL	- Valid Access Level Register
+	SCC	- Stack Change Control Register
+	AC	- Access Control Register	(AC0 en AC1 ?)
+	MMUSR	- Memory Management Unit Status Register
+	TT0	- Transparent Translation Register 0
+	TT1	- Transparent Translation Register 1
+	PSR	- PMMU Status Register
+	PCSR	- PMMU Control Register
+	PCR	- Processor Configuration Register
+	BUSCR	- Bus Control Register
+	(S)SP	- Supervisor Stack Pointer Register
+
+	Private Symbols:
+
+	ZPC	- Zero PC Notation
+	FileSize- Used to determine the @{" FilzeSize() " LINK "Directive.Guide/dir_FileSize"}
+
+@ENDNODE
+
+@NODE "valregtab" "Valid Register Tabel"
+@NEXT "valregtab"
+@PREV "valregtab"
+@TOC  "Main"
+
+Some registers have the same meaning for different processors. It's important
+that you use the registers as descriped here, becose ASM-One will generate
+warnings & errors according to the used registers in some cases (mainly for the
+MMU) rather than the processor choosen in the Preferences.
+
+	|	|	|	|	|	|	|	| 68881	|
+	| 68000 | 68010	| 68020	| 68030	| 68040	| 68060	| 68851	| 68882	|
+  ------+-------+-------+-------+-------+-------+-------+-------+-------+
+  An	|   x	|   x	|   x	|   x	|   x	|   x	|	|	|
+  Dn	|   x	|   x	|   x	|   x	|   x	|   x	|	|	|
+  SR	|   x	|   x	|   x	|   x	|   x	|   x	|	|	|
+  CCR	|   x	|   x	|   x	|   x	|   x	|   x	|	|	|
+  USP	|   x	|   x	|   x	|   x	|   x	|   x	|	|	|
+  ISP	|   x	|   x	|   x	|   x	|   x	|	|	|	|
+  (S)SP	|   x	|   x	|   x	|   x	|   x	|   x	|	|	|
+  VBR	|	|   x	|   x	|   x	|   x	|   x	|	|	|
+  SFC	|	|   x	|   x	|   x	|   x	|   x	|	|	|
+  DFC	|	|   x	|   x	|   x	|   x	|   x	|	|	|
+  CACR	|	|	|   x	|   x	|   x	|   x	|	|	|
+  CAAR	|	|	|   x	|   x	|   x	|   x	|	|	|
+  MSP	|	|	|   x	|   x	|   x	|	|	|	|
+  TC	|	|	|	|   x	|   x	|   x	|   x	|	|
+  URP	|	|	|	|   x	|   x	|   x	|   x	|	|
+  SRP	|	|	|	|   x	|   x	|   x	|   x	|	|
+  ITT0	|	|	|	|	|   x	|   x	|	|	| Not 68EC040
+  ITT1	|	|	|	|	|   x	|   x	|	|	| Not 68EC040
+  DTT0	|	|	|	|	|   x	|   x	|	|	| Not 68EC040
+  DTT1	|	|	|	|	|   x	|   x	|	|	| Not 68EC040
+  FPIAR	|	|	|	|	|   x	|   x	|	|   x	|
+  FPSR	|	|	|	|	|   x	|   x	|	|   x	|
+  FPCR	|	|	|	|	|   x	|   x	|	|   x	|
+  FPn	|	|	|	|	|   x	|   x	|	|   x	|
+  PCR	|	|	|	|	|	|   x	|	|	|
+  BUSCR	|	|	|	|	|	|   x	|	|	|
+  MMUSR	|	|	|	|   x	|	|	|	|	|
+  TT0	|	|	|	|   x	|	|	|	|	|
+  TT1	|	|	|	|   x	|	|	|	|	|
+  CRP	|	|	|	|   x	|	|	|   x	|	|
+  BADn	|	|	|	|	|	|	|   x	|	|
+  BACn	|	|	|	|	|	|	|   x	|	|
+  DRP	|	|	|	|	|	|	|   x	|	|
+  CAL	|	|	|	|	|	|	|   x	|	|
+  VAL	|	|	|	|	|	|	|   x	|	|
+  SCC	|	|	|	|	|	|	|   x	|	|
+  AC	|	|	|	|	|	|	|   x	|	|
+  PSR	|	|	|	|	|	|	|   x	|	|
+  PCSR	|	|	|	|	|	|	|   x	|	|
+  AC0	|	|	|	|	|	|	|	| 	| 68EC030
+  AC1	|	|	|	|	|	|	|	| 	| 68EC030
+  ACUSR	|	|	|	|	|	|	|	| 	| 68EC030
+  IACR0	|	|	|	|	|	|	|	| 	| 68EC040
+  IACR1	|	|	|	|	|	|	|	| 	| 68EC040
+  DACR0	|	|	|	|	|	|	|	| 	| 68EC040
+  DACR1	|	|	|	|	|	|	|	| 	| 68EC040
+
+
+Note: ASM-One doesn't support the LC and EC versions of the 68030, 68040
+and the 68060.
+
+@ENDNODE
+
+@NODE "asm_preffile" "ASM-One.Pref File"
+@NEXT "asm_preffile"
+@PREV "asm_preffile"
+@TOC  "Main"
+
+			ASM-One.Pref File
+			-----------------
+
+The ASM-One.Pref file holds all the preferences that can be set and
+saved.
+
+Sometimes it's handy to know WHAT it all means, so you can change
+preferences without starting ASM-One (or maybe you changed something
+so you can't start ASM-One anymore B-)
+
+ASM-One also has some default preferences build-in. These are the
+preferences I (Boushh) use myself. They are ONLY used when no
+ASM-One.Pref file was found (it should be located in the ENVARC:
+directory).
+
+Once you made a workable ASM-One.Pref file, make a copy ! It may
+come in handy..
+
+Here are the possible codes that could be in your ASM-One.Pref file:
+(a PLUS sign means: Active, a MINUS sign means: INactive).
+
+RS
+--
+
+Rescue Source - Believe it or not, but with this on ASM-One will
+try to save your source, so you can retrieve it using the @{" O " LINK "O_DLC"}
+DLC.
+
+L7
+--
+
+Level 7 - Will start ASM-One's own Level 7 code. A level 7 interrupt
+can only be activated by adding external/extra hardware to your
+Amiga (like the Action Replay Cartridge).
+
+NL
+--
+
+NumLock - If ON, the nummeric keypad will function like cursor keys:
+
+	7 - Top		8 - Up		9 - Page Up
+	4 - Left	5 - Center	6 - Right
+	1 - Bottum	2 - Down	3 - Page Down
+
+AA
+--
+
+AutoAlloc - if ON. ASM-One will locate the CORRECT memory for your
+section. If OFF: your sections will be placed where there is room in
+memory. It's a good thing to set this option ON, specialy when you
+work with ChipMem.
+
+RL
+--
+
+ReqTools - If ON, ASM-One will use the ReqTools.library for all it's
+requesters. If OFF, you will save some 8 Kb of memory.
+
+XR
+--
+
+Extended ReqTools - If ON, also the search/replace functions will
+have requesters (instead of being in the menubar).
+
+PD
+--
+
+Printer Dump - This option will activate the dumping of text to
+the printer. This includes the DLC's.
+
+LF
+--
+
+List File - If ON, will list the complete file, with line numbers,
+addresses, the assembled code, the source as comment and a list of all
+used symbols.
+
+PG
+--
+
+Paging - If ON, will start a new page after the previous on was full.
+
+
+HP
+--
+
+Halt Page - If ON, will stop after the screen has been filled with data
+(in combination with Paging).
+
+AE
+--
+
+All Errors - If ON, will assemble, regardless of the errors found.
+ASM-One will keep the location of 100 errors/warnings, after assembly
+you can reach the with Amiga+e.
+
+DB
+--
+
+Debug - If ON, could spare time when debugging. Because ASM-One will
+NOT reassemble the source if nothing was changed.
+
+IL
+--
+
+InterLaced - If ON, will activate InterLace (not fully functional
+anymore in R399e, will be skipped in later releases).
+
+REMARK: No longer supported after V1.46 !!!
+
+1B
+--
+
+One Bitplane - If ON, will start ASM-One with only ONE bitplane, to
+save memory (As of ASM-One V1.45, this item has no function any more.
+You also can no longer set it in the Environment Preferences).
+
+REMARK: No longer supported after V1.46 !!
+
+CB
+--
+
+Clipboard Support - If ON, Copies and Pastes will be send/retreived
+from the clipboard so you can share your stuff with other applications
+and visa versa.
+
+Functional since V1.45
+
+.S
+--
+
+Source .S - If ON, will use the specified source-extension when
+writing source.
+
+CW
+--
+
+Close WorkBench - If ON, ASm-One will try to close the WorkBench to
+save memory.
+
+LN
+--
+
+Line Numbers - If ON, shows line numbers.
+
+AI
+--
+
+Auto Indent - If ON, will set the tabs for you.
+
+L:
+--
+
+Label : - If ON, ALL labels have to be ending with a colon.
+
+DA
+--
+
+DisAssemble - If ON, will show the next line you want to debug,
+disassembled in the debugger.
+
+SS
+--
+
+ShowSource - If ON, will change the debugger in a SourceLevel Debugger.
+If OFF, the actual assembled code will be shown in the debugger,
+instead of the Source.
+
+OA
+--
+
+Only ASCII - If ON, will skip unreadble characters when viewing
+memory in ASCII.
+
+UL
+--
+
+UpperCase = LowerCase - If ON, ASM-One will make no difference
+between Upper- and LowerCase. Should be OFF when using the
+Official Amiga includes !!!!
+
+;C
+--
+
+;Comment - If ON, comments HAVE to be preceded by a semi-colon.
+
+PI
+--
+
+Progress Indicator - If ON, will show how much ASM-One has
+assembled of your source.
+
+PL
+--
+
+Progress Line - If ON, ASM-One will show which line is assembled.
+
+PS
+--
+
+Startup Parameters - If ON, will allow you to debug sources like
+if they where executed form the CLI with parameters. Use the
+@{" PS " LINK "PS_DLC"} DLC to set the parameters.
+
+RR
+--
+
+Resident Registers - If ON, will make the REGSDATA file resident
+in memory if called upon the first time. If OFF, the REGSDATA file
+will be closed after each action (see the @{" =R " LINK "=R_DLC"} DLC).
+
+AU
+--
+
+Update Check - If ON, ASM-One will only update sources that have
+been changed. If OFF, ASM-One will ALWAYS update the source.
+
+SM
+--
+
+Save Marks - If ON, will save the 10 marks you can make in the
+source. If this is on, and you want to save a source without marks,
+use the @{" WN " LINK "WN_DLC"} DLC.
+
+FW/PW
+--
+
+Processor Warn - If ON, Processor warns will not be displayed.
+
+FP
+--
+
+FPU Present - If ON, makes ASM-One believe you have a real FPU
+in your Amiga (so ASM-One will skip FPU specific warnings and
+errors).
+
+OD
+--
+
+68020++ Odd Data - If ON, ASM-One will NOT give any errors if
+data (and ONLY data) is at an odd address.
+
+DC
+--
+
+DS Clear - If ON, ASM-One will clear BSS sections for you
+automatically. But remember, the Amiga will NOT clear BSS
+sections for you if you start your program outside ASM-One.
+
+UD
+--
+
+CTRL Up/Down - If ON, using the CTRL key in combination with
+the cursor keys, change there function:
+
+	CTRL Up/Down OFF	CTRL Up/Down ON
+
+Up	One line Up		To the Beginning of the source
+Down	One line Down		To the Bottom of the source
+
+EP
+--
+
+Enable/Permit - If ON, ASM-One will call Enable/Permit before
+executing a program within ASM-One
+
+LD
+--
+
+Libcalls dec - If ON, will show library calls in decimal instead of
+hexadecimal numbers.
+
+KX
+--
+
+Keep X - If ON, ASM-One will try to keep the cursor in the same
+colom when going to another line.
+
+MP
+--
+
+68851 Present - If ON, ASM-One will believe you actualy have
+an 68851 (MMU) on board.
+
+SO
+--
+
+Safety - If ON, there will be NO default option when a requester
+pops up (normaly RETURN will activate the default option).
+
+RD
+--
+
+Realtime Deb - Unkown
+
+WF
+--
+
+WorkBench to Front - If ON, will bring the WorkBench to front when
+you execute a program.
+
+RT
+--
+
+RTG Mode - If ON, ASM-One will support RTG devices (= Gfxboards),
+if OFF, ASM-One will use the Amiga Chipset to display graphics.
+
+Functional since V1.46
+
+!.xxx
+-----
+
+Source Extension: If you use .S, then this is the place to specify
+which extension should be used. The 'xxx' should be the 3 letter
+extension.
+
+*xxxxxxxx
+---------
+
+Default Directory - If specified, ASM-One will change to this
+directory on startup. The 'xxxxxx' should be the directory
+to change too.
+
+|x1x|x2x|x3x|x4x|
+-----------------
+
+Colors - These are the colors used by ASM-One:
+
+1)	Background color 
+2)	Font Color
+3)	Cursor Color
+4)	Inver Cursor color
+
+[CPUx
+-----
+
+Choosen CPU - States the CPU you have choosen in your prefs:
+
+0 = 68000
+1 = 68010
+2 = 68020
+3 = 68030
+4 = 68040
+5 = 68060
+
+[MMUx
+-----
+
+Unknown
+
+^xxxxxx|xxxxxx|xxxxxx|
+----------------------
+
+Selected Screen Mode - First the ScreenMode ID, then the
+screen height, and then the screen width. All in
+hexadecimal.
+
+\<text>
+-------
+
+BootUp string - A string (command(s)) ASM-One will execute
+at startup.
+
+&xxx.font
+---------
+
+Default Font - Specifies the selected font for ASM-One.
+
+
+
+And that where ALL options currently available.
+These options can change in the feature. We don't guarentee
+that an option will be available in the next version of ASM-One
+
+@ENDNODE
+
+@NODE "instructions" "M68000 Family Instruction Set"
+@NEXT "instructions2"
+@PREV "instructions5"
+@TOC  "main"
+
+			M68000 Family Instruction Set
+			-----------------------------
+
+Here is a quick overview of all known instructions.
+
+	      |	      |	      |       |	      |	      |	      | 68881 |	      |
+	      | 68000 | 68010 | 68020 | 68030 | 68040 | 68060 | 68851 | 68882 |
+  ------------+-------+-------+-------+-------+-------+-------+-------+-------+
+  ABCD        |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  ADD         |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  ADDA        |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  ADDI        |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  ADDQ        |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  ADDX        |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  AND         |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  ANDI        |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  ANDI to CCR |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  ANDI to SR¹ |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  ASL, ASR    |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  Bcc         |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  BCHG        |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  BCLR        |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  BFCHG       |       |       |   x   |   x   |   x   |   x   |       |       |
+  BFCLR       |       |       |   x   |   x   |   x   |   x   |       |       |
+  BFEXTS      |       |       |   x   |   x   |   x   |   x   |       |       |
+  BFEXTU      |       |       |   x   |   x   |   x   |   x   |       |       |
+  BFFFO       |       |       |   x   |   x   |   x   |   x   |       |       |
+  BFINS       |       |       |   x   |   x   |   x   |   x   |       |       |
+  BFSET       |       |       |   x   |   x   |   x   |   x   |       |       |
+  BGND        |       |       |       |       |       |       |       |       |
+  BKPT        |       |   x   |   x   |   x   |   x   |   x   |       |       |
+  BRA         |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  BSET        |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  BSR         |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  BTST        |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  CALLM       |       |       |   x   |       |       |       |       |       |
+  CAS, CAS2   |       |       |   x   |   x   |   x   |  x,3  |       |       |
+  CHK         |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  CHK2        |       |       |   x   |   x   |   x   |   3   |       |       |
+  CINV¹       |       |       |       |       |   x   |   x   |       |       |
+  CLR         |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  CMP         |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  CMPA        |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+
+@ENDNODE
+
+@NODE "instructions2" "M68000 Family Instruction Set"
+@NEXT "instructions3"
+@PREV "instructions"
+@TOC  "instructions"
+
+	      |	      |	      |       |	      |	      |	      |       | 68881 |
+	      | 68000 | 68010 | 68020 | 68030 | 68040 | 68060 | 68851 | 68882 |
+  ------------+-------+-------+-------+-------+-------+-------+-------+-------+
+  CMPI        |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  CMPM        |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  CMP2        |       |       |   x   |   x   |   x   |   3   |       |       |
+  cpBcc       |       |       |   x   |   x   |       |       |       |       |
+  cpDBcc      |       |       |   x   |   x   |       |       |       |       |
+  cpGEN       |       |       |   x   |   x   |       |       |       |       |
+  cpRESTORE¹  |       |       |   x   |   x   |       |       |       |       |
+  cpSAVE¹     |       |       |   x   |   x   |       |       |       |       |
+  cpScc       |       |       |   x   |   x   |       |       |       |       |
+  cpTRAPcc    |       |       |   x   |   x   |       |       |       |       |
+  CPUSH¹      |       |       |       |       |   x   |   x   |       |       |
+  DBcc        |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  DIVS        |   x   |   x   |   x   |   x   |   x   |  x,3  |       |       |
+  DIVSL       |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  DIVU        |   x   |   x   |   x   |   x   |   x   |  x,3  |       |       |
+  DIVUL       |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  EOR         |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  EORI        |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  EORI to CCR |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  EORI to SR¹ |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  EXG         |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  EXT         |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  EXTB        |       |       |   x   |   x   |   x   |   x   |       |       |
+  FABS        |       |       |       |       |  x,2  |  x,2  |       |   x   |
+  FSABS, FDABS|       |       |       |       |  x,2  |  x,2  |       |       |
+  FACOS       |       |       |       |       |  2,3  |  2,3  |       |   x   |
+  FADD        |       |       |       |       |  x,2  |  x,2  |       |   x   |
+  FSADD, FDADD|       |       |       |       |  x,2  |  x,2  |       |       |
+  FASIN       |       |       |       |       |  2,3  |  2,3  |       |   x   |
+  FATAN       |       |       |       |       |  2,3  |  2,3  |       |   x   |
+  FATANH      |       |       |       |       |  2,3  |  2,3  |       |   x   |
+  FBcc        |       |       |       |       |  x,2  |  x,2  |       |   x   |
+  FCMP        |       |       |       |       |  x,2  |  x,2  |       |   x   |
+  FCOS        |       |       |       |       |  2,3  |  2,3  |       |   x   |
+  FCOSH       |       |       |       |       |  2,3  |  2,3  |       |   x   |
+  FDBcc       |       |       |       |       |  x,2  |  x,2  |       |   x   |
+  FDIV        |       |       |       |       |  x,2  |  x,2  |       |   x   |
+  FSDIV, FDDIV|       |       |       |       |  x,2  |  x,2  |       |       |
+  FETOX       |       |       |       |       |  2,3  |  2,3  |       |   x   |
+  FETOXM1     |       |       |       |       |  2,3  |  2,3  |       |   x   |
+
+@ENDNODE
+
+@NODE "instructions3" "M68000 Family Instruction Set"
+@NEXT "instructions4"
+@PREV "instructions2"
+@TOC  "instructions"
+
+	      |	      |	      |       |	      |	      |	      |       | 68881 |
+	      | 68000 | 68010 | 68020 | 68030 | 68040 | 68060 | 68851 | 68882 |
+  ------------+-------+-------+-------+-------+-------+-------+-------+-------+
+  FGETEXP     |       |       |       |       |  2,3  |  2,3  |       |   x   |
+  FGETMAN     |       |       |       |       |  2,3  |  2,3  |       |   x   |
+  FINT        |       |       |       |       |  2,3  |  x,2  |       |   x   |
+  FINTRZ      |       |       |       |       |  2,3  |  x,2  |       |   x   |
+  FLOG10      |       |       |       |       |  2,3  |  2,3  |       |   x   |
+  FLOG2       |       |       |       |       |  2,3  |  2,3  |       |   x   |
+  FLOGN       |       |       |       |       |  2,3  |  2,3  |       |   x   |
+  FLOGNP      |       |       |       |       |  2,3  |  2,3  |       |   x   |
+  FMOD        |       |       |       |       |  2,3  |  2,3  |       |   x   |
+  FMOVE       |       |       |       |       |  x,2  |  x,2  |       |   x   |
+  FSMOVE      |       |       |       |       |  x,2  |  x,2  |       |       |
+  FDMOVE      |       |       |       |       |  x,2  |  x,2  |       |       |
+  FMOVECR     |       |       |       |       |  2,3  |  2,3  |       |   x   |
+  FMOVEM      |       |       |       |       |  x,2  | x,2,3 |       |   x   |
+  FMUL        |       |       |       |       |  x,2  |  x,2  |       |   x   |
+  FSMUL, FDMUL|       |       |       |       |  x,2  |  x,2  |       |       |
+  FNEG        |       |       |       |       |  x,2  |  x,2  |       |   x   |
+  FSNEG, FDNEG|       |       |       |       |  x,2  |  x,2  |       |       |
+  FNOP        |       |       |       |       |  x,2  |  x,2  |       |   x   |
+  FREM        |       |       |       |       |  2,3  |  2,3  |       |   x   |
+  FRESTORE¹   |       |       |       |       |  x,2  |  x,2  |       |   x   |
+  FSAVE¹      |       |       |       |       |  x,2  |  x,2  |       |   x   |
+  FSCALE      |       |       |       |       |  2,3  |  2,3  |       |   x   |
+  FScc        |       |       |       |       |  x,2  |  2,3  |       |   x   |
+  FSGLDIV     |       |       |       |       |  2,3  |  2,3  |       |   x   |
+  FSGLMUL     |       |       |       |       |  2,3  |  2,3  |       |   x   |
+  FSIN        |       |       |       |       |  2,3  |  2,3  |       |   x   |
+  FSINCOS     |       |       |       |       |  2,3  |  2,3  |       |   x   |
+  FSINH       |       |       |       |       |  2,3  |  2,3  |       |   x   |
+  FSQRT       |       |       |       |       |  x,2  |  x,2  |       |   x   |
+  FSSQRT      |       |       |       |       |  x,2  |  x,2  |       |       |
+  FDSQRT      |       |       |       |       |  x,2  |  x,2  |       |       |
+  FSUB        |       |       |       |       |  x,2  |  x,2  |       |   x   |
+  FSSUB, FDSUB|       |       |       |       |  x,2  |  x,2  |       |       |
+  FTAN        |       |       |       |       |  2,3  |  2,3  |       |   x   |
+  FTANH       |       |       |       |       |  2,3  |  2,3  |       |   x   |
+  FTENTOX     |       |       |       |       |  2,3  |  2,3  |       |   x   |
+  FTRAPcc     |       |       |       |       |  2,3  |  2,3  |       |   x   |
+  FTST        |       |       |       |       |  x,2  |  x,2  |       |   x   |
+  FTWOTOX     |       |       |       |       |  2,3  |  2,3  |       |   x   |
+
+@ENDNODE
+
+@NODE "instructions4" "M68000 Family Instruction Set"
+@NEXT "instructions5"
+@PREV "instructions3"
+@TOC  "instructions"
+	       |       |       |       |       |       |       |       | 68881 |
+	       | 68000 | 68010 | 68020 | 68030 | 68040 | 68060 | 68851 | 68882 |
+  -------------+-------+-------+-------+-------+-------+-------+-------+-------+
+  ILLEGAL      |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  JMP          |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  JSR          |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  LEA          |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  LINK         |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  LPSTOP       |       |       |       |       |       |   x   |       |       |
+  LSL, LSR     |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  MOVE         |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  MOVEA        |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  MOVE from CCR|       |   x   |   x   |   x   |   x   |   x   |       |       |
+  MOVE to CCR  |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  MOVE from SR¹|   4   |   x   |   x   |   x   |   x   |   x   |       |       |
+  MOVE to SR¹  |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  MOVE USP¹    |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  MOVE16       |       |       |       |       |   x   |   x   |       |       |
+  MOVEC¹       |       |   x   |   x   |   x   |   x   |   x   |       |       |
+  MOVEM        |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  MOVEP        |   x   |   x   |   x   |   x   |   x   |       |       |       |
+  MOVEQ        |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  MOVES¹       |       |   x   |   x   |   x   |   x   |   x   |       |       |
+  MULS         |   x   |   x   |   x   |   x   |   x   |  x,3  |       |       |
+  MULU         |   x   |   x   |   x   |   x   |   x   |  x,3  |       |       |
+  NBCD         |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  NEG          |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  NEGX         |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  NOP          |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  NOT          |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  OR           |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  ORI          |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  ORI to CCR   |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  ORI to SR¹   |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  PACK         |       |       |   x   |   x   |   x   |   x   |       |       |
+  PBcc¹        |       |       |       |       |       |       |   x   |       |
+  PDBcc¹       |       |       |       |       |       |       |   x   |       |
+  PEA          |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  PFLUSH¹      |       |       |       |  x,5  |   x   |   x   |   x   |       |
+  PFLUSHA¹     |       |       |       |  x,5  |       |       |   x   |       |
+  PFLUSHR¹     |       |       |       |       |       |       |   x   |       |
+  PFLUSHS¹     |       |       |       |       |       |       |   x   |       |
+  PLPA¹        |       |       |       |       |       |   x   |       |       |
+  PLOAD¹       |       |       |       |  x,5  |       |       |   x   |       |
+
+@ENDNODE
+
+@NODE "instructions5" "M68000 Family Instruction Set"
+@NEXT "instructions"
+@PREV "instructions4"
+@TOC  "instructions"
+
+	      |	      |	      |       |	      |	      |	      |       | 68881 |
+	      | 68000 | 68010 | 68020 | 68030 | 68040 | 68060 | 68851 | 68882 |
+  ------------+-------+-------+-------+-------+-------+-------+-------+-------+
+  PMOVE¹      |       |       |       |   x   |       |       |   x   |       |
+  PRESTORE¹   |       |       |       |       |       |       |   x   |       |
+  PSAVE¹      |       |       |       |       |       |       |   x   |       |
+  PScc¹       |       |       |       |       |       |       |   x   |       |
+  PTEST¹      |       |       |       |   x   |   x   |       |   x   |       |
+  PTRAPcc¹    |       |       |       |       |       |       |   x   |       |
+  PVALID      |       |       |       |       |       |       |   x   |       |
+  RESET¹      |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  ROL, ROR    |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  ROXL, ROXR  |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  RTD         |       |   x   |   x   |   x   |   x   |   x   |       |       |
+  RTE¹        |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  RTM         |       |       |   x   |       |       |       |       |       |
+  RTR         |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  RTS         |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  SBCD        |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  Scc         |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  STOP¹       |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  SUB         |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  SUBA        |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  SUBI        |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  SUBQ        |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  SUBX        |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  SWAP        |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  TAS         |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  TBLS, TBLSN |       |       |       |       |       |       |       |       |
+  TBLU, TBLUN |       |       |       |       |       |       |       |       |
+  TRAP        |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  TRAPcc      |       |       |   x   |   x   |   x   |   x   |       |       |
+  TRAPV       |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  TST         |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  UNLK        |   x   |   x   |   x   |   x   |   x   |   x   |       |       |
+  UNPK        |       |       |   x   |   x   |   x   |   x   |       |       |
+
+
+NOTE:
+1 = Privileged (Supervisor) Instruction
+2 = Not applicable to the MC68EC040, MC68LC040, MC68EC060 and MC68LC060
+3 = These are software-supported instructions on the MC68040 and MC68060
+4 = This instruction is not privileged for the MC68000 and MC68008
+5 = Not applicable to MC68EC030
+6 = All MC68060 and MC68040 Floating-point instructions require software
+    assistence for unimplemented data types (MC68040 and MC68060) and
+    unimplemented effective addresses (MC68060 only)
+
+Copyright MOTOROLA, 1994
+
+@ENDNODE
+
+@NODE "description" "M68000 Family Mnemonic Description"
+@NEXT "description2"
+@PREV "description6"
+@TOC  "main"
+
+		M68000 Family Mnemonic Description
+		----------------------------------
+
+If you would program in Assembler some 15 years ago, you would be programming
+numbers. This is becose the processor ONLY knows the number 0 and 1 (the 
+binary number system).
+
+Programming in 0's and 1's is a painstaking job, so people invented the
+Octal number system (representing 8 binary numbers) and the Hexadecimal
+number system (representing 16 binary numbers).
+
+But people still used numbers to program in assembler.
+
+Then someone had the briliant idea of giving names to the hexadecimal
+numbers: Mnemonics...
+
+So Mnemonics are alphabetical representations of numbers. And they allow
+todays assembler programmers to program in assembler quite easly.
+
+An Assembler (like ASM-One) translates the Mnemonics to numbers again, so
+the processor understands them.
+
+
+
+  Mnemonic      | Description
+  --------------+----------------------------------------------------------
+  ABCD		| Add Decimal with Extend
+  ADD		| Add
+  ADDA		| Add Address
+  ADDI		| Add Immediate
+  ADDQ		| Add Quick
+  ADDX		| Add with Extend
+  AND		| Logical AND
+  ANDI		| Logical AND Immediate
+  ANDI to CCR	| AND Immediate to Condition Code Register
+  ANDI to SR	| AND Immediate to Status Register
+  ASL, ASR	| Arithmetic Shift Left and Right
+  --------------+----------------------------------------------------------
+
+@ENDNODE
+
+@NODE "description2" "M68000 Family Mnemonic Description"
+@NEXT "description3"
+@PREV "description"
+@TOC  "description"
+
+  Mnemonic      | Description
+  --------------+----------------------------------------------------------
+  Bcc		| Branch Conditionaly
+  BCHG		| Test Bit and Change
+  BCLR		| Test Bit and Clear
+  BFCHG		| Test Bit Field and Change
+  BFCLR		| Test Bit Fiels and Clear
+  BFEXTS	| Signed Bit Field Extract
+  BFEXTU	| Unsigned Bit Field Extract
+  BFFFO		| Bit Field Find First One
+  BFINS		| Bit Field Insert
+  BFSET		| Test Bit Field and Set
+  BFTEST	| Test Bit Field
+  BGND		| Enter Background Mode
+  BKPT		| Breakpoint
+  BRA		| Branch
+  BSET		| Test Bit and Set
+  BSR		| Branch to Subroutine
+  BTST		| Test Bit
+  --------------+----------------------------------------------------------
+  CALLM		| CALL Module
+  CAS		| Compare and Swap Operands
+  CAS2		| Compare and Swap Dual Operands
+  CHK		| Check Register Against Bound
+  CHK2		| Check Register Against Upper and Lower Bounds
+  CINV		| Invalidate Cache Entries
+  CLR		| Clear
+  CMP		| Compare
+  CMPA		| Compare Address
+  CMPI		| Compare Immediate
+  CMPM		| Compare Memory to Memory
+  CMP2		| Compare Register Against Upper and Lower Bounds
+  cpBcc		| Branch on Coprocessor Condition
+  cpDBcc	| Test Coprocessor Condition Decrement and Branch
+  cpGEN		| Coprocessor General Function
+  cpRESTORE	| Coprocessor Restore Function
+  cpSAVE	| Coprocessor Save Function
+  cpScc		| Set on Coprocessor Condition
+  cpTRAPcc	| Trap on Coprocessor Condition
+  --------------+----------------------------------------------------------
+  DBcc		| Test Condition, Decrement and Branch
+  DIVS, DIVSL	| Signed Divide
+  DIVU, DIVUL	| Unsigned Divide
+  --------------+----------------------------------------------------------
+
+@ENDNODE
+
+@NODE "description3" "M68000 Family Mnemonic Description"
+@NEXT "description4"
+@PREV "description2"
+@TOC  "description"
+
+  Mnemonic      | Description
+  --------------+----------------------------------------------------------
+  EOR		| Logical Exclusive-OR
+  EORI		| Logical Exclusive-OR Immediate
+  EORI to CCR	| Exclusive-OR Immediate to Condition Code Register
+  EORI to SR	| Exclusive-OR to Status Register
+  EXG		| Exchange Registers
+  EXT, EXTB	| Sign Extend
+  --------------+----------------------------------------------------------
+  FABS		| Floating-Point Absolute Value
+  FSABS, FDABS	| Floating-Point Absolute Value (Single/Double Precision)
+  FACOS		| Floating-Point Arc Cosine
+  FADD		| Floating-Point Add
+  FSADD. FDADD	| Floating-Point Add (Single/Double Precision)
+  FASIN		| Floating-Point Arc Sine
+  FATAN		| Floating-Point Arc Tangent
+  FATANH	| Floating-Point Hyperbolic Arc Tangent
+  FBcc		| Floating-Point Branch
+  FCMP		| Floating-Point Compare
+  FCOS		| Floating-Point Cosine
+  FCOSH		| Floating-Point Hyperbolic Cosine
+  FBDcc		| Floating-Point Decrement and Branch
+  FDIV		| Floating-Point Divide
+  FSDIV, FDDIV	| Floating-Point Divide (Single/Double Precision)
+  FETOX		| Floating-Point e×
+  FETOXM1	| Floating-Point e×-1
+  FGETEXP	| Floating-Point Get Exponent
+  FGETMAN	| Floating-Point Get Mantissa
+  FINT		| Floating-Point Integer Part
+  FINTRZ	| Floating-Point Integer Part, Round-to-Zero
+  FLOG10	| Floating-Point Log10
+  FLOG2		| Floating-Point Log²
+  FLOGN		| Floating-Point Loge
+  FLOGNP1	| Floating-Point Loge(×+¹)
+  FMOD		| Floating-Point Modulo Remainder
+  FMOVE		| Move Floating-Point Register
+  FSMOVE, FDMOVE| Move Floating-Point Register (Single/Double Precision)
+  FMOVECR	| Move Constant ROM
+  FMOVEM	| Move Multiple Floating-Point Registers
+  FMUL		| Floating-Point Multiply
+  FSMUL, FDMUL	| Floating-Point Multiply (Single/Double Precision)
+  FNEG		| Floating-Point Negate
+  FSNEG, FDNEG  | Floating-Point Negate (Single/Double Precision)
+
+@ENDNODE
+
+@NODE "description4" "M68000 Family Mnemonic Description"
+@NEXT "description5"
+@PREV "description3"
+@TOC  "description"
+
+  Mnemonic      | Description
+  --------------+----------------------------------------------------------
+  FNOP		| Floating-Point No-Operation
+  FREM		| IEEE Remainder
+  FRESTORE	| Restore Floating-Point Internal State
+  FSAVE		| Save Floating-Point Internal State
+  FSCALE	| Floating-Point Scale Exponent
+  FScc		| Floating-Point Set According to Condition
+  FSGLDIV	| Single-Precision Divide
+  FSGLMUL	| Single Precision Multiply
+  FSIN		| Sine
+  FSINCOS	| Simultaneous Sine and Cosine
+  FSINH		| Hyperbolic Sine
+  FSQRT		| Floating-Point Square Root
+  FSSQRT, FDSQRT| Floating-Point Square Root (Single/Double Precision)
+  FSUB		| Floating-Point Subtract
+  FSSUB, FDSUB	| Floating-Point Subtract (Single/Double Precision)
+  FTAN		| Tangent
+  FTANH		| Hyperbolic Tangent
+  FTENTOX	| Floating-Point 10×
+  FTRAPcc	| Floating-Point Trap on Condition
+  FTST		| Floating-Point Test
+  FTWOTOX	| Floating-Point 2×
+  --------------+----------------------------------------------------------
+  ILLEGAL	| Take Illegal Instruction Trap
+  --------------+----------------------------------------------------------
+  JMP		| Jump
+  JSR		| Jump to Subroutine
+  --------------+----------------------------------------------------------
+  LEA		| Load Effective Address
+  LINK		| Link and Allocate
+  LPSTOP	| Low-Power Stop
+  LSL, LSR	| Logical Shift Left and Right
+  --------------+----------------------------------------------------------
+  MOVE		| Move
+  MOVEA		| Move Address
+  MOVE from CCR	| Move from Condition Code Register
+  MOVE from SR	| Move from Status Register
+  MOVE to CCR	| Move to Condition Code Register
+  MOVE to SR	| Move to Status Register
+  MOVE USP	| Move User Stack Pointer
+  MOVE16	| 16-Byte Block Move
+  MOVEC		| Move Control Register
+
+@ENDNODE
+
+@NODE "description5" "M68000 Family Mnemonic Description"
+@NEXT "description6"
+@PREV "description4"
+@TOC  "description"
+
+  Mnemonic      | Description
+  --------------+----------------------------------------------------------
+  MOVEM		| Move Multiple Registers
+  MOVEP		| Move Peripheral
+  MOVEQ		| Move Quick
+  MOVES		| Move Alternate Address Space
+  MULS		| Sign Multiply
+  MULU		| Unsigned Multiply
+  --------------+----------------------------------------------------------
+  NBCD		| Negate Decimal with Extend
+  NEG		| Negate
+  NEGX		| Negate with Extend
+  NOP		| No Operation
+  NOT		| Logical Complement
+  --------------+----------------------------------------------------------
+  OR		| Logical Inclusive-OR
+  ORI		| Logical Inclusive-OR Immediate
+  ORI to CCR	| Inclusive-OR Immediate to Condition Code Register
+  ORI to SR	| Inclusive-OR Immediate to Status Register
+  --------------+----------------------------------------------------------
+  PACK		| Pack BCD
+  PBcc		| Branch on PMMU Condition
+  PDBcc		| Test, Decrement and Branch on PMMU Condition
+  PEA		| Push Effective Address
+  PFLUSH	| Flush Entry(ies) in the ATCs
+  PFLUSHA	| Flush Entry(ies) in the ATCs
+  PFLUSHR	| Flush Entry(ies) in the ATCs and RPT Entries
+  PFLUSHS	| Flush Entry(ies) in the ATCs
+  PLOAD		| Load an Entry into ATC
+  PLPA		| Load Physical Address
+  PMOVE		| Move PMMU Register
+  PRESTORE	| PMMU Restore Function
+  PSAVE		| PMMU Save Function
+  PScc		| Set on PMMU Condition
+  PTEST		| Test a Logical Address
+  PTRAPcc	| Trap on MMU Condition
+  PVALID	| Validate a Pointer
+  --------------+----------------------------------------------------------
+  RESET		| Reset External Devices
+  ROL, ROR	| Rotate Left and Right
+  ROXL, ROXR	| Rotate with Extend Left and Right
+  RTD		| Return and Deallocate
+  RTE		| Return from Exception
+
+@ENDNODE
+
+@NODE "description6" "M68000 Family Mnemonic Description"
+@NEXT "description"
+@PREV "description5"
+@TOC  "description"
+
+  Mnemonic      | Description
+  --------------+----------------------------------------------------------
+  RTM		| Return from Module
+  RTR		| Return and Restore
+  RTS		| Return from Subroutine
+  --------------+----------------------------------------------------------
+  SBCD		| Subtract Decimal with Extend
+  Scc		| Set Conditionally
+  STOP		| Stop
+  SUB		| Subtract
+  SUBA		| Subtract Address
+  SUBI		| Subtract Immediate
+  SUBQ		| Subtract Quick
+  SUBX		| Subtract with Extend
+  SWAP		| Swap Register Words
+  --------------+----------------------------------------------------------
+  TAS		| Test Operand and Set
+  TBLS, TBLSN	| Signed Table Lookup with Interpolate
+  TBLU, TBLUN	| Unsigned Table Lookup with Interpolate
+  TRAP		| Trap
+  TRAPcc	| Trap Conditionally
+  TRAPV		| Trap on Oveflow
+  TST		| Test Operand
+  --------------+----------------------------------------------------------
+  UNLK		| Unlink
+  UNPK		| Unpack BCD
+  --------------+----------------------------------------------------------
+
+@ENDNODE
+
+@NODE "contact" "Contacting the Author"
+@NEXT "main"
+@PREV "main"
+@TOC  "main"
+
+			Contacting the Author
+			---------------------
+
+Remco Weg (aka Boushh of TFA) likes you to contact him by E-Mail:
+
+	remco.weg@endemol.nl
+
+@ENDNODE
+
+@NODE "thanks" "Thanks to...."
+@NEXT "main"
+@PREV "main"
+@TOC  "main"
+
+			   Thanks to...
+			   ------------
+
+I like to thank:
+
+- Rune Gram-Madsen, for the most excelent ASM-One V1.01
+- Price, for developing ASM-One from 1991 through 1997
+- All those people who use ASM-One (you keep me going B-)
+- The ORIGINAL Amiga Team, for developing THE greatest computer of all time...
+
+My taglines:
+
+- Keep supporting the ORIGINAL Amiga !!!
+- TFA, Artists with an Attitude
+
+
+
+			  !!   ORIGINAL !!
+			  ----------------
+
+YES, those people who worked on the Amiga until Commodore went bankrupt.
+
+Sure, maybe the new AmigaDE will be a software revolution. But no Amiga
+build by the AmigaDE specification will EVER come close to the combination
+of hardware & software of the Original (today also called 'Classic') Amiga.
+
+
+Don't get me wrong. I like what the AmigaDE can do, and I like the idea's
+behind it. The ONLY mistake THEY made was to maintain the AMIGA name.
+
+
+Besides the ill fathed BoXer, no company in the world is currently developing
+a NextGen Amiga. And it's SAD to realize that.
+@ENDNODE
+

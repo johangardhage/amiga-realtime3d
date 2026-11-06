@@ -1,0 +1,2 @@
+; Executed at boot by S:Startup-Sequence when started with a1200-cli
+Echo "CLI mode - type LoadWB to start Workbench"

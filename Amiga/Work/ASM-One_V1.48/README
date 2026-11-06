@@ -1,0 +1,98 @@
+Short:    68k & PPC Assembler Development Environment
+Author:   remco.weg@endemol.nl (Boushh) 
+Uploader: remco.weg@endemol.nl (Boushh)
+Type:     dev/asm
+Replaces: dev/asm/asmonev146*
+Version:  V1.48
+
+                       ASM-One V1.48 (31-12-2002)
+
+ASM-One is a FREEWARE 68k/PPC Assembler Development Environment for the Amiga.
+It consists of 5 main parts:
+
+- An Assembler
+- A Disassembler
+- An Editor
+- A Debugger (not for PPC code !!)
+- A Monitor (Hexadecimal/ASCII/Binary/Disassembly)
+
+The assembler and the disassembler are fast (the source of ASM-One - 1.5 Mb -
+is assembled in 11 seconds on a default A4000/040), supports all the 680x0 CPU's,
+the 6888x FPU's, the 68851 MMU and most of the PPC CPU's (including AltiVec).
+
+The assembler can handle mixed sources (sources which include both PPC and 68k
+coding). Understands around 100 Directive. Supports MACRO's and IF statements.
+
+The Editor is symple but fast. The Editor can handle up to 10 sources, can
+copy/past to the Clipboard and can handle up to 999.999 lines of code.
+
+The Debugger has a Source-Level function, supports watchpoints (even indirect),
+breakpoint-conditions and run and step commands (with or without realtime screen
+updates).
+
+The Monitor handles Byte, Word and Longword sizes, and you can save marked data
+to disk.
+
+ASM-One also works with sectors and tracks. Reads and writes Executables, Link
+files and sources.
+
+ASM-One works with the original Amiga graphics as well as with RTG software.
+ASM-One has special software that enables you to choose the 'banging-the-hardware'
+method if you only have original Amiga screenmodes avialable, or the very fast
+RTG software for more compatibility.
+
+ASM-One comes with the ASM-One.Guide with 100's of pages of usefull information
+about how ASM-One works.
+
+ASM-One has been the choice of many Amiga programmers (both profesional and
+'bed-room' coders) in the 10 years of it's existence. Check it out and see if
+it works for you to B-)
+
+ASM-One should work with any Amiga which has KS/WB 2.x or higher (RTG support
+requires KS/WB 3.x), a diskdrive and at least 512 Kb of memory. The only
+external libraries needed are the ReqTools.library and the asl.library.
+
+Most Important Changes:
+
+- FPU EQUates can now be used (EQUS/EQUD/EQUX and EQUP)
+- WL bug fixed
+- Fixed serious bugs with PPC registers
+- More read and write directories
+- Cleaned out the 'V' directive
+- Updated the Guide
+
+
+Read History.txt for a more detailed description of what has changed.
+
+
+Copyright
+*********
+
+Copyright Notice
+----------------
+
+   ASM-One V1.48 is Copyright (C) 2002 by Boushh of TFA.
+
+Disclaimer
+----------
+
+   ASM-One V1.48 is offered "as is", and the authors will not be held
+responsible for any damage resulting from mistakes contained within, though
+the best effort has been made to ensure that the program works fine.
+
+Distribution
+------------
+
+   This is only Copyrighted in order to protect the integrity of ASM-One V1.48
+and to ensure its free availability to all. You may put it in a disk
+collection without prior permission from the authors (like the Fred Fish's disks
+and CD-ROMed versions of Aminet). You may NOT distribute ASM-One as a commercial
+package !! You may freely and for free distribute it across any medium.
+
+   There is no shareware registration fee since this is "freeware".
+
+About
+-----
+
+   ASM-One was developed on an Amiga 4000/40 with 18 Mb of memory and two 4 Gb
+Harddisks, with ASM-One V1.47.

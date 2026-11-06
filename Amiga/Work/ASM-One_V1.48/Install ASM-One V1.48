@@ -1,0 +1,409 @@
+;------------------------------------------------------------------------
+;
+; This installation script will install ASM-One V1.48 and it's basic
+; components.
+;
+; $VER: ASM-One V1.48 Installer (31-12-2001)
+;
+; (C)2001 by Boushh of TFA
+;
+;------------------------------------------------------------------------
+
+;(set @abort-button "Are you NUTS?")
+(set @pretend 0)
+(set @user-level 2)
+
+; Localisation stuff
+
+(set #P_TAAL @language)
+
+; Engels
+
+(if (= #P_TAAL "nederlands")
+(
+(set #P_welcome
+(cat "Welkom bij het installatieprogramma van 'ASM-One V1.48'"
+     "\n\nDit programma installeerd 'ASM-One V1.48' op jou Amiga"
+))
+
+(set #P_WRONGKICK "Je hebt minimaal Kickstart 2.04 nodig voor ASM-One")
+
+(set #P_NOREQTOOLS
+(cat "Sorry, maar je hebt niet de juiste versie van ReqTools."
+     "\n\nHaal de laatste versie van AmiNet of bij een BBS."
+))
+
+(set #P_WHEREREGSDATA "Wil je dat de REGSDATA geinstalleerd wordt ?")
+
+(set #P_WHEREREGSDATA-HELP "Met de REGSDATA geinstalleerd kun je elk register van de Amiga oproepen op de CommandLine.")
+
+(set #P_WHEREAGA "Wil je dat de AGA.Guide geinstalleerd wordt ?")
+
+(set #P_WHEREAGA-HELP "In de AGA.Guide staat belangrijke informatie over AGA Registers.")
+
+(set #WHEREASMONE "Waar moet ASM-One geinstalleerd worden ?")
+
+(set #P_YESASMGUIDE "Wil je dat de ASM-One Guide geinstalleerd wordt ?")
+
+(set #P_ASMGUIDEHELP "De ASM-One Guide bevat veel informatie over de werking van ASM-One")
+
+(set #P_YESSOURCERES "Wil je dat de ASM-One Source Rescuer geinstalleerd wordt ?")
+
+(set #P_SOURCERESHELP "De Source Rescuer redt mogelijk verloren sources")
+
+(set #P_CREATING1 "Maakt %s")
+
+(set #P_COPYASM "Copieerd ASM-One naar %s")
+
+(set #p_COPYREGS "Copieerd REGSDATA naar S:")
+
+(set #P_COPYAGA "Copieerd AGA.Guide naar S:")
+
+(set #P_COPYPREFS "Copieerd ASM-One.pref naar ENVARC:")
+
+(set #P_COPYHISTORY "Copieerd History.txt naar %s")
+
+(set #P_COPYASMGUIDE "Copieerd ASM_One Guide naar %s")
+
+(set #P_COPYSOURCERES "Copieerd ASM-One Source Rescuer naar %s")
+
+(set #P_AFSCHEID
+(cat "Veel succes met het gebruik van ASM-One V1.48"
+     "\n\nAls je ideeen of bugs hebt, mail die dan naar:"
+     "\n\nBoushh: remco.weg@endemol.nl"
+     "\n\nOf bezoek onze Web Site op 'http://www.euronet.nl/users/jdm'"
+     "\n\n\n(C) 2002"
+     "\n\nTFA - Artists with an Attitude"
+))
+)
+(
+(set #P_welcome
+(cat "Welcome to the installation program of 'ASM-One V1.48'"
+     "\n\nThis program will install 'ASM-One V1.48' on your Amiga."
+))
+
+(set #P_WRONGKICK "You need at least Kickstart 2.04 for ASM-One")
+
+(set #P_NOREQTOOLS
+(cat "Sorry, you do not have the correct version of ReqTools."
+     "\n\nPlease get the latest version from AmiNet or a local BBS." 
+))
+
+(set #P_WHEREREGSDATA "Would you like the REGSDATA to be installed ?")
+
+(set #P_WHEREREGSDATA-HELP "With REGSDATA installed you can look up any Register of the Amiga, ON-LINE !!")
+
+(set #P_WHEREAGA "Would you like the AGA.Guide to be installed ?")
+
+(set #P_WHEREAGA-HELP "With the AGA.Guide installed you can look up all AGA Registers of the Amiga, in AmigaGuide format !!")
+
+(set #WHEREASMONE "Where would you like ASM-One to be installed ?")
+
+(set #P_YESASMGUIDE "Would you like the ASM-One Guide to be installed ?")
+
+(set #P_ASMGUIDEHELP "The ASM-One Guide covers most of ASM-One's functions.")
+
+(set #P_YESSOURCERES "Would you like the ASM-One Source Rescuer to be installed ?")
+
+(set #P_SOURCERESHELP "The Source Rescuer may rescue lost source")
+
+(set #P_CREATING1 "Creating %s")
+
+(set #P_COPYASM "Copying ASM-One to %s")
+
+(set #p_COPYREGS "Copying REGSDATA to S:")
+
+(set #P_COPYAGA "Copying AGA.Guide to S:")
+
+(set #P_COPYPREFS "Copying ASM-One.pref file to ENVARC:")
+
+(set #P_COPYCHANGES "Copying History.txt to %s")
+
+(set #P_COPYASMGUIDE "Copying ASM_One Guide to %s")
+
+(set #P_COPYSOURCERES "Copying ASM-One Source Rescuer to %s")
+
+(set #P_AFSCHEID
+(cat "Thanks for using ASM-One V1.48"
+     "\n\nIf you have any bugs or ideas, report them to:"
+     "\n\nBoushh: remco.weg@endemol.nl"
+     "\n\nOr visit us at 'http://www.euronet.nl/users/jdm'"
+     "\n\n\n(C) 2002"
+     "\n\nTFA - Artists with an Attitude"
+))
+))
+
+; wat standaard waarden
+
+(set #P_REGSDATA1 "s:REGSDATA")
+(set #P_REGSDATA2 "sys:s/REGSDATA")
+(set #P_AGAGuide1 "s:AGA.Guide")
+(set #P_AGAGuide2 "sys:s/AGA.Guide")
+(set #P_ASMONEPREF "ENVARC:ASM-One.Pref")
+(set #P_REGINSTALLED 1)
+(set #P_AGAINSTALLED 1)
+(set #P_PREFINSTALLED 1)
+(set #P_ASMGUIDEINSTALLED 0)
+(set #P_SOURCERESINSTALLED 0)
+
+; We gaan beginnen !!!!
+
+(message #P_welcome)
+
+(complete 0)
+
+; Check Kickstart version. Exit if not at least 2.0
+
+(if (< (/ (getversion) 65536) 37)
+	(abort #P_WRONGKICK)
+)
+
+; Check reqtools (minimaal version 38)
+
+(if (< (getversion "LIBS:reqtools.library") 2490368)
+  (
+     (abort #P_NOREQTOOLS)
+  )
+)
+
+
+; Check REGSDATA
+
+(if (= (exists #P_REGSDATA1 (noreq)) 0)
+  (
+    (if (= (exists #P_REGSDATA2 (noreq)) 0)
+      (
+        (set #P_REGINSTALLED 0)		; NIET geinstalleerd
+      )
+    )
+  )
+)
+
+
+; Check AGA.Guide
+
+(if (= (exists #P_AGAGuide1 (noreq)) 0)
+  (
+    (if (= (exists #P_AGAGuide2 (noreq)) 0)
+      (
+        (set #P_AGAINSTALLED 0)		; NIET geinstalleerd
+      )
+    )
+  )
+)
+
+
+; Check ASM-One.pref
+
+(if (= (exists #P_ASMONEPREF (noreq)) 0)
+  (
+    (set #P_PREFINSTALLED 0)		; NIET geinstalleerd
+  )
+)
+
+; Ask for installation of REGSDATA
+
+(if (= #P_REGINSTALLED 0)
+  (
+    (if (askbool (prompt #P_WHEREREGSDATA)
+                 (help #P_WHEREREGSDATA-HELP)
+                 (default 1)
+                 (choices "Yep" "Nope"))
+        (
+          (set #P_REGINSTALLED 0)
+        )
+    )
+  )
+)
+
+
+; Ask for installation of AGA.Guide
+
+(if (= #P_AGAINSTALLED 0)
+  (
+    (if (askbool (prompt #P_WHEREAGA)
+                 (help #P_WHEREAGA-HELP)
+                 (default 1)
+                 (choices "Sure" "NO WAY!!!")
+        )
+        (
+          (set #P_AGAINSTALLED 0)
+        )
+    )
+  )
+)
+
+
+; Ask for installation of ASM-One Guide
+
+(if (= #P_ASMGUIDEINSTALLED 0)
+  (
+    (if (askbool (prompt #P_YESASMGUIDE)
+                 (help #P_ASMGUIDEHELP)
+                 (default 1)
+                 (choices "Absolutely" "Are you NUTS !!!")
+        )
+        (
+          (set #P_ASMGUIDEINSTALLED 0)
+        )
+    )
+  )
+)
+
+
+; Ask for installation of Source Rescuer
+
+(if (= #P_SOURCERESINSTALLED 0)
+  (
+    (if (askbool (prompt #P_YESSOURCERES)
+                 (help #P_SOURCERESHELP)
+                 (default 1)
+                 (choices "Absolutely" "Are you NUTS !!!")
+        )
+        (
+          (set #P_SOURCERESINSTALLED 0)
+        )
+    )
+  )
+)
+
+
+(complete 25)
+
+
+; Vraag waar ASM-One geinstalleerd moet worden
+
+(set #P_DIRNAME
+	(askdir
+		(prompt #P_WHEREASMONE)
+		(help @askdir-help)
+		(default "WORK:")
+	)
+)
+
+(set @default-dest #P_DIRNAME)
+
+(if (= (exists #P_DIRNAME) 0)
+  (
+    (makedir #P_DIRNAME
+            (prompt #P_CREATING1 #P_DIRNAME)
+            (help "")
+            (infos)
+    )
+  )
+)
+
+(complete 30)
+
+
+; Installeer die bende maar
+
+(copyfiles (source "ASM-One_V1.48")
+           (dest #P_DIRNAME)
+           (prompt #P_COPYASM #P_DIRNAME)
+           (infos))
+
+(complete 60)
+
+(if (= #P_REGINSTALLED 0)
+  (
+    (copyfiles (source "REGSDATA")
+               (dest "S:")
+               (prompt #P_COPYREGS))
+  )
+)
+
+(complete 65)
+
+(if (= #P_AGAINSTALLED 0)
+  (
+    (copyfiles (source "AGA.Guide")
+               (dest "S:")
+               (prompt #P_COPYAGA))
+  )
+)
+
+(complete 70)
+
+(if (= #P_PREFINSTALLED 0)
+  (
+    (copyfiles 
+        (source "ASM-One.Pref")
+        (dest "ENVARC:")
+        (prompt #P_COPYPREFS)
+    )
+  )
+)
+
+(complete 72)
+
+(if (= #P_ASMGUIDEINSTALLED 0)
+  (
+    (copyfiles 
+        (source "ASM-One_V1.4x.Guide")
+        (dest #P_DIRNAME)
+        (prompt #P_COPYASMGUIDE)
+	(infos))
+    (copyfiles 
+        (source "AddressingModes.Guide")
+        (dest #P_DIRNAME)
+        (prompt #P_COPYASMGUIDE))
+    (copyfiles 
+        (source "Directive.Guide")
+        (dest #P_DIRNAME)
+        (prompt #P_COPYASMGUIDE))
+    (copyfiles 
+        (source "Clipboard.Guide")
+        (dest #P_DIRNAME)
+        (prompt #P_COPYASMGUIDE))
+    (copyfiles 
+        (source "Advanced.Guide")
+        (dest #P_DIRNAME)
+        (prompt #P_COPYASMGUIDE))
+    (copyfiles 
+        (source "Errors.Guide")
+        (dest #P_DIRNAME)
+        (prompt #P_COPYASMGUIDE))
+    (copyfiles 
+        (source "PPC.Guide")
+        (dest #P_DIRNAME)
+        (prompt #P_COPYASMGUIDE)
+    )
+  )
+)
+
+(complete 93)
+
+(if (= #P_SOURCRESINSTALLED 0)
+  (
+    (copyfiles 
+        (source "ASM-One_Rescuer")
+        (dest #P_DIRNAME)
+        (prompt #P_COPYSOURCERES)
+	(infos)
+    )
+  )
+)
+
+(complete 95)
+
+(copyfiles (source "History.txt")
+           (dest #P_DIRNAME)
+           (prompt #P_COPYCHANGES #P_DIRNAME)
+           (infos))
+
+(copyfiles (source "README")
+           (dest #P_DIRNAME)
+           (prompt #P_COPYOLDCHANGES #P_DIRNAME)
+           (infos))
+
+(copyfiles (source "SymplifiedMnemonics.i")
+           (dest #P_DIRNAME)
+           )
+
+(complete 100)
+
+(message #P_AFSCHEID)
+
+(exit)
+; we zijn klaar, pfew !!

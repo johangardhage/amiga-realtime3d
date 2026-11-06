@@ -1,0 +1,143 @@
+@DATABASE CommandMenus.Guide
+
+@NODE "editmenu" "Edit MENU Structure"
+@NEXT "debugmenu"
+@PREV "ASM-One_V1.4x.Guide/genmenu"
+@TOC  "ASM-One_V1.4x.Guide/menus"
+
+                         Edit MENU Structure
+			 ----------------------
+
+The 'Edit MENU Structure' is available when you are in the Editor of
+ASM-One. Most commands are activated using the 'Amiga' key (here
+represented as a capital 'A'), some just by pressing a certain key.
+
+This menu is divided into three parts:
+
+@{" Assembler " LINK "editmenu"}			@{" Edit      " LINK "editmenu"}			@{" Sources   " LINK "editmenu"}
+
+@{" Assemble      »" LINK "editmenu"}		@{" Block         »" LINK "gemenu"}		@{" F1:                " LINK "com_Source"}
+        @{" Assemble     AA " LINK "com_Assemble"}		  @{" Mark          Ab " LINK "com_Mark"}	@{" F2:                " LINK "com_Source"}
+        @{" Optimize     AO " LINK "com_Optimize"}		  @{" Copy          Ac " LINK "com_Copy"}	@{" F3:                " LINK "com_Source"}
+ ----------------			  @{" Cut           Ax " LINK "com_Cut"}	@{" F4:                " LINK "com_Source"}
+@{" CommandLine AE " LINK "com_CommandLine"}			  @{" Paste         Av " LINK "com_Paste"}	@{" F5:                " LINK "com_Source"}
+@{" Debugger    AD " LINK "com_Debugger"}			  @{" Paste         Ai " LINK "com_Paste"}	@{" F6:                " LINK "com_Source"}
+@{" Monitor     AM " LINK "com_Monitor"}			  @{" Fill          Af " LINK "com_Fill"}	@{" F7:                " LINK "com_Source"}
+@{" Preferences   »" LINK "editmenu"}			  @{" Unmark        Au " LINK "com_Unmakr"}	@{" F8:                " LINK "com_Source"}
+        @{" Environment  A[ " LINK "com_EnvironmentPrefs"}		  @{" UpperCase     Al " LINK "com_UpperCase"}	@{" F9:                " LINK "com_Source"}
+        @{" Assembler    A] " LINK "com_AssemblerPrefs"}		  @{" LowerCase     AL " LINK "com_LowerCase"}	@{" F10:               " LINK "com_Source"}
+@{" AGA Guide   A= " LINK "com_AGAGuide"}			  @{" Rotate        Ay " LINK " com_Rotate"}
+                                          @{" Register      Ak " LINK "com_Register"}
+                                          @{" Write         Aw " LINK "com_Write"}
+                                          @{" Vertical Fill An " LINK "com_VerticalFill"}
+                                          @{" Comment       A; " LINK "com_Comment"}
+                                          @{" UnComment     A: " LINK "com_UnComment"}
+                                @{" Search        »" LINK "editmenu"}
+                                          @{" Search        AS " LINK "com_Search"}
+                                          @{" Forward       As " LINK "com_SForward"}
+                                @{" Replace       »" LINK "editmenu"}
+                                          @{" Replace       AR " LINK "com_Replace"}
+                                          @{" Forward       Ar " LINK "com_RForward"}
+                                @{" Delete Line Ad " LINK "com_DeleteLine"}
+                                @{" Set Marks     »" LINK "editmenu"}
+                                          @{" Mark 1        A! " LINK "com_SetMark"}
+                                          @{" Mark 2        A@ " LINK "com_SetMark"}
+                                          @{" Mark 3        A# " LINK "com_SetMark"}
+                                          @{" Mark 4        A$ " LINK "com_SetMark"}
+                                          @{" Mark 5        A% " LINK "com_SetMark"}
+                                          @{" Mark 6        A^ " LINK "com_SetMark"}
+                                          @{" Mark 7        A& " LINK "com_SetMark"}
+                                          @{" Mark 8        A* " LINK "com_SetMark"}
+                                          @{" Mark 9        A( " LINK "com_SetMark"}
+                                          @{" Mark 10       A) " LINK "com_SetMark"}
+                                @{" Jump Marks    »" LINK "editmenu"}
+                                          @{" Jump 1        A1 " LINK "com_JumpMarks"}
+                                          @{" Jump 2        A2 " LINK "com_JumpMarks"}
+                                          @{" Jump 3        A3 " LINK "com_JumpMarks"}
+                                          @{" Jump 4        A4 " LINK "com_JumpMarks"}
+                                          @{" Jump 5        A5 " LINK "com_JumpMarks"}
+                                          @{" Jump 6        A6 " LINK "com_JumpMarks"}
+                                          @{" Jump 7        A7 " LINK "com_JumpMarks"}
+                                          @{" Jump 8        A8 " LINK "com_JumpMarks"}
+                                          @{" Jump 9        A9 " LINK "com_JumpMarks"}
+                                          @{" Jump 10       A0 " LINK "com_JumpMarks"}
+                                @{" Jump ;;     AJ " LINK "com_Jump"}
+                                @{" Jump Line   Aj " LINK "com_JumpLine"}
+                                @{" Move          »" LINK "editmenu"}
+                                          @{" Begin of line  shift left     " LINK "com_BOL"}
+                                          @{" End of line      -   right    " LINK "com_EOL"}
+                                          @{" Page Up          -   up       " LINK "com_PageUp"}
+                                          @{" Page Down        -   down     " LINK "com_PageDown"}
+                                          @{" Up 100                     Aa " LINK "com_Up100"}
+                                          @{" Down 100                   Az " LINK "com_Down100"}
+                                          @{" Top                        At " LINK "com_Top"}
+                                          @{" Bottom                     AT " LINK "com_Bottom"}
+                                          @{" Left Word       alt  left     " LINK "com_LeftWord"}
+                                          @{" Right Word      alt  right    " LINK "com_RightWord"}
+                                @{" Make Macro  A, " LINK "com_MakeMacro"}
+                                @{" Do Macro    Am " LINK "com_DoMacro"}
+                                @{" Grab Word   Ag " LINK "com_GrabWord"}
+                                @{" Exit        Esc" LINK "com_Exit"}
+
+
+@ENDNODE
+
+@NODE "com_Assemble" "Assemble Command"
+@TOC "editmenu"
+
+With this Command ASM-One will start to assemble the source
+currently in the editor.
+
+See also the @{" Assemble " LINK "ASM-One_V1.4x.Guide/A_DLC"} DLC.
+
+@ENDNODE
+
+@NODE "com_Optimize" "Optimize Command"
+@TOC "editmenu"
+
+With this Command ASM-One will start to assemble and optimize
+the source currently in the editor.
+
+See also the @{" Optimize " LINK "ASM-One_V1.4x.Guide/AO_DLC"} DLC.
+
+@ENDNODE
+
+@NODE "com_CommandLine" "CommandLine Command"
+@TOC "editmenu"
+
+This Command will send you back to ASM-One's command prompt.
+
+@ENDNODE
+
+@NODE "com_Debugger" "Debugger Command"
+@TOC "editmenu"
+
+With this Command ASM-One will start the debugger with the
+source currently in the editor.
+
+See also the @{" Debugger " LINK "ASM-One_V1.4x.Guide/D_DLC"} DLC.
+
+@ENDNODE
+
+@NODE "com_Monitor" "Monitor Command"
+@TOC "editmenu"
+
+With this command ASM-One will go to the Monitor.
+
+@ENDNODE
+
+@NODE "com_EnvironmentPrefs" "Environment Preferences Command"
+@TOC "editmenu"
+
+@ENDNODE
+
+@NODE "com_AssemblerPrefs" "Assembler Preferences Command"
+@TOC "editmenu"
+
+@ENDNODE
+
+@NODE "com_AGAGuide" "AGA Guide Command"
+@TOC "editmenu"
+
+@ENDNODE
+

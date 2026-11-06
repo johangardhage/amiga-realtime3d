@@ -76,5 +76,13 @@ EndIF
 Resident Execute REMOVE
 Resident Assign REMOVE
 
-C:LoadWB
-EndCLI >NIL:
+; Boot to a Shell instead of Workbench when a volume named CLI: is mounted
+Assign >NIL: CLI: EXISTS
+IF WARN
+  C:LoadWB
+  EndCLI >NIL:
+ELSE
+  IF EXISTS CLI:Startup
+    Execute CLI:Startup
+  EndIF
+EndIF

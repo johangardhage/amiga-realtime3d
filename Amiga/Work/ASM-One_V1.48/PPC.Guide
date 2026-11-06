@@ -1,0 +1,1581 @@
+@DATABASE PPC.Guide
+
+@NODE "ppc_MAIN" "ASM-One & PPC Assembly/Disassembly"
+@TOC  "ASM-One_V1.4x.Guide/MAIN"
+
+			ASM-One & PPC Assembly/Disassembly
+			----------------------------------
+
+As of ASM-One V1.47, ASM-One is able to assemble and disassemble PPC coding.
+
+I've done my best to make everything work as I think it should. I've read the
+PPC Manual's and tried to use common sense when implementing this new
+feature into ASM-One.
+
+However: I've no PPC myself and thus could not actually test anything. I also
+had no reference assemblers to check the binary output.
+
+So maybe: I got it totally wrong B-)
+
+If you notice errors and/or bugs: than please report them. Without your input
+the PPC option is practically worthless. And I'll be forced to remove it from
+ASM-One.
+
+And now for the main dish. I have selected several interesting options:
+
+
+			@{" What and what not ?                " LINK "what_MAIN"}
+			@{" PPC Mnemonic Description           " LINK "mne_MAIN"}
+			@{" PPC Registers & Symbols            " LINK "reg_MAIN"}
+			@{" PPC specific Assmebler Errors      " LINK "error_MAIN"}
+
+
+
+
+
+REMARK: Due to serious problems with PPC registers it's suggested that you
+        swap to V1.48 (or later) as soon as possible if you use PPC coding !!!
+
+@ENDNODE
+
+@NODE "what_MAIN" "What and what not ?"
+@TOC "ppc_MAIN"
+
+			What and what not ?
+			-------------------
+
+
+Please read all of the text below before starting to code PPC in ASM-One.
+
+
+			Mnemonics/Instructions
+			----------------------
+
+ASM-One supports the following Mnemonics:
+
+			@{" PPC Instructions     " LINK "ppcm_List"}
+			@{" AltiVec Instructions " LINK "symm_List"}
+			@{" POWER Instructions   " LINK "alvm_List"}
+			@{" Symplified Mnemonics " LINK "symp_List"}
+
+When disassembling, ASM-One will always disassemble to PPC mnemonics.
+NEVER to POWER mnemonics.
+
+
+			Registers
+			---------
+
+ASM-One supports all the registers from the UISA, OEA and VEA models, including
+the AltiVec registers.
+
+General Purpose Registers (GPRx), Floating Point Registers (FPRx) and the Vector
+Registers (VRx) can be specified both small and large:
+
+		  Register	 Large	 Small
+		+--------------+-------+-------+
+		| GRP	       | gpr3  | r3    |
+		|	       | gpr21 | r21   |
+		+--------------+-------+-------+
+		| FPR	       | fpr2  | f2    |
+		|	       | fr30  | f30   |
+		+--------------+-------+-------+
+		| VR           | vr5   | v5    |
+		|              | vr10  | v10   |
+		---------------+-------+-------+
+
+Special Purpose Registers can be addressed as number or with their name.
+
+When disassembling, ASM-One will always use the PPC naming convention
+when showing the above registers. Incase of the Special Purpose Registers:
+ASM-One will always use the name, never the number.
+
+
+
+			Switching between PPC and 68k
+			-----------------------------
+
+Using the SETCPU directive, you can force ASM-One to assemble according
+to a certain CPU, like:
+
+	SETCPU	040
+
+a:	move.l	d0,d0
+	rts
+
+	SETCPU	PPC
+
+	isync
+	rfi
+
+When assembling, ASM-One will record where you used this directive. When
+disassembling ASM-One uses this information to disassemble your source
+to the correct CPU.
+
+It's very easy to see what PPC code and what 68k code is because 68k code
+is allways disassembled with UPPER case while PPC code is allways
+disassembled to lower case.
+
+
+			Using Branch Instruction
+			------------------------
+
+In PPC you have two type of branches. The first being an Absolute Branch
+and the second a Relative Branch.
+
+I'm not sure how to encode the Absolute Branch. I currently simply take the
+value you specified and make sure it's Long Word Aligned and not longer
+than 24-Bits (or 16-Bits), and put that into the instruction.
+
+The Relative Branch is an 24/16 Bits integer that's added to the current
+address. Which I think I'm coding correctly.
+
+Just in case: use the Relative Branches !!!
+
+
+
+REMARK: V1.47 had serious problems with branches. Swap to V1.48 (or later)
+        as soon as possible !!!
+
+			EQUC Directive
+			--------------
+
+This Directive allows you to assign a name to a PPC register. This
+can also be done when you have NOT set the PPC as the selected CPU
+(in the Preferences of by using the SETCPU directive).
+
+This allows you to set these equates at the top of your source.
+
+
+			Different Sizes !!!
+			-------------------
+
+All instructions have a fixed size associated with them. So there
+are no size extensions like .L or .B.
+
+However keep in mind that the actual number of bits used by a
+certain size is different from the 68k:
+
+
+		  Bits	 PPC Name      68k Name
+		+------+-------------+-----------+
+		|  8   | Byte        | Byte      |
+		+------+-------------+-----------+
+		| 16   | Half Word   | Word      |
+		+------+-------------+-----------+
+		| 32   | Word        | Long Word |
+		+------+-------------+-----------+
+
+
+			Allignment
+			----------
+
+ALL data and ALL the instructions should ALLWAYS be 32-bits alligned !!!!
+
+Only when using the Branch instructions ASM-One checks this !!!
+
+
+			Errors
+			------
+
+ASM-One currently knows almost no PPC specific errors. I need to clean
+up the Error table first (currently consisting of more than 135 errors !!)
+
+You'll have to wait for V1.48 for that..
+
+
+			Symplified Mnemonics
+			--------------------
+
+The current list is far from complete (la rD,d(rA) is directly
+supported as a PPC Mnemonic !!!). It needs adding a lot more.
+
+Feel free to mail me a complete list B-)
+
+Remember that the Symplified Mnemonics are actually MACRO's. This
+means that they are CASE SENSITIVE if you have the UC=LC option off !!!
+
+
+			64-Bit Instruction Support
+			--------------------------
+
+ASM-One supports most 64-Bit instructions when disassembling. It supports
+only a few when assembling.
+
+
+			Debugging
+			---------
+
+   NOT supported !!!! Watchout because there is NO WARNING !!!!!!
+
+
+Want this to work ?  That you'll have to code it. What do I need ?
+
+I need:
+
+- PPC code to execute 1 instruction and capture the registers
+- 68k code to execute the above PPC code.
+- PPC/68k code to access the aray with captured registers
+- PPC/68k code to handle exceptions which may occur during debugging
+
+All should be in 100% ASSEMBLY and at least the 68k part should be
+well documented...
+
+
+			Suggested Reading
+			-----------------
+
+Surf to www.mot-sps.com (Motorola's Semi Conductors Devision) and
+lookup the following books (you can download them as PDF, order them
+in paper or on CD. Motorola ships it to most countries completely
+off charge. That's because they are very happy you are going to work
+with THEIR stuff B-):
+
+	 Code    	 Description
+	---------------+----------------------------------------------------------
+	MPCFPE32B/AD   | Everything you need/want to know about the 32Bit PPC environment
+ 	---------------+----------------------------------------------------------
+	ALTIVECPEM/D   | Everything you need/want to know about AltiVec
+
+ONLY these books actualy explain the use of the instructions,
+their operands and their function.
+
+Other books only list which instructions are supported.
+
+
+			 P L E A S E
+			-------------
+
+DO NOT ask me how to code PPC assembly: I DO NOT know that. I REALLY can NOT
+help you with that....
+
+Maybe in the future, who knows......
+
+
+@ENDNODE
+
+@NODE "mne_MAIN" "PPC Mnemonic Description"
+@NEXT
+@PREV
+@TOC
+
+			PPC Mnemonic Description
+			------------------------
+
+This part is divided into 3 chapters. Each will list the mnemonics which are part
+of that mnemonic set.
+
+			@{" PPC Mnemonics        " LINK "ppcm_List"}
+			@{" AltiVec Mnemonics    " LINK "alvm_List"}
+			@{" POWER Mnemonics      " LINK "powm_List"}
+			@{" Symplified Mnemonics " LINK "symp_List"}
+@ENDNODE
+
+@NODE "ppcm_list" "PPC Mnemonics - Page 1"
+@NEXT "ppcm_list2"
+@PREV ppc_list4"
+@TOC "mne_MAIN"
+
+			PCC Mnemonics
+			-------------
+
+These are all the 32 bit Instructions ASM-One supports (here is an
+explenation of the @{" symbols " LINK "symbol_List"} used.
+
+ Mnemonic     Operands             Description
+------------+--------------------+-------------------------------------------------------
+ add        | rD,rA,rB           | Add
+ addc       | rD,rA,rB           | Add Carrying
+ adde       | rD,rA,rB           | Add Extended
+ addi       | rD,rA,SIMM         | Add Immediate
+ addic      | rD,rA,SIMM         | Add Immediate Carrying
+ addic.     | rD,rA,SIMM         | Add Immediate Carrying and Record
+ addis      | rD,rA,SIMM         | Add Immediate Shifted
+ addme      | rD,rA              | Add to Minus One Extended
+ addze      | rD,rA              | Add to Zero Extended
+ and        | rD,rS,rB           | And
+ andc       | rD,rS,rB           | And with Complement
+ andi.      | rD,rS,UIMM         | And Immediate
+ andis.     | rD,rS,UIMM         | And Immediate Shifted
+------------+--------------------+-------------------------------------------------------
+ b          | target_addr        | Branch
+ bc         | BO,BI,target_addr  | Branch Conditional
+ bcctr      | BO,BI              | Branch Conditional
+ bclr       | BO,BI              | Branch Conditional
+------------+--------------------+-------------------------------------------------------
+ cmp        | crfD,L,rA,rB       | Compare
+ cmpi       | crfD,L,rA,SIMM     | Compare Immediate
+ cmpl       | crfD,L,rA,rB       | Compare Logical
+ cmpli      | crfD,L,rA,UIMM     | Compare Logical Immediate
+ cntlzw     | rA,rS              | Count Leading Zeros Word
+ crand      | crbD,crbA,crbB     | Condition Register AND
+ crandc     | crbD,crbA,crbB     | Condition Register AND with Complement
+ creqv      | crbD,crbA,crbB     | Condition Register Equivalent
+ crnand     | crbD,crbA,crbB     | Condition Register NAND
+ crnor      | crbD,crbA,crbB     | Condition Register NOR
+ cror       | crbD,crbA,crbB     | Condition Register OR
+ crorc      | crbD,crbA,crbB     | Condition Register OR with Complement
+ crxor      | crbD,crbA,crbB     | Condition Register XOR
+------------+--------------------+-------------------------------------------------------
+ dcba       | rA,rB              | Data Cache Block Allocate
+ dcbf       | rA,rB              | Data Cache Block Flush
+ dcbi       | rA,rB              | Data Cache Block Invalidate
+ dcbst      | rA,rB              | Data Cache Block Store
+ dcbt       | rA,rB              | Data Cache Block Touch
+ dcbtst     | rA,rB              | Data Cache Block Touch for Store
+ dcbz       | rA,rB              | Data Cache Block Clear to Zero
+ divw       | rD,rA,rB           | Divide Word
+ divwu      | rD,rA,rB           | Divide Word Unsigned
+------------+--------------------+-------------------------------------------------------
+ eciwx      | rD,rA,rB           | External Control Word Indexed
+ ecowx      | rS,rA,rB           | External Control Out Word Indexed
+ eieio      |                    | Enforce In-Order Execution of I/O
+ eqv        | rA,rS,rB           | Equivalent
+ extsb      | rA,rS              | Extend Sign Byte
+ extsh      | rA,rS              | Extend Sign Half Word
+------------+--------------------+-------------------------------------------------------
+@ENDNODE
+
+@NODE "ppcm_list2" "PPC Mnemonics - Page 2"
+@NEXT "ppcm_list3"
+@PREV "ppcm_list"
+@TOC "mne_MAIN"
+
+ Mnemonic     Operands             Description
+------------+--------------------+-------------------------------------------------------
+ fabs       | frD,frB            | Absolute Value
+ fadd       | frD,frA,frB        | Add (Double Precision)
+ fadds      | frD,frA,frB        | Add Single
+ fcmpo      | crfD,frA,frB       | Compare Ordered
+ fcmpu      | crfD,frA,frB       | Compare Unordered
+ fctiw      | frD,frB            | Convert to Integer Word
+ fctiwz     | frD,frB            | Convert to Integer Word with Round Toward Zero
+ fdiv       | frD,frA,frB        | Divide (Double Precision)
+ fdivs      | frD,frA,frB        | Divide Single
+ fmadd      | frD,frA,frC,frB    | Multiply-Add (Double Precision)
+ fmadds     | frD,frA,frC,frB    | Multiply-Add Single
+ fmr        | frD,frB            | Move Register
+ fmsub      | frD,frA,frC,frB    | Multiply-Subtract (Double Precision)
+ fmsubs     | frD,frA,frC,frB    | Multiply-Subtract Single
+ fmul       | frD,frA,frB        | Multiply (Doible Precision)
+ fmuls      | frD,frA,frB        | Multiply Single
+ fnabs      | frD,frB            | Negative Absolute Value
+ fneg       | frD,frB            | Negate
+ fnmadd     | frD,frA,frC,frB    | Negative Multiply-Add (Double Prcision)
+ fnmadds    | frD,frA,frC,frB    | Negative Multiply-Add Single
+ fnmsub     | frD,frA,frC,frB    | Negative Multiply-Sub (Double Precision)
+ fnmsubs    | frD,frA,frC,frB    | Negative Multiply-Sub Single
+ fres       | frD,frB            | Reciprocal Estimate Single
+ frsp       | frD,frB            | Round to Single
+ frsqrte    | frD,frB            | Reciprocal Square Root Estimate
+ fsel       | frD,frA,frC,frB    | Select
+ fsqrt      | frD,frB            | Square Root (Double Precision)
+ fsqrts     | frD,frB            | Square Root Single
+ fsub       | frD,frA,frB        | Subtract (Double Precision)
+ fsubs      | frD,frA,frB        | Subtract Single
+------------+--------------------+-------------------------------------------------------
+ icibi      | rA,rB              | Instruction Cache Block Invalidate
+ isync      |                    | Instruction Synchronize
+------------+--------------------+-------------------------------------------------------
+ lbz        | rD,d(rA)           | Load Byte and Zero
+ lbzu       | rD,d(rA)           | Load Byte and Zero with Update
+ lbzux      | rD,rA,rB           | Load Byte and Zero with Update Indexed
+ lbzx       | rD,rA,rB           | Load Byte and Zero Indexed
+ lfd        | frD,d(rA)          | Load Floating-Point Double
+ lfdu       | frD,d(rA)          | Load Floating-Point Double with Update
+ lfdux      | frD,d(rA)          | Load Floating-Point Double with Update Indexed
+ lfdx       | frD,d(rA)          | Load Floating-Point Double Indexed
+ lfs        | frD,d(rA)          | Load Floating-Point Single
+ lfsu       | frD,d(rA)          | Load Floating-Point Single with Update
+ lfsux      | frD,d(rA)          | Load Floating-Point Single with Update Indexed
+ lfsx       | frD,d(rA)          | Load Floating-Point Single Indexed
+ lha        | rD,d(rA)           | Load Half Word Algebraic
+ lhau       | rD,d(rA)           | Load Half Word Algebraic with Update
+ lhaux      | rD,d(rA)           | Load Half Word Algebraic with Update Indexed
+ lhax       | rD,d(rA)           | Load Half Word Algebraic Indexed
+ lhbrx      | rD,rA,rB           | Load Half Word Byte-Reverse Indexed
+ lhz        | rD,d(rA)           | Load Half Word and Zero
+ lhzu       | rD,d(rA)           | Load Half Word and Zero with Update
+ lhzux      | rD,d(rA)           | Load Half Word and Zero with Update Indexed
+ lhzx       | rD,d(rA)           | Load Half Word and Zero Indexed
+ lmw        | rD,d(rA)           | Load Multiple Word
+ lswi       | rD,rA,NB           | Load String Word Immediate
+ lswx       | rD,rA,rB           | Load String Word Indexed
+ lwarx      | rD,rA,rB           | Load Word and Reserve Indexed
+ lwbrx      | rD,rA,rB           | Load Word Byte-Reverse Indexed
+ lwz        | rD,d(rA)           | Load Word and Zero
+ lwzu       | rD,d(rA)           | Load Word and Zero with Update
+ lwzux      | rD,d(rA)           | Load Word and Zero with Update Indexed
+ lwzx       | rD,d(rA)           | Load Word and Zero Indexed
+------------+--------------------+-------------------------------------------------------
+@ENDNODE
+
+
+@NODE "ppcm_list3" "PPC Mnemonics - Page 3"
+@NEXT "ppcm_list4"
+@PREV "ppcm_list2"
+@TOC "mne_MAIN"
+
+ Mnemonic     Operands             Description
+------------+--------------------+-------------------------------------------------------
+ mcrf       | crfD,crfS          | Move Condition Register Field
+ mcrfs      | crfD,crfS          | Move to Condition Register from FPSCR
+ mcrxr      | crfD               | Move to Condition Register XER
+ mfcr       | rD                 | Move from Conition Register
+ mffs       | frD                | Move from FPSCR
+ mfmsr      | rD                 | Move from Machine State Register
+ mfspr      | rD,SPR             | Move from Special-Purpose Register
+ mfsr       | rD,SR              | Move from Segment Register
+ mfsrin     | rD,rB              | Move from Segment Register Indirect
+ mftb       | rD,TBR             | Move from Time Base
+ mtcrf      | CRM,rS             | Move to Condition Register Fields
+ mtfsb0     | crbD               | Move to FPSCR Bit 0
+ mtfsb1     | crbD               | Move to FPSCR Bit 1
+ mtfsf      | FM,frB             | Move to FPSCR Fields
+ mtfsfi     | crfD,UIMM          | Move to FPSCR Field Immediate
+ mtmsr      | rS                 | Move to Machine State Register
+ mtspr      | SPR,rS             | Move to Special-Purpose Register
+ mtsr       | SR,rS              | Move to Segment Register
+ mtsrin     | rS,rB              | Move to Segment Register Indirect
+ mulhw      | rD,rA,rB           | Multiply High Word
+ mulhwu     | rD,rA,rB           | Multiply High Word Unsigned
+ mulli      | rD,rA,SIMM         | Multiply Low Immediate
+ mullw      | rD,rA,rB           | Multiply Low Word
+------------+--------------------+-------------------------------------------------------
+ nand       | rA,rS,rB           | NAND
+ neg        | rD,rA              | Negate
+ nor        | rA,rS,rB           | NOR
+------------+--------------------+-------------------------------------------------------
+ or         | rA,rS,rB           | OR
+ orc        | rA,rS,rB           | OR with Complement
+ ori        | rA,rS,UIMM         | OR Immediate
+ oris       | rA,rS,SIMM         | OR Immediate Shifted
+------------+--------------------+-------------------------------------------------------
+ rfi        |                    | Return from Interrupt
+ rlwimi     | rA,rS,SH,MB,ME     | Rotate Left Word Immediate then Mask Insert
+ rlwinm     | rA,rS,SH,MB,ME     | Rotate Left Word Immediate then AND with MAS
+ rlwnm      | rA,rS,rB,MB,ME     | Rotate Left Word than AND with Mask
+------------+--------------------+-------------------------------------------------------
+ sc         |                    | System Call
+ slw        | rA,rS,rB           | Shift Left Word
+ sraw       | rA,rS,rB           | Shift Right Algebraic Word
+ srawi      | rA,rS,SH           | Shift Right Algebraic Word Immediate
+ srw        | rA,rS,rB           | Shift Word Right
+ stb        | rS,d(rA)           | Store Byte
+ stbu       | rS,d(rA)           | Store Byte with Update
+ stbux      | rS,d(rA)           | Store Byte with Update Indexed
+ stbx       | rS,d(rA)           | Store Byte with Indexed
+ stfd       | frS,d(rA)          | Store Floating-Point Double
+ stfdu      | frS,d(rA)          | Store Floating-Point Double with Update
+ stfdux     | frS,d(rA)          | Store Floating-Point Double with Update Indexed
+ stfdx      | frS,d(rA)          | Store Floating-Point Double Indexed
+ stfiwx     | frs,d(rA)          | Store Floating-Point as Integer Word Indexed
+ stfs       | frS,d(rA)          | Store Floating-Point Single
+ stfsu      | frS,d(rA)          | Store Floating-Point Single with Update
+ stfsux     | frS,d(rA)          | Store Floating-Point Single with Update Indexed
+ stfsx      | frS,d(rA)          | Store Floating-Point Single Indexed
+ sth        | rS,d(rA)           | Store Half Word
+ sthbrx     | rS,rA,rB           | Store Half Word Byte-Reverse Indexed
+ sthu       | rS,d(rA)           | Store Half Word with Update
+ sthux      | rS,d(rA)           | Store Half Word with Update Indexed
+ sthx       | rS,d(rA)           | Store Half Word with Indexed
+ stmw       | rS,d(rA)           | Store Multiple Word
+ stswi      | rS,rA,NB           | Store String Word Immediate
+ stswx      | rS,rA,rB           | Store String Word Indexed
+------------+--------------------+-------------------------------------------------------
+@ENDNODE
+
+@NODE "ppcm_list4" "PPC Mnemonics - Page 4"
+@NEXT "ppcm_list"
+@PREV "ppcm_list3"
+@TOC "mne_MAIN"
+
+ Mnemonic     Operands             Description
+------------+--------------------+-------------------------------------------------------
+ stw        | rS,d(rA)           | Store Word
+ stwbrx     | rS,rA,rB           | Store Word Byte-Reverse Indexed
+ stwcx.     | rS,rA,rB           | Store Word Conditional Indexed
+ stwu       | rS,d(rA)           | Store Word with Update
+ stwux      | rS,d(rA)           | Store Word with Update Indexed
+ stwx       | rS,d(rA)           | Store Word with Indexed
+ subf       | rD,rA,rB           | Subtract Form
+ subfc      | rD,rA,rB           | Subtract from Carrying
+ subfe      | rD,rA,rB           | Subtract from Extended
+ subfic     | rD,rA,SIMM         | Subtract from Immediate Carrying
+ subfme     | rD,rA              | Subtract from Minus One Extended
+ subfze     | rD,rA              | Subtract from Zero Extended
+ sync       |                    | Synchronize
+------------+--------------------+-------------------------------------------------------
+ tlbia      |                    | Translation Lookaside Buffer Invalidate All
+ tlbie      | rB                 | Translation Lookaside Buffer Invalidate Entry
+ tlbsync    |                    | Translation Lookaside Buffer Synchronize
+ tw         | TO,rA,rB           | Trap Word
+ twi        | TO,rA,SIMM         | Trap Word Immediate
+------------+--------------------+-------------------------------------------------------
+ xor        | rA,rS,rB           | XOR
+ xori       | rA,rS,UIMM         | XOR Immediate
+ xoris      | rA,rS,UIMM         | XOR Immediate Shifted
+------------+--------------------+-------------------------------------------------------
+@ENDNODE
+
+@NODE "alvm_list" "AltiVec Mnemonics - Page 1"
+@NEXT "alvm_list2"
+@PREV alv_list3"
+@TOC "mne_MAIN"
+
+			AltiVec Mnemonics
+			-----------------
+
+These are all the AltiVec instructions ASM-One supports (here is an
+explenation of the @{" symbols " LINK "symbol_List"} used.
+
+ Mnemonic     Operands             Description
+------------+--------------------+-------------------------------------------------------
+ dss        | STRM               | Data Stream Stop
+ dst        | rA,rB,STRM         | Data Stream Touch
+ dstst      | rA,rB,STRM         | Data Stream Touch for Store
+------------+--------------------+-------------------------------------------------------
+ lvebx      | vD,rA,rB           | Load Vector Element Byte Indexed
+ lvehx      | vD,rA,rB           | Load Vector Element Half Word Indexed
+ lvewx      | vD,rA,rB           | Load Vector Element Word Indexed
+ lvsl       | vD,rA,rB           | Load Vector for Shift Left
+ lvsr       | vD,rA,rB           | Load Vector for Shift Right
+ lvx        | vD,rA,rB           | Load Vector Indexed
+ lvxl       | vD,rA,rB           | Load Vector Indexed LRU
+------------+--------------------+-------------------------------------------------------
+ mfvscr     | vD                 | Move from Vector Status and Control Register
+ mtvscr     | vB                 | Move to Vector Status and Control Register
+------------+--------------------+-------------------------------------------------------
+ stvebx     | vS,rA,rB           | Store Vector Element Byte Indexed
+ stvehx     | vS,rA,rB           | Store Vector Element Half Word Indexed
+ stvewx     | vS,rA,rB           | Store Vector Element Word Indexed
+ stvx       | vS,rA,rB           | Store Vector Indexed
+ stvxl      | vS,rA,rB           | Store Vector Indedex LRU
+------------+--------------------+-------------------------------------------------------
+ vaddcuw    | vD,vA,vB           | Vector Add Carryout Unsigned Word
+ vaddfp     | vD,vA,vB           | Vector Add Floating-Point
+ vaddabs    | vD,vA,vB           | Vector Add Signed Byte Saturate
+ vaddshs    | vD,vA,vB           | Vector Add Signed Half Word Staurate
+ vaddsws    | vD,vA,vB           | Vector Add Signed Word Saturate
+ vaddubm    | vD,vA,vB           | Vector Add Unsigned Byte Modulo
+ vadduhs    | vD,vA,vB           | Vector Add Unsigned Byte Saturate
+ vadduhm    | vD,vA.vB           | Vector Add Unsigned Half Word Modulo
+ vadduhs    | vD,vA,vB           | Vector Add Unsigned Half Word Saturate
+ vadduwm    | vD,vA,vB           | Vector Add Unsigned Word Modulo
+ vaaduws    | vD,vA,vB           | Vector Add Unsigned Word Saturate
+ vand       | vD,vA,vB           | Vector Logical AND
+ vandc      | vD,vA,vB           | Vector Logical AND with Complement
+ vavgsb     | vD,vA,vB           | Vector Average Signed Byte
+ vavgsh     | vD,vA,vB           | Vector Average Signed Half Word
+ vavgsw     | vD,vA,vB           | Vector Average Signed Word
+ vavgub     | vD,vA,vB           | Vector Average Unsigned Byte
+ vavguh     | vD,vA,vB           | Vector Average Unsigned Half Word
+ vavguw     | vD,vA,vB           | Vector Average Unsigned Word
+ vavgsh     | vD,vA,vB           | Vector Average Signed Half Word
+ vavgsw     | vD,vA,vB           | Vector Average Signed Word
+ vcfsx      | vD,vB,UIMM         | Vector Convert from Signed Fixed-Point Word
+ vcfux      | vD,vB,UIMM         | Vector Convert from Unsigned Fixed-Point Word
+ vcmpbfpx   | vD,vA.vB           | Vector Compare Bounds Floating Point
+ vcmpeqfpx  | vD,vA,vB           | Vector Compare Equal-to-Floating Point
+ vcmpequbx  | vD,vA,vB           | Vector Compare Equal-to Unsigned Byte
+ vcmpequhx  | vD,vA,vB           | Vector Compare Equal-to Unsigned Half Word
+ vcmpequwx  | vD,vA,vB           | Vector Compare Equal-to Unsigned Word
+ vcmpgefp   | vD,vA,vB           | Vector Compare Greater-Than-or-Equal-to Floating Point
+ vcmpgtfp   | vD,vA,vB           | Vector Compare Greater-Than Floating Point
+ vcmpgtsbx  | vD,vA,vB           | Vector Compare Greater-Than Signed Byte
+ vcmpgtshx  | vD,vA,vB           | Vector Compare Greater-Than Condition Register Signed Half Word
+ vcmpgtswx  | vD,vA,vB           | Vector Compare Greater-Than Signed Word
+ vcmpgtubx  | vD,vA,vB           | Vector Compare Greater-Than Unsiged Byte
+ vcmpgtuhx  | vD,vA,vB           | Vector Compare Greater-Than Unsiged Half Word
+ vcmpgtuwx  | vD,vA,vB           | Vector Compare Greater-Than Unsiged Word
+------------+--------------------+-------------------------------------------------------
+@ENDNODE
+
+@NODE "alvm_list2" "AltiVec Mnemonics - Page 2"
+@NEXT "alvm_list3"
+@PREV alv_list"
+@TOC "mne_MAIN"
+
+ Mnemonic     Operands             Description
+------------+--------------------+-------------------------------------------------------
+ vctsxs     | vD,vB,UIMM         | Vector Convert to Signed Fixed-Point Word Saturate
+ vctsxs     | vD,vB,UIMM         | Vector Convert to Unsigned Fixed-Point Word Saturate
+ vexptefp   | vD,vB              | Vector 2 Raised to the Exponent Estimate Floating Point
+ vlogefp    | vD,vB              | Vector Log2 Estimate Floating Point
+ vmaddfp    | vD,vA,vC,vB        | Vector Multiply Add Floating Point
+ vmaxfp     | vD,vA,vB           | Vector Maximum Floating Point
+ vmaxsb     | vD,vA,vB           | Vector Maximum Signed Byte
+ vmaxsh     | vD,vA,vB           | Vector Maximum Signed Half Word
+ vmaxsw     | vD,vA,vB           | Vector Maximum Signed Word
+ vmaxub     | vD,vA,vB           | Vector Maximum Unsigned Byte
+ vmaxuh     | vD,vA,vB           | Vector Maximum Unsigned Half Word
+ vmaxuw     | vD,vA,vB           | Vector Maximum Unsigned Word
+ vmhaddshs  | vD,vA,vB,vC        | Vector Multiply Hign and Add Signed Half Word Saturate
+ vmhraddshs | vD,vA,vB,vC        | Vector Multiply High Round and Add Signed Half Word Saturate
+ vminfp     | vD,vA,vB           | Vector Minimum Floating Point
+ vminsb     | vD,vA,vB           | Vector Minimum Signed Byte
+ vminsh     | vD,vA,vB           | Vector Minimum Signed Half Word
+ vminsw     | vD,vA,vB           | Vector Minimum Signed Word
+ vminub     | vD,vA,vB           | Vector Minimum Unsigned Byte
+ vminuh     | vD,vA,vB           | Vector Minimum Unsigned Half Word
+ vminuw     | vD,vA,vB           | Vector Minimum Unsigned Word
+ vmladduhm  | vD,vA,vB,vC        | Vector Multiply Low and Add Unsigned Half Word Modulo
+ vmrghb     | vD,vA,vB           | Vector Merge High Byte
+ vmrghh     | vD,vA,vB           | Vector Merge High Half Word
+ vmrghw     | vD,vA,vB           | Vector Merge High Word
+ vmrgub     | vD,vA,vB           | Vector Merge Low Byte
+ vmrguh     | vD,vA,vB           | Vector Merge Low Half Word
+ vmrguw     | vD,vA,vB           | Vector Merge Low Word
+ vmsummbm   | vD,vA,vB,vC        | Vector Multiply Sum Mixed-Sign Byte Modulo
+ vmsumshm   | vD,vA,vB,vC        | Vector Multiply Sum Signed Half Word Modulo
+ vmsumshs   | vD,vA,vB,vC        | Vector Multiply Sum Signed Half Word Saturate
+ vmsumubm   | vD,vA,vB,vC        | Vector Multiply Sum Unsigned Byte Modulo
+ vmsumuhm   | vD,vA,vB,vC        | Vector Multiply Sum Unsigned Half Word Modulo
+ vmsumuhs   | vD,vA,vB,vC        | Vector Multiply Sum Unsigned Half Word Saturate
+ vmulesb    | vD,vA,vB           | Vector Multiply Even Signed Byte
+ vmulesh    | vD,vA,vB           | Vector Multiply Even Signed Half Word
+ vmuleub    | vD,vA,vB           | Vector Multiply Sum Even Unsigned Byte
+ vmuleuh    | vD,vA,vB           | Vector Multiply Sum Even Unsigned Half Word
+ vmulosb    | vD,vA,vB           | Vector Mulitply Sum Odd Signed Byte
+ vmulosh    | vD,vA,vB           | Vector Mulitply Sum Odd Signed Half Word
+ vmuloub    | vD,vA,vB           | Vector Mulitply Sum Odd Unsigned Byte
+ vmulouh    | vD,vA,vB           | Vector Mulitply Sum Odd Unsigned Half Word
+ vnmsubfp   | vD,vA,vC,vB        | Vector Negative Multiply-Subtract Floating Point
+ vnor       | vD,vA,vB           | Vector Logical NOR
+ vor        | vD,vA,vB           | Vector Logical OR
+ vperm      | vD,vA,vB,vC        | Vector Permute
+ vpkpx      | vD,vA,vB           | Vector Pack Pixel32
+ vpkshss    | vD,vA,vB           | Vector Pack Signed Half Word Signed Saturate
+ vpkshus    | vD,vA,vB           | Vector Pack Signed Half Word Unsigned Saturate
+ vpkswss    | vD,vA,vB           | Vector Pack Signed Word Signed Saturate
+ vpkswus    | vD,vA,vB           | Vector Pack Signed Word Unsigned Saturate
+ vpkuhum    | vD,vA,vB           | Vector Pack Unsigned Half Word Unsigned Modulo
+ vpkuhus    | vD,vA,vB           | Vector Pack Unsigned Half Word Unsigned Saturate
+ vpkuwum    | vD,vA,vB           | Vector Pack Unsigned Word Unsigned Modulo
+ vpkuwus    | vD,vA,vB           | Vector Pack Unsigned Word Unsigned Saturate
+ vrefp      | vD,vB              | Vector Reciprocal Estimate Floating Point
+ vrfim      | vD,vB              | Vector Round to Floating-Point Integer toward Minus Infinity
+ vrfin      | vD,vB              | Vector Round to Floatinf-Point Integer Nearest
+ vrfip      | vD,vB              | Vector Round to Floating-Point Integer toward Plus Infinity
+ vrfiz      | vD,vB              | Vector Round to Floating-Point Integer toward Zero
+------------+--------------------+-------------------------------------------------------
+@ENDNODE
+
+@NODE "alvm_list3" "AltiVec Mnemonics - Page 3"
+@NEXT "alvm_list"
+@PREV alv_list2"
+@TOC "mne_MAIN"
+
+ Mnemonic     Operands             Description
+------------+--------------------+-------------------------------------------------------
+ vrlb       | vD,vA,vB           | Vector Rotate Left Integer Byte
+ vrlh       | vD,vA,vB           | Vector Rotate Left Integer Half Word
+ vrlw       | vD,vA,vB           | Vector Rotate Left Integer Word
+ vrsqrtefp  | vD,vB              | Vector Reciprocal Square Root Estimate Floating Point
+ vsel       | vD,vA,vB,vC        | Vector Conditional Select
+ vsl        | vD,vA,vB           | Vector Shift Left
+ vslb       | vD,vA,vB           | Vector Shift Left Integer Byte
+ vsldoi     | vD,vA,vB,SHB       | Vector Shift Left Double by Octet Immediate
+ vslh       | vD,vA,vB           | Vector Shift Left Integer Half Word
+ vslo       | vD,vA,vB           | Vector Shift Left by Octet
+ vslw       | vD,vA,vB           | Vector Shift Left Integer Word
+ vspltb     | vD,vB,UIMM         | Vector Splat Byte
+ vsplth     | vD,vB,UIMM         | Vector Splat Half Word
+ vspltisb   | vD,SIMM            | Vector Splat Immediate Signed Byte
+ vspltish   | vD,SIMM            | Vector Splat Immediate Signed Half Word
+ vspltisw   | vD,SIMM            | Vector Splat Immediate Signed Word
+ vspltw     | vD,vB,UIMM         | Vector Splat Word
+ vsr        | vD,vA,vB           | Vector Shift Right
+ vsrab      | vD,vA,vB           | Vector Shift Right Algebraic Byte
+ vsrah      | vD,vA,vB           | Vector Shift Right Algebraic Half Word
+ vsraw      | vD,vA,vB           | Vector Shift Right Algebraic Word
+ vsrb       | vD,vA,vB           | Vector Shift Right Byte
+ vsrh       | vD,vA,vB           | Vector Shift Right Half Word
+ vsrw       | vD,vA,vB           | Vector Shift Right Word
+ vsubcuw    | vD,vA,vB           | Vector Subtract Carryout Unsigned Word
+ vsubfp     | vD,vA,vB           | Vector Subtract Floating Point
+ vsubsbs    | vD,vA,vB           | Vector Subtract Signed Byte Saturate
+ vsubshs    | vD,vA,vB           | Vector Subtract Signed Half Word Saturate
+ vsububm    | vD,vA,vB           | Vector Subtract Unsigned Byte Modulo
+ vsububs    | vD,vA,vB           | Vector Subtract Unsigned Byte Saturate
+ vsubuhm    | vD,vA,vB           | Vector Subtract Unsigned Half Word Modulo
+ vsubuhs    | vD,vA,vB           | Vector Subtract Unsigned Half Word Saturate
+ vsubuwm    | vD,vA,vB           | Vector Subtract Unsigned Word Modulo
+ vsubuws    | vD,vA,vB           | Vector Subtract Unsigned Word Saturate
+ vsumsws    | vD,vA,vB           | Vector Sum Across Signed Word Saturate
+ vsum2sws   | vD,vA,vB           | Vector Sum Across Partial (1/2) Signed Word Saturate
+ vsum4sbs   | vD,vA,vB           | Vector Sum Across Partial (1/4) Signed Byte Saturate
+ vsum4shs   | vD,vA,vB           | Vector Sum Across Partial (1/4) Signed Half Word Saturate
+ vsum4sws   | vD,vA,vB           | Vector Sum Across Partial (1/4) Signed Word Saturate
+ vsum4ubs   | vD,vA,vB           | Vector Sum Across Partial (1/4) Unsigned Byte Saturate
+ vupkhpx    | vD,vB              | Vector Unpack High Pixel16
+ vupkhsb    | vD,vB              | Vector Unpack High Signed Byte
+ vupkhsh    | vD,vB              | Vector Unpack High Signed Half Word
+ vupklpx    | vD,vB              | Vector Unpack Low Pixel16
+ vupklsb    | vD,vB              | Vector Unpack Low Signed Byte
+ vupklsh    | vD,vB              | Vector Unpack Low Signed Half Word
+ vxor       | vD,vA,vB           | Vector Logical XOR
+------------+--------------------+-------------------------------------------------------
+@ENDNODE
+
+@NODE "powm_list" "POWER Mnemonics"
+@TOC "mne_MAIN"
+
+			POWER Mnemonics
+			---------------
+
+These are all the POWER instructions ASM-One supports. This overview only
+shows which POWER mnemonics is affiliated with which PPC Mnemonic.
+The operands can be found in the PPC Mnemonic overview.
+
+	  POWER      PPC			  POWER      PPC
+	+----------+---------+			+----------+---------+
+	| a        | addc    |			| sl       | slw     |
+	| ae       | adde    |			| sf       | subfc   |
+	| ai       | addic   |			| sfe      | subfe   |
+	| ai.      | addic.  |			| sfi      | subfic  |
+	| am       | addme   |			| sfme     | subfme  |
+	| andil.   | andi.   |			| sfze     | subfze  |
+	| andiu.   | andis.  |			| sr       | srw     |
+	| az       | addze   |			| srai     | srawi   |
+	+----------+---------+			| st       | stw     |
+	| cal      | addi    |			| stbrx    | stwbrx  |
+	| cau      | addis   |			| stm      | stwm    |
+	| cax      | add     |			| stsi     | stswi   |
+	+----------+---------+			| stsx     | stswx   |
+	| bcc      | bcctr   |			| stu      | stwu    |
+	| bcr      | bclr    |			| stux     | stwux   |
+	+----------+---------+			| stx      | stwx    |
+	| cntlz    | cntlzw  |			+----------+---------+
+	+----------+---------+			| t        | tw      |
+	| dcbz     | dclz    |			| ti       | twi     |
+	| dcs      | sync    |			| tlbi     | tlbie   |
+	+----------+---------+			+----------+---------+
+	| exts     | extsh   |			| xoril    | xori    |
+	+----------+---------+			| xoriu    | xoris   |
+	| fa       | fadd    |			+----------+---------+
+	| fd       | fdiv    |
+	| fm       | fmul    |
+	| fma      | fmadd   |
+	| fms      | fmsub   |
+	| fnma     | fnmadd  |
+	| fnms     | fnmsub  |
+	| fs       | fsub    |
+	+----------+---------+
+	| ics      | isync   |
+	+----------+---------+
+	| l        | lwz     |
+	| lbrx     | lwbrx   |
+	| lm       | lmw     |
+	| lsi      | lswi    |
+	| lsx      | lswx    |
+	| lu       | lwzu    |
+	| lux      | lwzux   |
+	| lx       | lwzx    |
+	+----------+---------+
+	| mtsri    | mtsrin  |
+	| muli     | mulli   |
+	| muls     | mullw   |
+	+----------+---------+
+	| oril     | ori     |
+	| oriu     | oris    |
+	+----------+---------+
+	| rlimi    | rlwimi  |
+	| rlinm    | rlwinm  |
+	| rlnm     | rlwnm   |
+	+----------+---------+
+
+@ENDNODE
+
+@NODE "symp_list" "Symplified Mnemonics"
+@NEXT "symp1_list"
+@PREV "symp1_list"
+@TOC "mne_MAIN"
+
+			Symplified Mnemonics
+			--------------------
+
+
+Here is an overview of the Symplified Mnemonics that are currently included
+in the 'SymplifiedMnemonics.i'.
+
+
+	+------------------------+----------------------+
+	| PPC Mnemonic           | Symplified Mnemonic  |
+	+------------------------+----------------------+
+	| dss     STRM,1         | dssall               |
+	| dst     rA,rB,STRM,1   | dstt    rA,rB,STRM   |
+	| dstst   rA,rB,STRM,1   | dststt  rA,rB,STRM   |
+	+------------------------+----------------------+
+	| addi    rD,rS,SIMM     | li      rD,rA        |
+	|                        | subi    rD,rA,SIMM   |
+	| addic   rD,rA,SIMM     | subic   rD,rA,SIMM   |
+	| addic.  rD,rA,SIMM     | subic.  rD,rA,SIMM   |
+	| addis   rD,rA,SIMM     | lis     rD,rA        |
+	|                        | subis   rD,rA,SIMM   |
+	+------------------------+----------------------+
+	| bc      BO,BI,Target   | blt     BO           |
+	|                        | bne     BI           |
+	|                        | bndz    BO           |
+	| bcctr   BO,BI          | bltctr               |
+	|                        | bnectr               |
+	|                        | bndzctr              |
+	| bclr    BO,BI          | bltlr                |
+	|                        | bnelr                |
+	|                        | bndzlr               |
+	+------------------------+----------------------+
+	| cmp     crfD,L,rA,rB   | cmpd    rA,rB        |
+	|                        | cmpd    crfD,rA,rB   |
+	|                        | cmpw    rA,rB        |
+	|                        | cmpw    crfD,rA,rB   |
+	| cmpi    crfD,L,rA,SIMM | cmpdi   rA,SIMM      |
+	|                        | cmpdi   crfD,rA,SIMM |
+	|                        | cmpwi   rA,SIMM      |
+	|                        | cmpwi   crfD,rA,SIMM |
+	| cmpl    crfD,L,rA,rB   | cmpld   rA,rB        |
+	|                        | cmpld   crfD,rA,rB   |
+	|                        | cmplw   rA,rB        |
+	|                        | cmplw   crfD,rA,rB   |
+	| cmpli   crfD,L,rA,SIMM | cmpldi  rA,SIMM      |
+	|                        | cmpldi  crfD,rA,SIMM |
+	|                        | cmplwi  rA,SIMM      |
+	|                        | cmplwi  crfD,rA,SIMM |
+	| creqv   crbD,crbA,crbB | crset   crbD         |
+	| crnor   crbD,crbA,crbB | crnot   crbD,crbA    |
+	| cror    crbD,crbA,crbB | crmove  crbD,crbA    |
+	| crxor   crbD,crbA,crbB | crclr   crbD         |
+	+------------------------+----------------------+
+	| mfspr   rD,SPR         | mfxer   rD           |
+	|                        | mflr    rD           |
+	|                        | mfctr   rD           |
+	| mtfb    rD,TBR         | mtfbl   rD           |
+	|                        | mtfbu   rD           |
+	| mtcrf   CRM,rS         | mtcr    rS           |
+	| mtspr   SPR,rS         | mtxer   rS           |
+	|                        | mtlr    rS           |
+	|                        | mtctr   rS           |
+	+------------------------+----------------------+
+	| nor     rA,rS,rB       | not     rA,rS        |
+	+------------------------+----------------------+
+	| or      rA,rS,rB       | mr      rA,rS        |
+	| ori     rA,rS,SIMM     | nop                  |
+	+-----------------------------------------------+
+
+@ENDNODE
+
+@NODE "symp1_list" "Symplified Mnemonics"
+@NEXT "symp_list"
+@PREV "symp_list"
+@TOC "mne_MAIN"
+
+
+	+-------------------------+----------------------+
+	| PPC Mnemonic            | Symplified Mnemonic  |
+	+-------------------------+----------------------+
+	| rlwinm   rA,rS,SH,MB,ME | Read the PPC manual  |
+	|                         | to learn these       |
+	|                         | Symplified Mnemonics |
+	| rlwnm    rA,rS,rB,MB,ME | rlwnmr rA,rS,rB      |
+	+-------------------------+----------------------+
+	| subf     rD,rA,rB       | sub    rD,rA,rB      |
+	| subfc    rD,rA,rB       | subc   rD,rA,rB      |
+	+-------------------------+----------------------+
+	| tw       TO,rA,rB       | tweq   rA,rB         |
+	|                         | twlge  rA,rB         |
+	|                         | trap                 |
+	| twi      TO,rA,SIMM     | twgti  rA,rB         |
+	|                         | twllei rA,rB         |
+	+-------------------------+----------------------+
+
+
+@ENDNODE
+
+@NODE "symbol_list" "PPC Symbol List"
+@TOC "mne_MAIN"
+
+			PPC Symbol List
+			---------------
+
+
+Here is an overview of all the symbols used in the Mnemonic overview.
+
+
+	 Symbol | Meaning
+	--------+-------------------------
+	 BD     | Branch Displacement (14 Bits)
+	 BI     | Condition bit in the CR used for Branching
+	 BO     | Conditional Branch Options
+	 crbA   | Specifies one of the CR fields used as source
+	 crbB   | Specifies one of the CR fields used as source
+	 crbD   | Specifies one of the CR fields or one of the FPSCR fields as destination
+	 crfD   | Specifies one of the CR fields or one of the FPSCR fields as destination
+	 crfS   | Specifies one of the CR fields or one of the FPSCR fields as source
+	 CRM    | Field Mask to identify the CR fields that are updated
+	 d      | 16 Bits Integer
+         FM     | Field Mask to identify the FPSCR fields that are updated
+	 frA    | FPR as source
+	 frB    | FPR as source
+	 frC    | FPR as source
+	 frD    | FPR as destination
+	 frS    | FPR as source
+	 MB/ME  | Specifies the Bgeinning and the End of a 32-bit Mask
+	 NB     | Specifies number of bytes to move
+	 rA     | GPR as source or destination
+	 rB	| GPR as source
+	 rD	| GPR as destination
+	 rS	| GPR as source
+	 SH     | Specifies a Shift Amount
+	 SHB    | Shift amount in bytes
+	 SIMM   | Signed Immediate  (16 Bits)
+	 SR     | Obe of the 15 Segment Registers
+	 TO     | Specifies on which condition to trap
+	 UIMM   | Unsigned Immediate (16 Bits)
+	 vA	| Vector Register as source
+	 vB	| Vector Register as source
+	 vD	| Vector Register as destination
+	 vS	| Vector Register as source
+
+
+You can also set certain bits in the instruction by adding some kind
+of symbol to the actual instruction. Here is a brief overview:
+
+
+	 Symbol  | Meaning
+	---------+----------------------------
+	   .     | Sets the Rc bit
+           o     | Sets the OE bit
+           o.    | Sets both the Rc and OE bit
+	   l     | Sets the LK bit
+	   a     | Sets the AA bit
+	   la    | Sets both the LK and AA bit
+
+
+ASM-One supports the OE and Rc bit as extra operand for the instruction:
+
+	add	r9,r4,r10,1,1
+
+Which would result in:
+
+	addo.	r9,r4,r10
+
+Please consult your manual to find out when you can specify this...
+
+
+@ENDNODE
+
+
+@NODE "reg_MAIN" "PPC Registers & Symbols"
+@NEXT
+@PREV
+@TOC
+
+			PPC Registers & Symbols
+			-----------------------
+
+This part is divided into 4 chapters.
+
+			@{" IUEA     " LINK "iuea_List"}
+			@{" OEA      " LINK "oea_LIST"}
+			@{" AtliVec  " LINK "vea_LIST"}
+			@{" VEA      " LINK "alti_LIST"}
+
+	U N D E R  C O N S T R U C T I O N  ! ! ! !
+
+@ENDNODE
+
+@NODE "error_MAIN" "PPC Specific Assembler Errors"
+@TOC "PPC_MAIN"
+
+			PPC Specific Assembler Errors
+			-----------------------------
+
+As of ASM-One V1.48, there are specific PPC Assembler Errors. Due
+to the fact that PPC Mnemonics are mostely predefined, the number
+of errors is very small.
+
+			Missing & Wrong Register Errors
+			-------------------------------
+
+
+		@{"16-Bits Displacement Expected                      " LINK "err_Expected16bdE"}
+
+		@{"32-Bit Mask Begin Expected (MB)                    " LINK "err_ExpectedMBE"}
+		@{"32-Bit Mask End Expected (ME)                      " LINK "err_ExpectedMEE"}
+
+		@{"Conditional Branch Condition Bits Expected (BO)    " LINK "err_ExpectedBOE"}
+		@{"CR Field Mask Expected (CRM)                       " LINK "err_ExpectedCRME"}
+		@{"CR-bit Expected                                    " LINK "err_ExpectedCRbitE"}
+
+		@{"OE-bit Expected                                    " LINK "err_ExpectedOEBitE"}
+		@{"Expected 14-bit Branch Displacement (BD)           " LINK "err_ExpectedBDE"}
+		@{"Expected One of the 16 Segment Registers (SR)      " LINK "err_ExpectedSRE"}
+		@{"Expected which CR bit to be used as Condition (BI) " LINK "err_ExpectedBIE"}
+
+		@{"FPSCR Field Mask Expected (FM)                     " LINK "err_ExpectedFME"}
+
+		@{"General PPC Register Expected                      " LINK "err_ExpectedRReg"}
+		@{"General PPC Floatingpoint Register Expected        " LINK "err_ExpectedFRegE"}
+
+		@{"LK-Bit Expected                                    " LINK "err_ExpectedLKBitE"}
+
+		@{"Number of Bytes to Move Expected (NB)              " LINK "err_ExpectedNBE"}
+
+		@{"Rc-bit Expected                                    " LINK "err_ExpectedRcBitE"}
+
+		@{"Shift Amount Expected (SH)                         " LINK "err_ExpectedSHE"}
+		@{"Signed 16-bit Integer Expected (SIMM)              " LINK "err_ExpectedSIMME"}
+		@{"Special Purpose Register Expected                  " LINK "err_ExpectedSPRE"}
+
+		@{"Unsigned 16-bit Integer Expected (UIMM)            " LINK "err_ExpectedUIMME"}
+
+
+			Range & Allignment Erros
+			------------------------
+
+
+		@{"Out of Range 0 - 1                                 " LINK "err_OutofRangeE"}
+		@{"Out of Range 0 - 3                                 " LINK "err_OutofRangeE"}
+		@{"Out of Range 0 - 7                                 " LINK "err_OutofRangeE"}
+		@{"Out of Range 0 - 15                                " LINK "err_OutofRangeE"}
+		@{"Out of Range 0 - 31                                " LINK "err_OutofRangeE"}
+		@{"Out of Range 0 - 63                                " LINK "err_OutofRangeE"}
+		@{"Out of Range 0 - 255                               " LINK "err_OutofRangeE"}
+		@{"Out of Range 16 bit                                " LINK "err_OutofRangeE"}
+		@{"Out of Range 24 bit                                " LINK "err_OutofRangeE"}
+		@{"Not 32-bit Alligned                                " LINK "err_NotLWAllignedE"}
+
+
+				Illegal Errors
+				--------------
+
+		@{"Illegal BI                                         " LINK "err_IllegalBIE"}
+		@{"Illegal BO                                         " LINK "err_IllegalBOE"}
+
+
+				AltiVec Errors
+				--------------
+
+		@{"Data Stream ID Expected (STRM)                     " LINK "err_ExpectedSTRME"}
+		@{"General AltiVec Register Expected                  " LINK "err_ExpectedVRegE"}
+		@{"Shift Amount in Bytes Expected (SHB)               " LINK "err_ExpectedSHBE"}
+
+@ENDNODE
+
+@NODE "err_Expected16bdE" "16-Bits Displacement Expected"
+@NEXT "err_ExpectedMBE"
+@PREV "err_ExpectedSHBE"
+@TOC "PPC_MAIN"
+
+MESSAGE
+   16-Bits Displacement Expected
+
+CAUSE
+   No 16-Bits Displacement was specified.
+
+SALVE
+   Supply a 16-Bits Displacement.
+
+SEE
+   Lookup the 'stw' opcode in your manual.
+
+
+@ENDNODE
+
+@NODE "err_ExpectedMBE" "32-Bit Mask Begin Expected (MB)"
+@NEXT "err_ExpectedMEE"
+@PREV "err_Expected16bd"
+@TOC "PPC_MAIN"
+
+MESSAGE
+   32-Bit Mask Begin Expected (MB)
+
+CAUSE
+   No value was specified.
+
+SALVE
+   Supply a value between 0 and 31.
+
+SEE
+   Lookup the 'rlwinm' opcode in your manual.
+
+
+@ENDNODE
+
+@NODE "err_ExpectedMEE" "32-Bit Mask End Expected (ME)"
+@NEXT "err_ExpectedBOE"
+@PREV "err_ExpectedMBE"
+@TOC "PPC_MAIN"
+
+MESSAGE
+   32-Bit Mask End Expected (ME)
+
+CAUSE
+   No value was specified.
+
+SALVE
+   Supply a value between 0 and 31.
+
+SEE
+   Lookup the 'rlwinm' opcode in your manual.
+
+
+@ENDNODE
+
+@NODE "err_ExpectedBOE" "Conditional Branch Condition Bits Expected (BO)"
+@NEXT "err_ExpectedCRME"
+@PREV "err_ExpectedMEE"
+@TOC "PPC_MAIN"
+
+MESSAGE
+   Conditional Branch Condition Bits Expected (BO)
+
+CAUSE
+   No value was specified.
+
+SALVE
+   Supply a value between 0 and 31. Or a correct condition.
+
+SEE
+   Lookup the 'bc' opcode in your manual.
+
+@ENDNODE
+
+@NODE "err_ExpectedCRME" "CR Field Mask Expected (CRM)"
+@NEXT "err_ExpectedCRbitE"
+@PREV "err_ExpectedBOE"
+@TOC "PPC_MAIN"
+
+MESSAGE
+   CR Field Mask Expected (CRM)
+
+CAUSE
+   No value was specified.
+
+SALVE
+   Supply a value between 0 and 255.
+
+SEE
+   Lookup the 'mtcrf' opcode in your manual.
+
+@ENDNODE
+
+@NODE "err_ExpectedCRbitE" "CR-bit Expected"
+@NEXT "err_ExpectedOEBitE"
+@PREV "err_ExpectedCRME"
+@TOC "PPC_MAIN"
+
+MESSAGE
+   CR-bit Expected
+
+CAUSE
+   No value was specified.
+
+SALVE
+   Supply a value between 0 and 7.
+
+SEE
+   Lookup the 'cmpi' opcode in your manual.
+
+@ENDNODE
+
+@NODE "err_ExpectedOEBitE" "OE-bit Expected"
+@NEXT "err_ExpectedBDE"
+@PREV "err_ExpectedCRbitE"
+@TOC "PPC_MAIN"
+
+MESSAGE
+   OE-bit Expected
+
+CAUSE
+   No value was specified.
+
+SALVE
+   Supply a value between 0 and 1.
+
+SEE
+   Lookup the 'add' opcode in your manual.
+
+@ENDNODE
+
+@NODE "err_ExpectedBDE" "Expected 14-bit Branch Displacement (BD)"
+@NEXT "err_ExpectedSRE"
+@PREV "err_ExpectedOEBitE"
+@TOC "PPC_MAIN"
+
+MESSAGE
+   Expected 14-bit Branch Displacement (BD)
+
+CAUSE
+   Not Used
+
+SALVE
+   n/a
+
+SEE
+   n/a
+
+@ENDNODE
+
+@NODE "err_ExpectedSRE" "Expected One of the 16 Segment Registers (SR)"
+@NEXT "err_ExpectedBIE"
+@PREV "err_ExpectedBDE"
+@TOC "PPC_MAIN"
+
+MESSAGE
+   Expected One of the 16 Segment Registers (SR)
+
+CAUSE
+   No value was specified.
+
+SALVE
+   Supply a value between 0 and 15.
+
+SEE
+   Lookup the 'mtsr' opcode in your manual.
+
+@ENDNODE
+
+@NODE "err_ExpectedBIE" "Expected which CR bit to be used as Condition (BI)"
+@NEXT "err_ExpectedFME"
+@PREV "err_ExpectedSRE"
+@TOC "PPC_MAIN"
+
+MESSAGE
+   Expected which CR bit to be used as Condition (BI)
+
+CAUSE
+   No value was specified.
+
+SALVE
+   Supply a value between 0 and 31.
+
+SEE
+   Lookup the 'bc' opcode in your manual.
+
+@ENDNODE
+
+@NODE "err_ExpectedFME" "FPSCR Field Mask Expected (FM)"
+@NEXT "err_ExpectedRReg"
+@PREV "err_ExpectedBIE"
+@TOC "PPC_MAIN"
+
+MESSAGE
+   FPSCR Field Mask Expected (FM)
+
+CAUSE
+   No value was specified.
+
+SALVE
+   Supply a value between 0 and 255.
+
+SEE
+   Lookup the 'mtfsf' opcode in your manual.
+
+@ENDNODE
+
+@NODE "err_ExpectedRReg" "General PPC Register Expected"
+@NEXT "err_ExpectedFRegE"
+@PREV "err_ExpectedFME"
+@TOC "PPC_MAIN"
+
+MESSAGE
+   General PPC Register Expected
+
+CAUSE
+   One of the 32 General Purpose Registers was expected.
+
+SALVE
+   Supply one of the 32 General Purpose Registers (0-31).
+
+SEE
+   The PPC Manual.
+
+@ENDNODE
+
+@NODE "err_ExpectedFRegE" "General PPC Floatingpoint Register Expected"
+@NEXT "err_ExpectedLKBitE"
+@PREV "err_ExpectedRReg"
+@TOC "PPC_MAIN"
+
+MESSAGE
+   General PPC Floatingpoint Register Expected
+
+CAUSE
+   One of the 32 General Floatingpoint Registers was expected.
+
+SALVE
+   Supply one of the 32 General Floatingpoint Registers (0-31).
+
+SEE
+   The PPC Manual.
+
+@ENDNODE
+
+@NODE "err_ExpectedLKBitE" "Expected LK-Bit"
+@NEXT "err_ExpectedNBE"
+@PREV "err_ExpectedFRegE"
+@TOC "PPC_MAIN"
+
+MESSAGE
+   Expected LK-Bit
+
+CAUSE
+   No value was specified
+
+SALVE
+   Lookup the 'bcctr' opcode in your manual.
+
+SEE
+   The PPC Manual.
+
+@ENDNODE
+
+@NODE "err_ExpectedNBE" "Number of Bytes to Move Expected (NB)"
+@NEXT "err_ExpectedRcBitE"
+@PREV "err_ExpectedLKBitE"
+@TOC "PPC_MAIN"
+
+MESSAGE
+   Number of Bytes to Move Expected (NB)
+
+CAUSE
+   No value was specified.
+
+SALVE
+   Supply a value between 0 and 31.
+
+SEE
+   Lookup the 'lswi' opcode in your manual.
+
+@ENDNODE
+
+@NODE "err_ExpectedRcBitE" "Rc-bit Expected"
+@NEXT "err_ExpectedSHE"
+@PREV "err_ExpectedNBE"
+@TOC "PPC_MAIN"
+
+MESSAGE
+   Rc-bit Expected
+
+CAUSE
+   No value was specified.
+
+SALVE
+   Supply a value between 0 and 1.
+
+SEE
+   Lookup the 'add' opcode in your manual.
+
+@ENDNODE
+
+@NODE "err_ExpectedSHE" "Shift Amount Expected (SH)"
+@NEXT "err_ExpectedSIMME"
+@PREV "err_ExpectedRcBitE"
+@TOC "PPC_MAIN"
+
+MESSAGE
+   Shift Amount Expected (SH)
+
+CAUSE
+   No value was specified.
+
+SALVE
+   Supply a value between 0 and 31.
+
+SEE
+   Lookup the 'srawi' opcode in your manual.
+
+@ENDNODE
+
+@NODE "err_ExpectedSIMME" "Signed 16-bit Integer Expected (SIMM)"
+@NEXT "err_ExpectedSPRE"
+@PREV "err_ExpectedSHE"
+@TOC "PPC_MAIN"
+
+MESSAGE
+   Signed 16-bit Integer Expected (SIMM)
+
+CAUSE
+   No value was specified.
+
+SALVE
+   Supply 16-bit Integer.
+
+SEE
+   Lookup the 'twi' opcode in your manual.
+
+@ENDNODE
+
+@NODE "err_ExpectedSPRE" "Special Purpose Register Expected"
+@NEXT "err_ExpectedUIMME"
+@PREV "err_ExpectedSIMME"
+@TOC "PPC_MAIN"
+
+MESSAGE
+   Special Purpose Register Expected
+
+CAUSE
+   No value was specified.
+
+SALVE
+   Supply one of the various Special Purpose Registers.
+
+SEE
+   Lookup the 'mfspr' and 'mtspr' opcodes in your manual.
+
+@ENDNODE
+
+@NODE "err_ExpectedUIMME" "Unsigned 16-bit Integer Expected (UIMM)"
+@NEXT "err_OutofRangeE"
+@PREV "err_ExpectedSPRE"
+@TOC "PPC_MAIN"
+
+MESSAGE
+   Unsigned 16-bit Integer Expected (UIMM)
+
+CAUSE
+   No value was specified.
+
+SALVE
+   Supply a 16-bit Unsigned Integer.
+
+SEE
+   Lookup the 'xori' opcode in your manual.
+
+@ENDNODE
+
+@NODE "err_OutofRangeE" "A value is Out of Range"
+@NEXT "err_NotLWAllignedE"
+@PREV "err_ExpectedUIMME"
+@TOC "PPC_MAIN"
+
+MESSAGE
+   A value is Out of Range
+
+CAUSE
+   The specified value is not in the range allowed.
+
+SALVE
+   Supply a allowed value.
+
+SEE
+   The PPC Manual.
+
+@ENDNODE
+
+@NODE "err_NotLWAllignedE" "Not 32-bit Alligned"
+@NEXT "err_IllegalBIE"
+@PREV "err_OutofRangeE"
+@TOC "PPC_MAIN"
+
+MESSAGE
+   Not 32-bit Alligned
+
+CAUSE
+   In branch instructions, ALL address should be 32-Bit
+   alligned.
+
+SALVE
+   Supply a 32-bit alligned address.
+
+SEE
+   Lookup the 'b' and 'bc' opcodes in your manual.
+
+@ENDNODE
+
+@NODE "err_IllegalBIE" "Illegal BI"
+@NEXT "err_IllegalBOE"
+@PREV "err_NotLWAllignedE"
+@TOC "PPC_MAIN"
+
+MESSAGE
+   Illegal BI
+
+CAUSE
+   BI specifies the bit in the condition register
+   to be used. Not all values are allowed
+
+SALVE
+   Supply a valid BI.
+
+SEE
+   Lookup the 'bc' opcode in your manual.
+
+@ENDNODE
+
+@NODE "err_IllegalBOE" "Illegal BO"
+@NEXT "err_ExpectedSTRME"
+@PREV "err_IllegalBIE"
+@TOC "PPC_MAIN"
+
+MESSAGE
+   Illegal BO
+
+CAUSE
+   BO specifies the condition under witch a branch
+   is taken. Not all values are allowed
+
+SALVE
+   Supply a valid BO.
+
+SEE
+   Lookup the 'bc' opcode in your manual.
+
+@ENDNODE
+
+@NODE "err_ExpectedSTRME" "Data Stream ID Expected (STRM)"
+@NEXT "err_ExpectedVRegE"
+@PREV "err_IllegalBOE"
+@TOC "PPC_MAIN"
+
+MESSAGE
+   Data Stream ID Expected (STRM)
+
+CAUSE
+   No value was specified.
+
+SALVE
+   Supply a valid STRM (0 - 3).
+
+SEE
+   Lookup the 'dss' and 'dst' opcodes in your AltiVec manual.
+
+@ENDNODE
+
+@NODE "err_ExpectedVRegE" "General AltiVec Register Expected"
+@NEXT "err_ExpectedSHBE"
+@PREV "err_ExpectedSTRME"
+@TOC "PPC_MAIN"
+
+MESSAGE
+   General AltiVec Register Expected
+
+CAUSE
+   One of the 32 General AltiVec Registers was expected.
+
+SALVE
+   Supply one of the 32 General AltiVec Registers (0-31).
+
+SEE
+   The AltiVec Manual.
+
+@ENDNODE
+
+@NODE "err_ExpectedSHBE" "Shift Amount in Bytes Expected (SHB)"
+@NEXT "err_Expected16bdE"
+@PREV "err_ExpectedVRegE"
+@TOC "PPC_MAIN"
+
+MESSAGE
+   Shift Amount in Bytes Expected (SHB)
+
+CAUSE
+   No value was specified.
+
+SALVE
+   Supply a value between 0 and 15.
+
+SEE
+   Lookup the 'vsldoi' opcode in your AltiVec Manual.
+
+@ENDNODE
+
