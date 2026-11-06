@@ -1,0 +1,80 @@
+; $VER: Startup-Sequence_LD 40.3 (31.8.93)
+; Startup-Sequence for low-density floppies
+
+C:SetPatch QUIET
+C:Version >NIL:
+C:AddBuffers >NIL: DF0: 15
+FailAt 21
+
+C:MakeDir RAM:T RAM:Clipboards RAM:ENV RAM:ENV/Sys
+C:Copy >NIL: ENVARC: RAM:ENV ALL NOREQ
+
+Resident >NIL: C:Assign PURE
+Resident >NIL: C:Execute PURE
+
+Assign >NIL: ENV: RAM:ENV
+Assign >NIL: T: RAM:T
+Assign >NIL: CLIPS: RAM:Clipboards
+Assign >NIL: REXX: S:
+Assign >NIL: PRINTERS: DEVS:Printers
+Assign >NIL: KEYMAPS: DEVS:Keymaps
+Assign >NIL: LOCALE: SYS:Locale
+Assign >NIL: LIBS: SYS:Classes ADD
+Assign >NIL: HELP: LOCALE:Help DEFER
+
+IF NOT EXISTS SYS:L
+  Assign >NIL: L: Extras3.1:L DEFER
+EndIF
+
+IF NOT EXISTS SYS:Fonts
+  Assign FONTS:
+EndIF
+
+BindDrivers
+C:Mount >NIL: DEVS:DOSDrivers/~(#?.info)
+
+IF EXISTS DEVS:Monitors
+  IF EXISTS DEVS:Monitors/VGAOnly
+    DEVS:Monitors/VGAOnly
+  EndIF
+
+  C:List >NIL: DEVS:Monitors/~(#?.info|VGAOnly) TO T:M LFORMAT "DEVS:Monitors/%s"
+  Execute T:M
+  C:Delete >NIL: T:M
+EndIF
+
+SetEnv Language "english"
+SetEnv Workbench $Workbench
+SetEnv Kickstart $Kickstart
+UnSet Workbench
+UnSet Kickstart
+
+C:AddDataTypes REFRESH QUIET
+
+IF "`C:Avail TOTAL`" GE "1250000" VAL
+  C:LoadResource LIBS:diskfont.library LIBS:iffparse.library LIBS:asl.library LIBS:commodities.library
+
+  C:IPrefs
+
+  IF NOT $Language EQ "english"
+    CD LOCALE:Catalogs/$Language
+    C:LoadResource Sys/workbench.catalog Sys/libs.catalog Sys/prefs.catalog Sys/commodities.catalog Sys/utilities.catalog
+    CD SYS:
+  EndIF
+Else
+  C:IPrefs
+EndIF
+
+C:ConClip
+
+Path >NIL: RAM: C: SYS:Utilities SYS:Rexxc SYS:System S: SYS:Prefs SYS:WBStartup SYS:Tools SYS:Tools/Commodities
+
+IF EXISTS S:User-Startup
+  Execute S:User-Startup
+EndIF
+
+Resident Execute REMOVE
+Resident Assign REMOVE
+
+C:LoadWB
+EndCLI >NIL:
